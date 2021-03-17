@@ -6,10 +6,11 @@
 #include <string>
 using namespace std;
 
+
 class EngimonDex {
     protected:
         string monName;
-        string monSpecies;
+        string namaSpecies;
         Element *monElements;
     
     public:
