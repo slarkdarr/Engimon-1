@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Engimon.hpp"
 #include "Dragon.hpp"
-
-#include "Element.hpp"
 #include "Skill.hpp"
 
 using namespace std;
@@ -44,9 +42,29 @@ Dragon :: Dragon(string name , const Engimon& parent1, const Engimon& parent2){
     monParents[1] = parent2;
 }
 Dragon :: ~Dragon(){
-    delete monElements;
-    delete monSkills;
-    delete monParents;
+    delete[] monElements;
+    delete[] monSkills;
+    delete[] monParents;
+}
+
+void Dragon :: printInfo() {
+    Engimon :: printInfo();
+    cout << "List Elemen : "<< "\n";
+    cout << "Elemen 1 : " << this->monElements[0].to_string() << endl;
+    if(this->monElements[1].getElement() != ElementType :: None) cout << "Elemen 2 : " << this->monElements[1].to_string() << endl;
+    cout << "List skils :" << "\n";
+    for (size_t i = 0; i < 4; i++)
+    {
+        if(this->monSkills->getSkillName() != "None"){
+            cout << this->monSkills[i].getSkillName() << ", ";
+        }
+    }
+    cout << endl;
+    cout << "List nama dan spesies Parent : \n";
+    for (size_t j = 0; j < 2 ; j++)
+    {
+          cout << this->monParents[j].getName() << " Spesies : " << this->monParents[j].getNamaSpecies() << endl; 
+    }
 }
 
 int main() {

@@ -39,6 +39,8 @@
             "command": "g++",
             "args": [
                 "-std=c++14",
+                ".\\src\\Species\\**.cpp",
+                ".\\src\\Map\\**.cpp",
                 ".\\src\\**.cpp",
                 "-o",
                 ".\\bin\\Main.exe"

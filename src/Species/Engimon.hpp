@@ -18,7 +18,7 @@ public:
     Engimon(string);
     Engimon(string, const Engimon&, const Engimon&);
     Engimon& operator=(const Engimon&);
-    void print();
+    void printInfo();
     virtual ~Engimon();
     string getName() const;
     string getNamaSpecies() const;

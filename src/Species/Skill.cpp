@@ -15,3 +15,7 @@ Skill::Skill(string skillName) {
     this->basePower = 100;
     this->masteryLevel = 10;
 }
+
+string Skill :: getSkillName() {
+    return this->skillName;
+}
