@@ -14,6 +14,7 @@ class Skill {
     public:
         Skill();
         Skill(string);
+        string getSkillName();
 };
 
 #endif

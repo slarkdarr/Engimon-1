@@ -43,7 +43,10 @@ string Engimon :: getName() const{
 Engimon :: ~Engimon(){
 
 }
-/*void Engimon::print() {
-    cout << "Name: " << this->monName << endl;
-    cout << "Species: " << this->monSpecies << endl;
-}*/
+void Engimon::printInfo() {
+    cout << "Nama : " << this->monName << endl;
+    cout << "Nama Spesies" << this->namaSpecies << endl;
+    cout << "Level : " << this->monLevel << endl;
+    cout << "Exp : " << this->monExp << endl;
+    cout << "Cumulative Exp : " << this->monCtvExp << endl;
+}

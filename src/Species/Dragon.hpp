@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Engimon.hpp"
-#include "Element.hpp"
+#include "../Element.hpp"
 #include "Skill.hpp"
 
 class Dragon : public Engimon {
@@ -15,4 +15,5 @@ public :
     Engimon& operator=(const Engimon&);
     ~Dragon();
     string getNameParent();
+    void printInfo();
 };

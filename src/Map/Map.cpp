@@ -120,14 +120,3 @@ void Map::printMap(int currentlevel)
 	}
     std::cout << std::endl;
 }
-
-int main(int argc, char const *argv[])
-{
-    Map* testmap = new Map();
-    testmap->setSea(3,10,5,10);
-    testmap->printMap(1);
-    testmap->setGrassland(4,9,8,9);
-    testmap->printMap(1);
-
-    return 0;
-}
