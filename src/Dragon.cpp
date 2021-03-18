@@ -1,24 +1,12 @@
-#include<iostream>
-#include "Engimon.h"
-#include "Engimon.cpp"
-#include "Element.cpp"
+#include <iostream>
+#include "Engimon.hpp"
+#include "Dragon.hpp"
+
 #include "Element.hpp"
-#include "Skill.h"
-#include "Skill.cpp"
+#include "Skill.hpp"
+
 using namespace std;
-class Dragon : public Engimon {
-protected:
-    Element *monElements;
-    Skill *monSkills;
-    Engimon *monParents;
-public :
-    Dragon();
-    Dragon(string);
-    Dragon(string, const Engimon&, const Engimon&);
-    Engimon& operator=(const Engimon&);
-    ~Dragon();
-    string getNameParent();
-};
+
 
 string Dragon :: getNameParent(){
     return this->monParents[0].getName();
