@@ -32,6 +32,15 @@ Element::ElementAdv Element::elementAdv = {
     {std::make_pair(Ice, Ice), 1}
 };
 
+Element::ElementToString Element::stringify = {
+	{None, "None"},
+    {Fire, "Fire"},
+    {Water, "Water"},
+    {Electric, "Electric"},
+    {Ground, "Ground"},
+    {Ice, "Ice"}
+};
+
 Element::Element(ElementType eltype) {
     this->element = eltype;
 }
@@ -50,6 +59,10 @@ bool Element::operator==(const Element& other){
         return true;
     }
     return false;
+}
+
+string Element::to_string(){
+    return stringify[this->element];
 }
 
 float Element::getElementAdvantage(const Element& other){
