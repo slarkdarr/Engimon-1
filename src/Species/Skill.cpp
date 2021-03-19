@@ -2,6 +2,7 @@
 #include "Skill.hpp"
 using namespace std;
 
+
 Skill::Skill() {
     this->skillName = "None";
     this->skillType = "None";
@@ -11,7 +12,7 @@ Skill::Skill() {
 
 Skill::Skill(string skillName) {
     this->skillName = skillName;
-    this->skillType = "Fire";
+    this->skillType =  "Fire";
     this->basePower = 100;
     this->masteryLevel = 10;
 }

@@ -1,51 +1,51 @@
 #include <iostream>
 #include "Engimon.hpp"
-#include "Dragon.hpp"
+#include "Raichu.hpp"
 #include "Skill.hpp"
 
 using namespace std;
 
 
-string Dragon :: getNameParent(){
+string Raichu :: getNameParent(){
     return this->monParents[0].getName();
 }
 
-ElementType Dragon :: getFirstElement(){
+ElementType Raichu :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
-Dragon :: Dragon() : Engimon(){
+Raichu :: Raichu() : Engimon(){
     this->monName = "";
-    this->namaSpecies = "Dragon";
+    this->namaSpecies = "Raichu";
     this->monElements = new Element[2];
-    monElements[0].setElement(Fire);
+    monElements[0].setElement(Electric);
     this->monSkills = new Skill[4];
     this->monParents = new Engimon[4];
 };
 
-Dragon :: Dragon(string name) : Engimon(){
-    Dragon::Dragon();
+Raichu :: Raichu(string name) : Engimon(){
+    Raichu::Raichu();
     this->monName = name;
 };
 
-Dragon :: Dragon(string name , const Engimon& parent1, const Engimon& parent2){
-    Dragon::Dragon(name);
+Raichu :: Raichu(string name , const Engimon& parent1, const Engimon& parent2){
+    Raichu::Raichu(name);
     monParents[0] = parent1;
     monParents[1] = parent2;
 }
 
-Engimon& Dragon ::operator=(const Engimon& a){
+Engimon& Raichu ::operator=(const Engimon& a){
     this->Engimon :: operator=(a);
     return *this;
 }
 
-Dragon :: ~Dragon(){
+Raichu :: ~Raichu(){
     delete[] monElements;
     delete[] monSkills;
     delete[] monParents;
 }
 
-void Dragon :: printInfo() {
+void Raichu :: printInfo() {
     Engimon :: printInfo();
     cout << "List Elemen : "<< "\n";
     cout << "Elemen 1 : " << this->monElements[0].to_string() << endl;
@@ -67,7 +67,7 @@ void Dragon :: printInfo() {
 
 // int main() {
 //     Engimon a("bapak"), c("ibu");
-//     Dragon *b = new Dragon("ASTAGA", a, c);
+//     Raichu *b = new Raichu("ASTAGA", a, c);
 //     cout << b->getNameParent() << endl;
 //     return 0;
 // }
