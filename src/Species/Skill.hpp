@@ -10,7 +10,7 @@ class Skill {
         string skillType;
         int basePower;
         int masteryLevel;
-
+        friend ostream& operator<<(ostream& os, const Skill& s);
     public:
         Skill();
         Skill(string);

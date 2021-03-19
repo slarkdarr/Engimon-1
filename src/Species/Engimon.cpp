@@ -47,6 +47,11 @@ int Engimon :: getLevel() const{
 Engimon :: ~Engimon(){
 
 }
+
+ostream& operator<<(ostream& os, const Engimon& e){
+    os << "Engimon || Nama : " << e.getName() << " || Spesies : " << e.getNamaSpecies() << " || Level : " << e.getLevel();
+    return os;
+}
 void Engimon::printInfo() {
     cout << "Nama : " << this->monName << endl;
     cout << "Nama Spesies" << this->namaSpecies << endl;
