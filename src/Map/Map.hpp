@@ -3,14 +3,13 @@
 
 #include "Cell.hpp"
 
-#define MAX_X 30
-#define MAX_Y 20
+class Cell;
 
 class Map  
 {
-	private:
-		Cell* cells;
 	public:
+		Cell* cells;
+
 		Map();
 		~Map();
 		// Membuat Grassland sesuai luas MAX_Y * MAX_X

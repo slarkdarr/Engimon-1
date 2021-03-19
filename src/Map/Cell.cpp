@@ -1,7 +1,7 @@
 #include "Cell.hpp" 
 #include "Position.hpp"
-#include "../Occupier.hpp"
-	
+#include "Occupier.hpp"
+
 Cell::Cell()
 {
 	this->position = Position();
@@ -29,5 +29,6 @@ void Cell::setCellType(CellType cellType)
 void Cell::setOccupier(Occupier* occupier)
 {
     this->occupier = occupier;
+    
 }
 

@@ -2,12 +2,14 @@
 #define CELL_H
 
 #include "Position.hpp"
-#include "../Occupier.hpp"
+#include "Occupier.hpp"
 
 enum CellType {
 	Sea_Cell,
 	Grassland_Cell
 };
+
+class Occupier;
 
 class Cell  
 {
