@@ -10,11 +10,12 @@ using namespace std;
 
 
 
-template <class T>
+template <class T1,class T2>
 class Inventory{
 
 private:
-    vector<T> bag;
+    vector<T1> bagSkills;
+    vector<T2> bagEngimon;
 
 public:
     Inventory();
