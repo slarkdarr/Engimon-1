@@ -40,6 +40,10 @@ string Engimon :: getNamaSpecies() const{
 string Engimon :: getName() const{
     return monName;
 }
+int Engimon :: getLevel() const{
+    return this->monLevel;
+}
+
 Engimon :: ~Engimon(){
 
 }

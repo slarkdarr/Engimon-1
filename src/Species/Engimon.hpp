@@ -21,6 +21,7 @@ public:
     void printInfo();
     virtual ~Engimon();
     string getName() const;
+    int getLevel() const;
     string getNamaSpecies() const;
 };
 

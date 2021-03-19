@@ -67,9 +67,9 @@ void Dragon :: printInfo() {
     }
 }
 
-int main() {
-    Engimon a("bapak"), c("ibu");
-    Dragon *b = new Dragon("ASTAGA", a, c);
-    cout << b->getNameParent() << endl;
-    return 0;
-}
+// int main() {
+//     Engimon a("bapak"), c("ibu");
+//     Dragon *b = new Dragon("ASTAGA", a, c);
+//     cout << b->getNameParent() << endl;
+//     return 0;
+// }
