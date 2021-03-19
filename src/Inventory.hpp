@@ -1,8 +1,7 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
-#define MAX_CAPACITY 20
+#define MAX_CAPACITY 5
 using namespace std;
-
 #include <vector>
 #include "Species/Engimon.hpp"
 #include "Species/Dragon.hpp"
@@ -20,12 +19,15 @@ private:
 public:
     Inventory();
     ~Inventory();
-    void addEnigmon(Engimon&);
-    void removeItem(int);
-    bool isSkillExist(Skill&);
+    void addEngimon(Engimon&);
+    void removeEngimon(int);
     void addSkill(Skill&);
-    bool isFull();
+    void removeSkill(int);
     void printItem();
+    bool isSkillExist(Skill&);
+    bool isEmpty();
+    bool isFull();
+    
 
 };
 
