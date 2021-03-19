@@ -36,10 +36,9 @@ Player::~Player()
 // Contoh driver move
 // int main(int argc, char const *argv[])
 // {
-//     Map* isekai = new Map();
-//     isekai->setSea(15,30,10,20);
+//     Map* isekai = new Map("src/Map/map.txt");
 //     Player* lumine = new Player(*isekai,5,5);
-//     // isekai->printMap(lumine->getLevel());
+
 //     string input;
 //     bool ashiap = true;
 //     while (ashiap)
@@ -47,12 +46,11 @@ Player::~Player()
 //         isekai->printMap(lumine->getLevel());
 //         do
 //         {
+//             std::cout << ">> ";
 //             std::cin >> input;
 //         }
 //         while (!lumine->move(input));
 //     }
-//     isekai->printMap(lumine->getLevel());
     
-
 //     return 0;
 // }

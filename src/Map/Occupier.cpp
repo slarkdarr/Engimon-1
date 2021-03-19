@@ -22,7 +22,7 @@ Occupier::Occupier(Map& m, int x, int y, Occupier_Type octype)
 
 Occupier :: ~Occupier() 
 {
-    m->cells[this->position.x + this->position.y * MAX_X].setOccupier(nullptr);
+    m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
 }
 
 	
@@ -34,11 +34,12 @@ bool Occupier::setPositionOcc(int x, int y)
 {
     if (Position::isValidCoordinate(x,y))
     {
-        m->cells[this->position.x + this->position.y * MAX_X].setOccupier(nullptr);
-        m->cells[x + y * MAX_X].setOccupier(this);
+        m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
+        m->cells[x + y * Position::MAX_X].setOccupier(this);
         this->position.setPosition(x,y);
         return true;
     }
+    std::cout << "MENTOK BOS!" << std::endl;
     return false;
 }
 

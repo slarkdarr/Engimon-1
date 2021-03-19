@@ -1,5 +1,8 @@
 #include "Position.hpp"  
 	
+int Position::MAX_X = 30;
+int Position::MAX_Y = 20;
+
 Position::Position()
 {
 	x = 0;
