@@ -12,7 +12,7 @@ protected:
     int monCtvExp;
     string monName;
     string namaSpecies;
-
+    friend ostream& operator<<(ostream&, const Engimon&);
 public:
     Engimon();
     Engimon(string);

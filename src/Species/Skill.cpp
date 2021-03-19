@@ -1,4 +1,4 @@
-#include <string>
+#include <iostream>
 #include "Skill.hpp"
 using namespace std;
 
@@ -18,4 +18,9 @@ Skill::Skill(string skillName) {
 
 string Skill :: getSkillName() {
     return this->skillName;
+}
+
+ostream& operator<<(ostream& o, const Skill& e){
+    o << "Skill || Nama : " << e.skillName << " || Type :  " << e.skillType << " || basePower : " << e.basePower << " || masteryLevel : " << e.masteryLevel;
+    return o;
 }
