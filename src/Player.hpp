@@ -17,6 +17,7 @@ class Player : public Occupier
 		Player(Map&, int x, int y);
 		~Player();
 		int getLevel();
+		ElementType getElement();
 
 };
 

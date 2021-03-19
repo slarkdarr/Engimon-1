@@ -9,6 +9,11 @@ using namespace std;
 string Dragon :: getNameParent(){
     return this->monParents[0].getName();
 }
+
+ElementType Dragon :: getFirstElement(){
+    return this->monElements[0].getElementType();
+}
+
 Dragon :: Dragon() : Engimon(){
     this->monName = "";
     this->namaSpecies = "Dragon";
@@ -51,7 +56,7 @@ void Dragon :: printInfo() {
     Engimon :: printInfo();
     cout << "List Elemen : "<< "\n";
     cout << "Elemen 1 : " << this->monElements[0].to_string() << endl;
-    if(this->monElements[1].getElement() != ElementType :: None) cout << "Elemen 2 : " << this->monElements[1].to_string() << endl;
+    if(this->monElements[1].getElementType() != ElementType :: None) cout << "Elemen 2 : " << this->monElements[1].to_string() << endl;
     cout << "List skils :" << "\n";
     for (size_t i = 0; i < 4; i++)
     {

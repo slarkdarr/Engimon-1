@@ -50,12 +50,12 @@ Element::Element(){
 void Element::setElement(ElementType eltype){
     this->element = eltype;
 }
-ElementType Element::getElement() const{
+ElementType Element::getElementType() const{
     return element;
 }
 
 bool Element::operator==(const Element& other){
-    if (other.getElement() == this->element) {
+    if (other.getElementType() == this->element) {
         return true;
     }
     return false;
@@ -66,6 +66,6 @@ string Element::to_string(){
 }
 
 float Element::getElementAdvantage(const Element& other){
-    return elementAdv[std::make_pair(this->element, other.getElement())];
+    return elementAdv[std::make_pair(this->element, other.getElementType())];
 }
 

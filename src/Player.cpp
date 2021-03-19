@@ -22,6 +22,12 @@ int Player::getLevel()
 {
     return activeEngimon->getLevel();
 }
+
+ElementType Player::getElement()
+{
+    return activeEngimon->getFirstElement();
+}
+
 	
 Player::~Player()
 {

@@ -15,5 +15,6 @@ class Dragon : public Engimon {
         Engimon& operator=(const Engimon&);
         ~Dragon();
         string getNameParent();
+        ElementType getFirstElement();
         void printInfo();
 };

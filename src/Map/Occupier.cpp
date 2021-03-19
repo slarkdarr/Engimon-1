@@ -6,7 +6,7 @@
 Occupier::Occupier(Map& m)
 {
 	this->position = Position();
-    this->ocpType = Unknown;
+    this->ocpType = Enemy_Type;
     this->m = &m;
     if(!setPositionOcc(0,0)) throw 999;
 

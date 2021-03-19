@@ -24,7 +24,7 @@ class Element
 		Element(ElementType eltype);
 		Element();
 		void setElement(ElementType eltype);
-		ElementType getElement() const;
+		ElementType getElementType() const;
 		bool operator==(const Element& other);
 		float getElementAdvantage(const Element& other);
 		string to_string();

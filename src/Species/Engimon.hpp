@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Skill.hpp"
+#include "../Element.hpp"
 using namespace std;
 
 class Engimon{
@@ -22,6 +23,7 @@ public:
     virtual ~Engimon();
     string getName() const;
     int getLevel() const;
+    virtual ElementType getFirstElement();
     string getNamaSpecies() const;
 };
 

@@ -44,6 +44,11 @@ int Engimon :: getLevel() const{
     return this->monLevel;
 }
 
+ElementType Engimon :: getFirstElement()
+{
+    return None;
+}
+
 Engimon :: ~Engimon(){
 
 }

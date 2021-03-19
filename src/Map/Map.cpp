@@ -76,21 +76,29 @@ void Map::printMap(int currentlevel)
             case Player_Type:
                 mapTemp[x][y] = 'P';
                 break;
-            case F:
-                mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'F' : 'f';
+            case Enemy_Type:
+                switch (cells[i].occupier->getElement())
+                {
+                case Fire:
+                    mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'F' : 'f';
+                    break;
+                case Water:
+                    mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'W' : 'w';
+                    break;
+                case Electric:
+                    mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'E' : 'e';
+                    break;
+                case Ground:
+                    mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'G' : 'g';
+                    break;
+                case Ice:
+                    mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'I' : 'i';
+                    break;
+                default:
+                    break;
+                }
                 break;
-            case W:
-                mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'W' : 'w';
-                break;
-            case E:
-                mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'E' : 'e';
-                break;
-            case G:
-                mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'G' : 'g';
-                break;
-            case I:
-                mapTemp[x][y] = (cells[i].occupier->getLevel() < currentlevel) ? 'I' : 'i';
-                break;
+            
             default:
                 mapTemp[x][y] = 'U';
                 break;
