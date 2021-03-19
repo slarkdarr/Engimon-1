@@ -21,14 +21,16 @@ class Occupier
 {
 	protected:
 		Position position;
+		Map* m;
 		
 	public:
 		Occupier_Type ocpType;
 		Occupier(Map& m);
 		Occupier(Map& m,int, int, Occupier_Type);
+		virtual ~Occupier();
 		Position getPosition();
 		virtual int getLevel() = 0;
-		virtual bool setPositionOcc(Map&, int, int);
+		virtual bool setPositionOcc(int, int);
 		// virtual void move(char c);
 		void printPosition();
 };

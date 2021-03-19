@@ -33,5 +33,7 @@ int main(int argc, char const *argv[])
     isekai->setSea(15,30,10,20);
     Player* lumine = new Player(*isekai,5,5);
     isekai->printMap(lumine->getLevel());
+    delete lumine;
+    isekai->printMap(0);
     return 0;
 }
