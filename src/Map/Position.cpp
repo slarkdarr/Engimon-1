@@ -21,6 +21,6 @@ bool Position::setPosition(int _x, int _y)
 }
 bool Position::isValidCoordinate(int x, int y)
 {
-    if (0 <= x < MAX_X && 0 <= y < MAX_Y) return true;
+    if (0 <= x && x < MAX_X && 0 <= y && y < MAX_Y) return true;
     return false; 
 }

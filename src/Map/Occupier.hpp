@@ -5,6 +5,7 @@ class Map;
 // ABSTRACT CLASS OCCUPIER ADALAH PARENT CLASS DARI ENEMY DAN PLAYER
 #include "Position.hpp"
 #include "Cell.hpp"
+#include <string>
 
 
 enum Occupier_Type {
@@ -31,7 +32,7 @@ class Occupier
 		Position getPosition();
 		virtual int getLevel() = 0;
 		virtual bool setPositionOcc(int, int);
-		// virtual void move(char c);
+		bool move(std::string c);
 		void printPosition();
 };
 #endif

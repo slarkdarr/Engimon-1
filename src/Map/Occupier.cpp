@@ -1,13 +1,14 @@
 #include "Occupier.hpp"  
 #include "Position.hpp"
 #include <iostream>
+#include <string>
 
 Occupier::Occupier(Map& m)
 {
 	this->position = Position();
     this->ocpType = Unknown;
     this->m = &m;
-    if(!setPositionOcc(0,0)) throw 1;
+    if(!setPositionOcc(0,0)) throw 999;
 
 }
 
@@ -16,7 +17,7 @@ Occupier::Occupier(Map& m, int x, int y, Occupier_Type octype)
 	this->position = Position(x,y);
     this->ocpType = octype;
     this->m = &m;
-    if(!setPositionOcc(x,y)) throw 1;
+    if(!setPositionOcc(x,y)) throw 1998;
 }
 
 Occupier :: ~Occupier() 
@@ -29,7 +30,8 @@ Position Occupier::getPosition(){
     return this->position;
 }
 
-bool Occupier::setPositionOcc(int x, int y){
+bool Occupier::setPositionOcc(int x, int y)
+{
     if (Position::isValidCoordinate(x,y))
     {
         m->cells[this->position.x + this->position.y * MAX_X].setOccupier(nullptr);
@@ -40,9 +42,35 @@ bool Occupier::setPositionOcc(int x, int y){
     return false;
 }
 
+bool Occupier::move(std::string str) 
+{
+    char c = str[0];
+    int x = this->position.x;
+    int y = this->position.y;
+    switch (c)
+    {
+    case 'w':
+    case 'W':
+        return setPositionOcc(x,--y);
+    case 'a':
+    case 'A':
+        return setPositionOcc(--x,y);
+    case 's':
+    case 'S':
+        return setPositionOcc(x,++y);
+    case 'd':
+    case 'D':
+        return setPositionOcc(++x,y);   
+    default:
+        std::cout << "Salah memasukkan input" << std::endl;
+        return false;
+    }
+}
 
 
-void Occupier::printPosition(){
+
+void Occupier::printPosition()
+{
     std::cout << this->position.x << std::endl;
     std::cout << this->position.y << std::endl;
 }

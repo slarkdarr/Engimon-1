@@ -1,5 +1,6 @@
 #include "Player.hpp" 
 #include <string>
+#include <iostream>
 
 
 	
@@ -26,14 +27,26 @@ Player::~Player()
 {
     listengimon.clear();
 }
+// Contoh driver
+// int main(int argc, char const *argv[])
+// {
+//     Map* isekai = new Map();
+//     isekai->setSea(15,30,10,20);
+//     Player* lumine = new Player(*isekai,5,5);
+//     // isekai->printMap(lumine->getLevel());
+//     string input;
+//     bool ashiap = true;
+//     while (ashiap)
+//     {
+//         isekai->printMap(lumine->getLevel());
+//         do
+//         {
+//             std::cin >> input;
+//         }
+//         while (!lumine->move(input));
+//     }
+//     isekai->printMap(lumine->getLevel());
+    
 
-int main(int argc, char const *argv[])
-{
-    Map* isekai = new Map();
-    isekai->setSea(15,30,10,20);
-    Player* lumine = new Player(*isekai,5,5);
-    isekai->printMap(lumine->getLevel());
-    delete lumine;
-    isekai->printMap(0);
-    return 0;
-}
+//     return 0;
+// }
