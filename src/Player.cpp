@@ -27,7 +27,7 @@ Player::~Player()
 {
     listengimon.clear();
 }
-// Contoh driver
+// Contoh driver move
 // int main(int argc, char const *argv[])
 // {
 //     Map* isekai = new Map();
