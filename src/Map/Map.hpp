@@ -9,9 +9,9 @@ class Cell;
 class Map  
 {
 
-	private:
-		int MAX_X, MAX_Y;
 	public:
+		int MAX_X, MAX_Y;
+
 		Cell* cells;
 
 		Map(int x, int y);

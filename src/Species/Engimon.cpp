@@ -9,7 +9,7 @@ Engimon::Engimon(){
     this->namaSpecies = "";
     this->monLevel = 1;
     this->monExp = 0;
-    this->monCtvExp = 0;
+    this->monCtvExp = 2000;
 }
 
 Engimon::Engimon(string monName){
@@ -17,7 +17,21 @@ Engimon::Engimon(string monName){
     this->namaSpecies = "";
     this->monLevel = 1;
     this->monExp = 0;
-    this->monCtvExp = 0;
+    this->monCtvExp = 2000;
+}
+
+void Engimon::setLevel(int level) {
+    this->monLevel = level;
+}
+void Engimon::addExp(int additionalExp) {
+    this->monExp += additionalExp;
+    std::cout << "Anda Mendapatkan " << additionalExp << " exp" << std::endl;  
+    if (monExp >= monCtvExp) delete this;
+    if (this->monLevel != (this->monExp / 100)+1)  {
+        std::cout << "LEVEL UP!! Engimon anda naik " 
+        << (this->monExp / 100)+1 - this->monLevel << " level" << std::endl; 
+        this->monLevel = (this->monExp / 100)+1;
+    }
 }
 
 // Engimon::Engimon(string monName, const Engimon& parent1, const Engimon& parent2){

@@ -34,10 +34,15 @@ bool Occupier::setPositionOcc(int x, int y)
 {
     if (Position::isValidCoordinate(x,y))
     {
-        m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
-        m->cells[x + y * Position::MAX_X].setOccupier(this);
-        this->position.setPosition(x,y);
-        return true;
+        if (!m->cells[x + y * Position::MAX_X].occupier)
+        {
+            m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
+            m->cells[x + y * Position::MAX_X].setOccupier(this);
+            this->position.setPosition(x,y);
+            return true;
+        }
+        std::cout << "Cell ditempati!" << std::endl;
+        return false;
     }
     std::cout << "MENTOK BOS!" << std::endl;
     return false;

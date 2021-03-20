@@ -24,6 +24,8 @@ public:
     virtual ~Engimon();
     string getName() const;
     int getLevel() const;
+    void setLevel(int level);
+    void addExp(int additionalExp);
     virtual ElementType getFirstElement();
     string getNamaSpecies() const;
 };

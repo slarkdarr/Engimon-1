@@ -1,15 +1,23 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include "Species/Engimon.hpp"
+#include "Species/Articuno.hpp"
 #include "Species/Dragon.hpp"
+#include "Species/Excadrill.hpp"
+#include "Species/Raichu.hpp"
+#include "Species/Skill.hpp"
+#include "Species/Squirtle.hpp"
 #include "Map/Occupier.hpp"
+
 class Enemy  : public Occupier
 {
 	private:
 		Engimon* engimon;
-		Map* map;
+		CellType cellType;
 	public:
-		Enemy(Map&, ElementType, int x, int y);
+		Enemy(Map&, int jenis, int level);
+		ElementType getElement();
+		int getLevel();
 		~Enemy();
 
 };
