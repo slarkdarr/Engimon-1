@@ -1,3 +1,7 @@
+
+#ifndef ARTICUNO_HPP
+#define ARTICUNO_HPP
+
 #include <iostream>
 #include "Engimon.hpp"
 #include "../Element.hpp"
@@ -19,3 +23,5 @@ class Articuno : public Engimon {
         ElementType getFirstElement();
         void printInfo();
 };
+
+#endif

@@ -1,3 +1,7 @@
+#ifndef SQUIRTLE_HPP
+#define SQUIRTLE_HPP
+
+
 #include <iostream>
 #include "Engimon.hpp"
 #include "../Element.hpp"
@@ -19,3 +23,5 @@ class Squirtle : public Engimon {
         ElementType getFirstElement();
         void printInfo();
 };
+
+#endif

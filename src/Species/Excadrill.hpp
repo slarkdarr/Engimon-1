@@ -1,3 +1,7 @@
+#ifndef EXCADRILL_HPP
+#define EXCADRILL_HPP
+
+
 #include <iostream>
 #include "Engimon.hpp"
 #include "../Element.hpp"
@@ -19,3 +23,5 @@ class Excadrill : public Engimon {
         ElementType getFirstElement();
         void printInfo();
 };
+
+#endif

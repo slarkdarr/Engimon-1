@@ -1,3 +1,9 @@
+#ifndef RAICHU_HPP
+#define RAICHU_HPP
+
+
+
+
 #include <iostream>
 #include "Engimon.hpp"
 #include "../Element.hpp"
@@ -19,3 +25,5 @@ class Raichu : public Engimon {
         ElementType getFirstElement();
         void printInfo();
 };
+
+#endif

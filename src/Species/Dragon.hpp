@@ -1,3 +1,7 @@
+#ifndef DRAGON_HPP
+#define DRAGON_HPP
+
+
 #include <iostream>
 #include "Engimon.hpp"
 #include "../Element.hpp"
@@ -20,3 +24,5 @@ class Dragon : public Engimon {
         ElementType getFirstElement();
         void printInfo();
 };
+
+#endif
