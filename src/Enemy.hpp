@@ -18,6 +18,8 @@ class Enemy  : public Occupier
 		Enemy(Map&, int jenis, int level);
 		ElementType getElement();
 		int getLevel();
+		bool setPositionOcc(int, int);
+		bool move(int);
 		~Enemy();
 
 };

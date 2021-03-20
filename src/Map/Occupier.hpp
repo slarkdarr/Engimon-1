@@ -30,7 +30,7 @@ class Occupier
 		virtual ElementType getElement() = 0;
 		virtual int getLevel() = 0;
 		virtual bool setPositionOcc(int, int);
-		bool move(std::string c);
+		virtual bool move(std::string c);
 		void printPosition();
 };
 #endif
