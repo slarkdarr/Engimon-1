@@ -1,6 +1,6 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
-#define MAX_CAPACITY 5
+#define MAX_CAPACITY 6
 using namespace std;
 #include <vector>
 #include <unordered_map>

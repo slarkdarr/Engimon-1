@@ -30,8 +30,8 @@ bool Inventory<T1, T2> :: isEmpty() {
 
 template <class T1,class T2>
 bool Inventory<T1, T2> :: isFull(){
-    if(this->bagEngimon.size() + bagSkills.size() >= MAX_CAPACITY) return true;
-    return false;
+    if(this->bagEngimon.size() + bagSkills.size() < MAX_CAPACITY) return false;
+    return true;
 }
 
 template <class T1,class T2>
@@ -46,7 +46,7 @@ void Inventory<T1,T2> :: addEngimon(Engimon& e){
 template <class T1,class T2>
 void Inventory<T1, T2> :: addSkill(Skill& s){
     if(this->isFull()) cout << "Inventory sudah penuh" << endl;
-    if(this->isSkillExist(s)){
+    else if(this->isSkillExist(s)){
         skillDict[s]++;
     }
     else {
@@ -63,7 +63,6 @@ void Inventory<T1, T2> :: removeSkill(int x){
     else{
         this->skillDict[bagSkills[x-1]]--;
         this->bagSkills.erase(bagSkills.begin() + (x - 1));
-        this->bagSkills.shrink_to_fit();
         cout << "Skills berhasil dihapus" << endl;
     };
 }
@@ -89,7 +88,10 @@ void Inventory<T1, T2> :: removeEngimon(int x){
 
 template <class T1,class T2>
 void Inventory<T1, T2> :: printItem() {
-    if(this->isEmpty()) cout << "Bag kosong" << endl;
+    if(this->isEmpty()) {
+        cout << "Bag kosong" << endl;
+    }
+
     int count_skill = 0;
     for (auto i = bagSkills.begin(); i != bagSkills.end(); ++i){
         cout << count_skill + 1 << ". " << *i << " || count : " << skillDict[*i] << endl;
@@ -107,18 +109,18 @@ void Inventory<T1, T2> :: printItem() {
 int main() {
     Inventory<Skill, Engimon> *i = new Inventory<Skill, Engimon>();
     Engimon *e1 = new Dragon("Dragon Jr");
+    Engimon *e2 = new Dragon("Dragon Jr 2");
     Skill *s = new Skill();
     Skill *s2 = new Skill("x2");
     Skill *s3 = new Skill("x3");
     i->addSkill(*s);
     i->addSkill(*s2);
     i->addSkill(*s3);
+    i->addEngimon(*e2);
     i->addEngimon(*e1);
+    i->addEngimon(*e2);
     i->printItem();
-
-    i->removeEngimon(1);
-    i->removeSkill(1);
-
+    i->removeEngimon(2);
     i->printItem();
     return 0;
 }
