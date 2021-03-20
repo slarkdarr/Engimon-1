@@ -1,6 +1,7 @@
 #include "Map.hpp"  
 #include "Cell.hpp"
 #include <iostream>
+#include <windows.h>
 
 Map::Map(int x, int y)
 {
@@ -122,11 +123,12 @@ void Map::printMap(int currentlevel)
     // const int Ylen = this->MAX_Y;
 
     // char mapTemp[Xlen][Ylen] {};
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     for (int i = 0; i < Map::MAX_X * Map::MAX_Y; i++)
     {
         int x = i % Map::MAX_X;
         if (x == 0) std::cout << std::endl;
-        // Jika ada Occupier
+        // Jika ada Occupierz
         char c;
         if (this->cells[i].occupier)
         {
@@ -134,24 +136,44 @@ void Map::printMap(int currentlevel)
             {
             case Player_Type:
                 c = 'P';
+                switch (cells[i].cellType)
+                {
+                case Grassland_Cell:
+                    SetConsoleTextAttribute(hConsole, 175);
+                    break;
+                case Sea_Cell:
+                    SetConsoleTextAttribute(hConsole, 63);
+                    break;
+                default:
+                    break;
+                }
                 break;
             case Enemy_Type:
                 switch (cells[i].occupier->getElement())
                 {
                 case Fire:
                     c = (cells[i].occupier->getLevel() < currentlevel) ? 'F' : 'f';
+                    SetConsoleTextAttribute(hConsole, 172);
                     break;
                 case Water:
                     c = (cells[i].occupier->getLevel() < currentlevel) ? 'W' : 'w';
+                    SetConsoleTextAttribute(hConsole, 49);
+
                     break;
                 case Electric:
                     c = (cells[i].occupier->getLevel() < currentlevel) ? 'E' : 'e';
+                    SetConsoleTextAttribute(hConsole, 166);
+
                     break;
                 case Ground:
                     c = (cells[i].occupier->getLevel() < currentlevel) ? 'G' : 'g';
+                    SetConsoleTextAttribute(hConsole, 168);
+
                     break;
                 case Ice:
                     c = (cells[i].occupier->getLevel() < currentlevel) ? 'I' : 'i';
+                    SetConsoleTextAttribute(hConsole, 55);
+
                     break;
                 default:
                     break;
@@ -168,15 +190,19 @@ void Map::printMap(int currentlevel)
             {
             case Grassland_Cell:
                 c = '-';
+                SetConsoleTextAttribute(hConsole, 170);
                 break;
             case Sea_Cell:
                 c = 'o';
+                SetConsoleTextAttribute(hConsole, 51);
                 break;
             default:
                 break;
             }
         }
         std::cout << c;
+        SetConsoleTextAttribute(hConsole, 15);
+
     }
     // for (int i = 0; i < Map::MAX_Y; i++)
 	// {
