@@ -3,6 +3,7 @@
 #define MAX_CAPACITY 5
 using namespace std;
 #include <vector>
+#include <unordered_map>
 #include "Species/Engimon.hpp"
 #include "Species/Dragon.hpp"
 #include "Species/Skill.hpp"
@@ -15,6 +16,8 @@ class Inventory{
 private:
     vector<T1> bagSkills;
     vector<T2> bagEngimon;
+    // typedef unordered_map<Skill, int, SkillHashFunction> umapSkill;
+    static unordered_map<Skill, int, SkillHashFunction> skillDict;
 
 public:
     Inventory();
@@ -24,11 +27,12 @@ public:
     void addSkill(Skill&);
     void removeSkill(int);
     void printItem();
-    bool isSkillExist(Skill&);
+    bool isSkillExist(Skill&) const;
     bool isEmpty();
     bool isFull();
-    
+    void purgeDict();
 
 };
+
 
 #endif

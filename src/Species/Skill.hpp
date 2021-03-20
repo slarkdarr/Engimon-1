@@ -6,15 +6,24 @@ using namespace std;
 
 class Skill {
     protected:
-        string skillName;
-        string skillType;
         int basePower;
         int masteryLevel;
         friend ostream& operator<<(ostream& os, const Skill& s);
     public:
+        string skillName;
+        string skillType;
         Skill();
         Skill(string);
-        string getSkillName();
+        Skill(const Skill&);
+        string getSkillName() const;
+        bool operator==(const Skill&) const ;
 };
 
+class SkillHashFunction{
+public:
+    size_t operator()(const Skill& s) const
+    {
+        return s.skillName.length() + s.skillType.length();
+    }
+};
 #endif
