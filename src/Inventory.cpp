@@ -63,9 +63,9 @@ void Inventory<T1, T2> :: removeSkill(int x){
     else{
         this->skillDict[bagSkills[x-1]]--;
         this->bagSkills.erase(bagSkills.begin() + (x - 1));
+        this->bagSkills.shrink_to_fit();
         cout << "Skills berhasil dihapus" << endl;
     };
-    this->purgeDict();
 }
 
 template <class T1,class T2>
@@ -75,17 +75,17 @@ void Inventory<T1, T2> :: removeEngimon(int x){
     else{
         this->bagEngimon.erase(bagEngimon.begin() + (x - 1));
         cout << "Engimon berhasil dihapus" << endl;
-    } ;
+    };
 }
 
-template <class T1,class T2>
-void Inventory<T1,T2> :: purgeDict() {
-    for(auto it = skillDict.begin(); it != skillDict.end(); ++it){
-        if(it->second == 0){
-            skillDict.erase(it);
-        }
-    }
-}
+// template <class T1,class T2>
+// void Inventory<T1,T2> :: purgeDict() {
+//     for(auto it = skillDict.begin(); it != skillDict.end(); ++it){
+//         if(it->second == 0){
+//             skillDict.erase(it);
+//         }
+//     }
+// }
 
 template <class T1,class T2>
 void Inventory<T1, T2> :: printItem() {
@@ -117,7 +117,7 @@ int main() {
     i->printItem();
 
     i->removeEngimon(1);
-    i->removeSkill(2);
+    i->removeSkill(1);
 
     i->printItem();
     return 0;

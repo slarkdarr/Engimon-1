@@ -14,7 +14,7 @@ Skill::Skill(string skillName) {
     this->skillName = skillName;
     this->skillType =  "Fire";
     this->basePower = 100;
-    this->masteryLevel = 10;
+    this->masteryLevel = 5;
 }
 
 Skill :: Skill(const Skill& s) {
