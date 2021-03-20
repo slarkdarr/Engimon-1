@@ -8,6 +8,8 @@ class Dragon : public Engimon {
         Element *monElements;
         Skill *monSkills;
         Engimon *monParents;
+        void InitComp();
+
     public :
         Dragon();
         Dragon(string);

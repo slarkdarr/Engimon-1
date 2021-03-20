@@ -14,25 +14,28 @@ ElementType Articuno :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
-Articuno :: Articuno() : Engimon(){
-    this->monName = "";
+void Articuno::InitComp() {
     this->namaSpecies = "Articuno";
     this->monElements = new Element[2];
     monElements[0].setElement(Ice);
     this->monSkills = new Skill[4];
-    this->monParents = new Engimon[4];
+    this->monParents = new Engimon[2];
+}
+
+Articuno :: Articuno() : Engimon(){
+    InitComp();
 };
 
-Articuno :: Articuno(string name) : Engimon(){
-    Articuno::Articuno();
-    this->monName = name;
+Articuno :: Articuno(string name) : Engimon(name){
+    InitComp();
 };
 
-Articuno :: Articuno(string name , const Engimon& parent1, const Engimon& parent2){
-    Articuno::Articuno(name);
+Articuno :: Articuno(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
+    InitComp();
     monParents[0] = parent1;
     monParents[1] = parent2;
 }
+
 
 Engimon& Articuno ::operator=(const Engimon& a){
     this->Engimon :: operator=(a);

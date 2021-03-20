@@ -14,22 +14,24 @@ ElementType Dragon :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
-Dragon :: Dragon() : Engimon(){
-    this->monName = "";
+void Dragon::InitComp() {
     this->namaSpecies = "Dragon";
     this->monElements = new Element[2];
     monElements[0].setElement(Fire);
     this->monSkills = new Skill[4];
-    this->monParents = new Engimon[4];
+    this->monParents = new Engimon[2];
+}
+
+Dragon :: Dragon() : Engimon(){
+    InitComp();
 };
 
-Dragon :: Dragon(string name) : Engimon(){
-    Dragon::Dragon();
-    this->monName = name;
+Dragon :: Dragon(string name) : Engimon(name){
+    InitComp();
 };
 
-Dragon :: Dragon(string name , const Engimon& parent1, const Engimon& parent2){
-    Dragon::Dragon(name);
+Dragon :: Dragon(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
+    InitComp();
     monParents[0] = parent1;
     monParents[1] = parent2;
 }

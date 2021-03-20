@@ -8,6 +8,7 @@ class Squirtle : public Engimon {
         Element *monElements;
         Skill *monSkills;
         Engimon *monParents;
+        void InitComp();
     public :
         Squirtle();
         Squirtle(string);

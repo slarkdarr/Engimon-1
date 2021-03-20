@@ -8,6 +8,7 @@ class Raichu : public Engimon {
         Element *monElements;
         Skill *monSkills;
         Engimon *monParents;
+        void InitComp();
     public :
         Raichu();
         Raichu(string);

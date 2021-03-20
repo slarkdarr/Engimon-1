@@ -5,7 +5,9 @@
 using namespace std;
 
 Engimon::Engimon(){
-    this->monLevel = 0;
+    this->monName = "";
+    this->namaSpecies = "";
+    this->monLevel = 1;
     this->monExp = 0;
     this->monCtvExp = 0;
 }
@@ -13,17 +15,17 @@ Engimon::Engimon(){
 Engimon::Engimon(string monName){
     this->monName = monName;
     this->namaSpecies = "";
-    this->monLevel = 5;
+    this->monLevel = 1;
     this->monExp = 0;
     this->monCtvExp = 0;
 }
 
-Engimon::Engimon(string monName, const Engimon& parent1, const Engimon& parent2){
-    this->monName = monName;
-    this->monLevel = 5;
-    this->monExp = 0;
-    this->monCtvExp = 0;
-}
+// Engimon::Engimon(string monName, const Engimon& parent1, const Engimon& parent2){
+//     this->monName = monName;
+//     this->monLevel = 5;
+//     this->monExp = 0;
+//     this->monCtvExp = 0;
+// }
 
 Engimon& Engimon::operator=(const Engimon& other){
     this->monName = other.getName();

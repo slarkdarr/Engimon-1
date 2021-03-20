@@ -8,6 +8,7 @@ class Excadrill : public Engimon {
         Element *monElements;
         Skill *monSkills;
         Engimon *monParents;
+        void InitComp();
     public :
         Excadrill();
         Excadrill(string);

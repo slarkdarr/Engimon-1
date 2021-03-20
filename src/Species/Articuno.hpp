@@ -8,6 +8,7 @@ class Articuno : public Engimon {
         Element *monElements;
         Skill *monSkills;
         Engimon *monParents;
+        void InitComp();
     public :
         Articuno();
         Articuno(string);

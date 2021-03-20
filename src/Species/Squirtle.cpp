@@ -14,25 +14,28 @@ ElementType Squirtle :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
-Squirtle :: Squirtle() : Engimon(){
-    this->monName = "";
+void Squirtle::InitComp() {
     this->namaSpecies = "Squirtle";
     this->monElements = new Element[2];
     monElements[0].setElement(Water);
     this->monSkills = new Skill[4];
-    this->monParents = new Engimon[4];
+    this->monParents = new Engimon[2];
+}
+
+Squirtle :: Squirtle() : Engimon(){
+    InitComp();
 };
 
-Squirtle :: Squirtle(string name) : Engimon(){
-    Squirtle::Squirtle();
-    this->monName = name;
+Squirtle :: Squirtle(string name) : Engimon(name){
+    InitComp();
 };
 
-Squirtle :: Squirtle(string name , const Engimon& parent1, const Engimon& parent2){
-    Squirtle::Squirtle(name);
+Squirtle :: Squirtle(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
+    InitComp();
     monParents[0] = parent1;
     monParents[1] = parent2;
 }
+
 
 Engimon& Squirtle ::operator=(const Engimon& a){
     this->Engimon :: operator=(a);

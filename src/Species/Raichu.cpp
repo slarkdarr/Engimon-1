@@ -14,25 +14,28 @@ ElementType Raichu :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
-Raichu :: Raichu() : Engimon(){
-    this->monName = "";
+void Raichu::InitComp() {
     this->namaSpecies = "Raichu";
     this->monElements = new Element[2];
     monElements[0].setElement(Electric);
     this->monSkills = new Skill[4];
-    this->monParents = new Engimon[4];
+    this->monParents = new Engimon[2];
+}
+
+Raichu :: Raichu() : Engimon(){
+    InitComp();
 };
 
-Raichu :: Raichu(string name) : Engimon(){
-    Raichu::Raichu();
-    this->monName = name;
+Raichu :: Raichu(string name) : Engimon(name){
+    InitComp();
 };
 
-Raichu :: Raichu(string name , const Engimon& parent1, const Engimon& parent2){
-    Raichu::Raichu(name);
+Raichu :: Raichu(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
+    InitComp();
     monParents[0] = parent1;
     monParents[1] = parent2;
 }
+
 
 Engimon& Raichu ::operator=(const Engimon& a){
     this->Engimon :: operator=(a);

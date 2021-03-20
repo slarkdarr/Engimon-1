@@ -14,25 +14,28 @@ ElementType Excadrill :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
-Excadrill :: Excadrill() : Engimon(){
-    this->monName = "";
+void Excadrill::InitComp() {
     this->namaSpecies = "Excadrill";
     this->monElements = new Element[2];
     monElements[0].setElement(Ground);
     this->monSkills = new Skill[4];
-    this->monParents = new Engimon[4];
+    this->monParents = new Engimon[2];
+}
+
+Excadrill :: Excadrill() : Engimon(){
+    InitComp();
 };
 
-Excadrill :: Excadrill(string name) : Engimon(){
-    Excadrill::Excadrill();
-    this->monName = name;
+Excadrill :: Excadrill(string name) : Engimon(name){
+    InitComp();
 };
 
-Excadrill :: Excadrill(string name , const Engimon& parent1, const Engimon& parent2){
-    Excadrill::Excadrill(name);
+Excadrill :: Excadrill(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
+    InitComp();
     monParents[0] = parent1;
     monParents[1] = parent2;
 }
+
 
 Engimon& Excadrill ::operator=(const Engimon& a){
     this->Engimon :: operator=(a);
