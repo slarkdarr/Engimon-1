@@ -66,6 +66,7 @@ void ListEnemy::respawnEnemy()
             this->listEnemy[i] = new Enemy((*map), rand() % 5, 
             abs(rand() % ((*currentplayer).getLevel() + 5) + 
             ((*currentplayer).getLevel() - 5)));
+            std::cout << "berhasi merespawn enemy" << endl;
             break;
         }
     }

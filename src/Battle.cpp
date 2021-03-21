@@ -73,7 +73,8 @@ bool Battle::battle(Player& myplayer, ListEnemy& listmusuh){
                 {
                     listmusuh.listEnemy[i]->setEngimon(nullptr);
                     delete listmusuh.listEnemy[i];
-                    listmusuh.respawnEnemy();
+                    listmusuh.listEnemy[i] = new Enemy(*listmusuh.map, 
+                    rand() % 5, abs(rand() % (myplayer.getLevel() + 5) + (myplayer.getLevel() - 5)));
                     break;
                 }
             }

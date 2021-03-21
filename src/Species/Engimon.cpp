@@ -83,5 +83,5 @@ void Engimon::printInfo() {
     cout << "Nama Spesies : " << this->namaSpecies << endl;
     cout << "Level : " << this->monLevel << endl;
     // cout << "Exp : " << this->monExp << endl;
-    cout << "Cumulative Exp : " << this->monCtvExp << endl;
+    // cout << "Cumulative Exp : " << this->monCtvExp << endl;
 }
