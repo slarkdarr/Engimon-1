@@ -65,6 +65,11 @@ ElementType Engimon :: getFirstElement()
     return None;
 }
 
+ElementType Engimon :: getSecondElement()
+{
+    return None;
+}
+
 Engimon :: ~Engimon(){
 
 }
@@ -74,9 +79,9 @@ ostream& operator<<(ostream& os, const Engimon& e){
     return os;
 }
 void Engimon::printInfo() {
-    cout << "Nama : " << this->monName << endl;
-    cout << "Nama Spesies" << this->namaSpecies << endl;
+    // cout << "Nama : " << this->monName << endl;
+    cout << "Nama Spesies : " << this->namaSpecies << endl;
     cout << "Level : " << this->monLevel << endl;
-    cout << "Exp : " << this->monExp << endl;
+    // cout << "Exp : " << this->monExp << endl;
     cout << "Cumulative Exp : " << this->monCtvExp << endl;
 }

@@ -11,7 +11,9 @@ class ListEnemy
 		Map* map;
 		ListEnemy(Map& map, Player& player);
 		ListEnemy(Map& map, Player& player, int size);
+		bool deleteEnemy(int);
 		void moveAllRandom();
+		void respawnEnemy();
 		~ListEnemy();
 
 };

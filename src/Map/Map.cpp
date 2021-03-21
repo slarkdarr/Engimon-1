@@ -141,30 +141,30 @@ void Map::printMap(int currentlevel)
                 break;
             case Enemy_Type:
             case Pet_Type:
-                bool condition = cells[i].occupier->getLevel() >= currentlevel;
+                // bool condition = (cells[i].occupier->getLevel() >= currentlevel);
                 switch (cells[i].occupier->getElement())
                 {
                 case Fire:
-                    c = (condition) ? 'F' : 'f';
+                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'F' : 'f';
                     colorMultiplier = 12;
                     break;
                 case Water:
-                    c = (condition) ? 'W' : 'w';
+                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'W' : 'w';
                     colorMultiplier = 1;
 
                     break;
                 case Electric:
-                    c = (condition) ? 'E' : 'e';
+                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'E' : 'e';
                     colorMultiplier = 6;
 
                     break;
                 case Ground:
-                    c = (condition) ? 'G' : 'g';
+                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'G' : 'g';
                     colorMultiplier = 8;
 
                     break;
                 case Ice:
-                    c = (condition) ? 'I' : 'i';
+                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'I' : 'i';
                     colorMultiplier = 7;
 
                     break;

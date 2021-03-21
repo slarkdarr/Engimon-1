@@ -1,24 +1,28 @@
 #include "Player.hpp" 
 #include <string>
 #include <iostream>
+#include "Inventory.hpp"
+#include "Map/Occupier.hpp"
 
 
-	
 Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
 {
     Dragon* temp = new Dragon("Charizard");
     this->activeEngimon = new ActiveEngimon(m,*temp);
     this->activeEngimon->setPositionOcc(5,6);
-    this->listengimon.push_back(*temp);
+    this->inventory = new Inventory<Skill, Engimon>();
+    this->inventory->addEngimon(*temp);
+
 }
 
 Player::Player(Map &m, int x, int y) : Occupier(m, x, y, Player_Type)
 {
     Dragon* temp = new Dragon("Charizard");
     this->activeEngimon = new ActiveEngimon(m,*temp);
-    this->listengimon.push_back(*temp);
     if (x == 0 ) this->activeEngimon->setPositionOcc(1,y);
     else this->activeEngimon->setPositionOcc(x-1,y);
+    this->inventory = new Inventory<Skill, Engimon>();
+    this->inventory->addEngimon(*temp);
 }
 
 int Player::getLevel()
@@ -50,14 +54,77 @@ bool Player::setPositionOcc(int x, int y)
     return false;
 }
 
-void Player::setActiveEngimon(Engimon& m){
+void Player::setActiveEngimon(Engimon& m)
+{
     this->activeEngimon->setEngimon(m);
 }
+
+Engimon* Player::getEngimon()
+{
+    return this->activeEngimon->engimon;
+}
+
+Engimon* Player::getClosestEnemy()
+{
+    Occupier** listmusuh = new Occupier*[8];
+    // std::cout << "berhasil membuat occ" << std::endl;
+    // this->printPosition();
+
+    int jumlahMusuh = 0;
+    for (int i = 0; i < Position::MAX_X * Position::MAX_Y; i++)
+    {
+        int x = i % Position::MAX_X;
+        int y = i / Position::MAX_X;
+        // std::cout << "test "<< x << " " << y << std::endl;
+
+        if (x >= (this->position.x-1) && x <= (this->position.x+1) && y >= (this->position.y-1) && y <= (this->position.y+1)) 
+        {
+            // std::cout << "cell sekitar" << std::endl;
+            if ((this->m->cells[i].occupier) && this->m->cells[i].occupier->ocpType == Enemy_Type) 
+            {
+                
+                listmusuh[jumlahMusuh] = m->cells[i].occupier;
+                jumlahMusuh++;
+
+            }
+        } 
+    }
+    // std::cout << "jumlah musuh : " << jumlahMusuh << std::endl;
+
+    switch (jumlahMusuh)
+    {
+    case 0:
+        std::cout << "Tidak ada musuh disekitar" << std::endl;
+        return nullptr;
+    case 1:
+        listmusuh[0]->getEngimon()->printInfo();
+        return listmusuh[0]->getEngimon();
+    default:
+        std::cout << "Ditemukan " << jumlahMusuh  << " Musuh!"<< std::endl;
+        for (int i = 0; i < jumlahMusuh; i++)
+        {
+           std::cout << (i+1) << "." << std::endl;
+           listmusuh[i]->getEngimon()->printInfo(); 
+           std::cout << std::endl;
+        }
+        int n;
+        int return_value = 0;
+
+        while (!return_value) 
+        {
+            printf("Pilih musuh: ");
+            return_value = scanf("%d", &n);
+            while (getchar() !='\n' || n <= 0 || n > jumlahMusuh) continue;
+        }
+        return listmusuh[return_value-1]->getEngimon();
+    }
+}
+
 
 	
 Player::~Player()
 {
-    listengimon.clear();
+    delete inventory;
 }
 // Contoh driver move
 // int main(int argc, char const *argv[])

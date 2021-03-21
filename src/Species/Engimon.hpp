@@ -27,6 +27,7 @@ public:
     void setLevel(int level);
     void addExp(int additionalExp);
     virtual ElementType getFirstElement();
+    virtual ElementType getSecondElement();
     string getNamaSpecies() const;
 };
 

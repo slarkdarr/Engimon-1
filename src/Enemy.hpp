@@ -16,11 +16,11 @@ class Enemy  : public Occupier
 	public:
 		Engimon* engimon;
 		Enemy(Map&, int jenis, int level);
-		Enemy(Map& m, Engimon&);
 
 		ElementType getElement();
 		int getLevel();
-		void setEngimon(Engimon&);
+		Engimon* getEngimon();
+		void setEngimon(Engimon*);
 		bool setPositionOcc(int, int);
 		bool move(int);
 		~Enemy();

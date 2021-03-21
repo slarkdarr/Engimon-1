@@ -41,6 +41,12 @@ void ActiveEngimon::setEngimon(Engimon& e)
 	this->engimon = &e;
 }
 
+Engimon* ActiveEngimon::getEngimon()
+{
+    return this->engimon;
+}
+
+
 ActiveEngimon::~ActiveEngimon()
 {
 	delete engimon;

@@ -21,6 +21,7 @@ class Articuno : public Engimon {
         ~Articuno();
         string getNameParent();
         ElementType getFirstElement();
+        ElementType getSecondElement();
         void printInfo();
 };
 

@@ -106,21 +106,23 @@ void Inventory<T1, T2> :: printItem() {
     }
 }
 
-int main() {
-    Inventory<Skill, Engimon> *i = new Inventory<Skill, Engimon>();
-    Engimon *e1 = new Dragon("Dragon Jr");
-    Engimon *e2 = new Dragon("Dragon Jr 2");
-    Skill *s = new Skill();
-    Skill *s2 = new Skill("x2");
-    Skill *s3 = new Skill("x3");
-    i->addSkill(*s);
-    i->addSkill(*s2);
-    i->addSkill(*s3);
-    i->addEngimon(*e2);
-    i->addEngimon(*e1);
-    i->addEngimon(*e2);
-    i->printItem();
-    i->removeEngimon(2);
-    i->printItem();
-    return 0;
-}
+template class Inventory<Skill, Engimon>;
+
+// int main() {
+//     Inventory<Skill, Engimon> *i = new Inventory<Skill, Engimon>();
+//     Engimon *e1 = new Dragon("Dragon Jr");
+//     Engimon *e2 = new Dragon("Dragon Jr 2");
+//     Skill *s = new Skill();
+//     Skill *s2 = new Skill("x2");
+//     Skill *s3 = new Skill("x3");
+//     i->addSkill(*s);
+//     i->addSkill(*s2);
+//     i->addSkill(*s3);
+//     i->addEngimon(*e2);
+//     i->addEngimon(*e1);
+//     i->addEngimon(*e2);
+//     i->printItem();
+//     i->removeEngimon(2);
+//     i->printItem();
+//     return 0;
+// }

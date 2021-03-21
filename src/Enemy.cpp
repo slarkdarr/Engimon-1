@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include "time.h"
 
-Enemy::Enemy(Map& m, Engimon& edgymon) : Occupier(m)
-{
-	this->engimon = &edgymon;
-	this->cellType = Grassland_Cell;
-	// this->setPositionOcc(posisirand % Position::MAX_X, posisirand / Position::MAX_X)
-}
-
 
 Enemy::Enemy(Map& m, int angka, int level) : Occupier(m)
 {
@@ -98,9 +91,14 @@ bool Enemy::move(int rand)
     }
 }
 
-void Enemy::setEngimon(Engimon& e)
+void Enemy::setEngimon(Engimon* e)
 {
-	this->engimon = &e;
+	this->engimon = e;
+}
+
+Engimon* Enemy::getEngimon()
+{
+	return engimon;
 }
 
 

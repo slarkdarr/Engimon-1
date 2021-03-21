@@ -14,6 +14,10 @@ ElementType Articuno :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
+ElementType Articuno :: getSecondElement(){
+    return this->monElements[1].getElementType();
+}
+
 void Articuno::InitComp() {
     this->namaSpecies = "Articuno";
     this->monElements = new Element[2];

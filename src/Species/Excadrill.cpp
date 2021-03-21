@@ -14,6 +14,10 @@ ElementType Excadrill :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
+ElementType Excadrill :: getSecondElement(){
+    return this->monElements[1].getElementType();
+}
+
 void Excadrill::InitComp() {
     this->namaSpecies = "Excadrill";
     this->monElements = new Element[2];

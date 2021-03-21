@@ -7,6 +7,7 @@
 #include "Element.hpp"
 #include "Inventory.hpp"
 #include "Player.hpp"
+#include "ListEnemy.hpp"
 #include "Species/Articuno.hpp"
 #include "Species/Dragon.hpp"
 #include "Species/Engimon.hpp"
@@ -18,13 +19,8 @@
 using namespace std;
 
 class Battle {
-    private:
-        Player player;
-        Engimon e1;
-        Engimon e2;
-    public:
-        Battle();
-        Battle(Player player, Engimon e1, Engimon e2);
+    public: 
+        static bool battle(Player& myplayer, ListEnemy& musuh);
 };
 
 #endif

@@ -14,6 +14,10 @@ ElementType Dragon :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
+ElementType Dragon :: getSecondElement(){
+    return this->monElements[1].getElementType();
+}
+
 void Dragon::InitComp() {
     this->namaSpecies = "Dragon";
     this->monElements = new Element[2];

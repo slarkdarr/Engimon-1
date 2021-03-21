@@ -23,6 +23,7 @@ class Raichu : public Engimon {
         ~Raichu();
         string getNameParent();
         ElementType getFirstElement();
+        ElementType getSecondElement();
         void printInfo();
 };
 

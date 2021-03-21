@@ -22,6 +22,7 @@ class Dragon : public Engimon {
         ~Dragon();
         string getNameParent();
         ElementType getFirstElement();
+        ElementType getSecondElement();
         void printInfo();
 };
 

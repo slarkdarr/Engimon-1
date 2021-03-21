@@ -14,6 +14,10 @@ ElementType Raichu :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
+ElementType Raichu :: getSecondElement(){
+    return this->monElements[1].getElementType();
+}
+
 void Raichu::InitComp() {
     this->namaSpecies = "Raichu";
     this->monElements = new Element[2];

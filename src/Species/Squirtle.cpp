@@ -14,6 +14,10 @@ ElementType Squirtle :: getFirstElement(){
     return this->monElements[0].getElementType();
 }
 
+ElementType Squirtle :: getSecondElement(){
+    return this->monElements[1].getElementType();
+}
+
 void Squirtle::InitComp() {
     this->namaSpecies = "Squirtle";
     this->monElements = new Element[2];

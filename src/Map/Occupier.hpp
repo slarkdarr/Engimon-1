@@ -6,7 +6,7 @@ class Map;
 #include "Position.hpp"
 #include "Cell.hpp"
 #include "../Element.hpp"
-
+#include "../Species/Engimon.hpp"
 #include <string>
 
 
@@ -30,6 +30,8 @@ class Occupier
 		Position getPosition();
 		virtual ElementType getElement() = 0;
 		virtual int getLevel() = 0;
+		virtual Engimon* getEngimon() = 0;
+
 		virtual bool setPositionOcc(int, int);
 		virtual bool move(std::string c);
 		void printPosition();

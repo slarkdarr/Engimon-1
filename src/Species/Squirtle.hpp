@@ -21,6 +21,7 @@ class Squirtle : public Engimon {
         ~Squirtle();
         string getNameParent();
         ElementType getFirstElement();
+        ElementType getSecondElement();
         void printInfo();
 };
 

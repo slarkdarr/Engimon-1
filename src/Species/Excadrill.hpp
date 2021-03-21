@@ -21,6 +21,7 @@ class Excadrill : public Engimon {
         ~Excadrill();
         string getNameParent();
         ElementType getFirstElement();
+        ElementType getSecondElement();
         void printInfo();
 };
 
