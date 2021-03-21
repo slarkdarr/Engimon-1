@@ -12,7 +12,8 @@ class Map;
 
 enum Occupier_Type {
 	Player_Type,
-	Enemy_Type
+	Enemy_Type,
+	Pet_Type
 };
 
 class Occupier  

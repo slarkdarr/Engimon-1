@@ -1,5 +1,5 @@
-#ifndef ENEMY_H
-#define ENEMY_H
+#ifndef ActiveEngimon_H
+#define ActiveEngimon_H
 #include "Species/Engimon.hpp"
 #include "Species/Articuno.hpp"
 #include "Species/Dragon.hpp"
@@ -9,21 +9,17 @@
 #include "Species/Squirtle.hpp"
 #include "Map/Occupier.hpp"
 
-class Enemy  : public Occupier
+class ActiveEngimon  : public Occupier
 {
-	private:
-		CellType cellType;
 	public:
 		Engimon* engimon;
-		Enemy(Map&, int jenis, int level);
-		Enemy(Map& m, Engimon&);
-
+		
+		ActiveEngimon(Map& m, Engimon&);
 		ElementType getElement();
 		int getLevel();
 		void setEngimon(Engimon&);
 		bool setPositionOcc(int, int);
-		bool move(int);
-		~Enemy();
+		~ActiveEngimon();
 
 };
 #endif

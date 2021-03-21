@@ -1,5 +1,14 @@
 #include "Enemy.hpp"  
 #include <stdlib.h>
+#include "time.h"
+
+Enemy::Enemy(Map& m, Engimon& edgymon) : Occupier(m)
+{
+	this->engimon = &edgymon;
+	this->cellType = Grassland_Cell;
+	// this->setPositionOcc(posisirand % Position::MAX_X, posisirand / Position::MAX_X)
+}
+
 
 Enemy::Enemy(Map& m, int angka, int level) : Occupier(m)
 {
@@ -35,6 +44,7 @@ Enemy::Enemy(Map& m, int angka, int level) : Occupier(m)
 		break;
 	}
 	int posisirand = 0;
+	srand(time(0));
 	do {
 		posisirand = rand() % (Position::MAX_X * Position::MAX_Y);
 
@@ -87,7 +97,13 @@ bool Enemy::move(int rand)
         return false;
     }
 }
-	
+
+void Enemy::setEngimon(Engimon& e)
+{
+	this->engimon = &e;
+}
+
+
 Enemy::~Enemy()
 {
 	delete engimon;

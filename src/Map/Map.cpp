@@ -130,51 +130,45 @@ void Map::printMap(int currentlevel)
         if (x == 0) std::cout << std::endl;
         // Jika ada Occupierz
         char c;
+        int colorMultiplier = 0;
         if (this->cells[i].occupier)
         {
             switch (this->cells[i].occupier->ocpType)
             {
             case Player_Type:
                 c = 'P';
-                switch (cells[i].cellType)
-                {
-                case Grassland_Cell:
-                    SetConsoleTextAttribute(hConsole, 175);
-                    break;
-                case Sea_Cell:
-                    SetConsoleTextAttribute(hConsole, 63);
-                    break;
-                default:
-                    break;
-                }
+                colorMultiplier = 15;
                 break;
             case Enemy_Type:
+            case Pet_Type:
+                bool condition = cells[i].occupier->getLevel() >= currentlevel;
                 switch (cells[i].occupier->getElement())
                 {
                 case Fire:
-                    c = (cells[i].occupier->getLevel() < currentlevel) ? 'F' : 'f';
-                    SetConsoleTextAttribute(hConsole, 172);
+                    c = (condition) ? 'F' : 'f';
+                    colorMultiplier = 12;
                     break;
                 case Water:
-                    c = (cells[i].occupier->getLevel() < currentlevel) ? 'W' : 'w';
-                    SetConsoleTextAttribute(hConsole, 49);
+                    c = (condition) ? 'W' : 'w';
+                    colorMultiplier = 1;
 
                     break;
                 case Electric:
-                    c = (cells[i].occupier->getLevel() < currentlevel) ? 'E' : 'e';
-                    SetConsoleTextAttribute(hConsole, 166);
+                    c = (condition) ? 'E' : 'e';
+                    colorMultiplier = 6;
 
                     break;
                 case Ground:
-                    c = (cells[i].occupier->getLevel() < currentlevel) ? 'G' : 'g';
-                    SetConsoleTextAttribute(hConsole, 168);
+                    c = (condition) ? 'G' : 'g';
+                    colorMultiplier = 8;
 
                     break;
                 case Ice:
-                    c = (cells[i].occupier->getLevel() < currentlevel) ? 'I' : 'i';
-                    SetConsoleTextAttribute(hConsole, 55);
+                    c = (condition) ? 'I' : 'i';
+                    colorMultiplier = 7;
 
                     break;
+                case 10:
                 default:
                     break;
                 }
@@ -190,16 +184,28 @@ void Map::printMap(int currentlevel)
             {
             case Grassland_Cell:
                 c = '-';
-                SetConsoleTextAttribute(hConsole, 170);
+                colorMultiplier = 10;
                 break;
             case Sea_Cell:
                 c = 'o';
-                SetConsoleTextAttribute(hConsole, 51);
+                colorMultiplier = 3;
                 break;
             default:
                 break;
             }
         }
+        switch (cells[i].cellType)
+        {
+        case Grassland_Cell:
+            colorMultiplier += 160;
+            break;
+        case Sea_Cell:
+            colorMultiplier += 48;
+            break;
+        default:
+            break;
+        }
+        SetConsoleTextAttribute(hConsole, colorMultiplier);
         std::cout << c;
         SetConsoleTextAttribute(hConsole, 15);
 

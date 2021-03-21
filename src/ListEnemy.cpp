@@ -3,12 +3,16 @@
 #include <string>
 #include "Species/Engimon.hpp"
 #include "Species/Dragon.hpp"
-
+#include "time.h"
 ListEnemy::ListEnemy(Map& m, Player& player)
 {
     this->map = &m;
 	this->listEnemy = new Enemy*[10];
     this->jmlhMusuh = 10;
+}
+int abs(int x){
+    if (x < 0) return -x;
+    return x;
 }
 
 ListEnemy::ListEnemy(Map& m, Player& player, int size)
@@ -17,11 +21,12 @@ ListEnemy::ListEnemy(Map& m, Player& player, int size)
     this->currentplayer = &player;
 	this->listEnemy = new Enemy*[size];
     this->jmlhMusuh = size;
+    srand(time(0));
     for (int i = 0; i < size; i++)
     {
         // Ngerandom dari 0-4 untuk tipe;
         // Ngerandom dari  (player level-2) - (player level + 2) 
-        this->listEnemy[i] = new Enemy(m, rand() % 5, rand() % (player.getLevel() + 2) + (player.getLevel() - 2));
+        this->listEnemy[i] = new Enemy(m, rand() % 5, abs(rand() % (player.getLevel() + 5) + (player.getLevel() - 5)));
     }
     
 }
