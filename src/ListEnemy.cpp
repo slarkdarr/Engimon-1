@@ -117,6 +117,7 @@ int main(int argc, char const *argv[])
         }
         while (!cond);
     }
+    
     std::cout << "GAME OVER!" << std::endl;
     std::cout << "Ingin Bermain lagi? yes/no " << std::endl;
     std::cout << ">> ";

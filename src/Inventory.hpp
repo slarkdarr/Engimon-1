@@ -22,13 +22,17 @@ private:
 public:
     Inventory();
     ~Inventory();
-    void addEngimon(Engimon&);
+    bool addEngimon(Engimon&);
     void removeEngimon(int);
     void addSkill(Skill&);
     void removeSkill(int);
     void printItem();
+    void printAllEngimonInfo();
     bool isSkillExist(Skill&) const;
     bool isEmpty();
+    bool isEngimonBagEmpty();
+    bool isBagSkillsEmpty();
+
     bool isFull();
     void purgeDict();
 

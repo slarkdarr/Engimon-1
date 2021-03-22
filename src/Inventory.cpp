@@ -29,18 +29,32 @@ bool Inventory<T1, T2> :: isEmpty() {
 }
 
 template <class T1,class T2>
+bool Inventory<T1, T2> :: isEngimonBagEmpty() {
+    if (this->bagEngimon.empty()) return true;
+    return false;
+}
+
+template <class T1,class T2>
+bool Inventory<T1, T2> :: isBagSkillsEmpty() {
+    if (this->bagSkills.empty()) return true;
+    return false;
+}
+
+template <class T1,class T2>
 bool Inventory<T1, T2> :: isFull(){
     if(this->bagEngimon.size() + bagSkills.size() < MAX_CAPACITY) return false;
     return true;
 }
 
 template <class T1,class T2>
-void Inventory<T1,T2> :: addEngimon(Engimon& e){
+bool Inventory<T1,T2> :: addEngimon(Engimon& e){
     if(this->isFull()) cout << "Inventory sudah penuh" << endl;
     else{
         this->bagEngimon.push_back(e);
         cout << "Engimon berhasil dimasukkan" << endl;
+        return true;
     }
+    return false;
 }
 
 template <class T1,class T2>
@@ -91,18 +105,27 @@ void Inventory<T1, T2> :: printItem() {
     if(this->isEmpty()) {
         cout << "Bag kosong" << endl;
     }
-
-    int count_skill = 0;
-    for (auto i = bagSkills.begin(); i != bagSkills.end(); ++i){
-        cout << count_skill + 1 << ". " << *i << " || count : " << skillDict[*i] << endl;
-        count_skill++;
+    if (!this->isBagSkillsEmpty())
+    {
+        int count_skill = 0;
+        for (auto i = bagSkills.begin(); i != bagSkills.end(); ++i){
+            cout << count_skill + 1 << ". " << *i << " || count : " << skillDict[*i] << endl;
+            count_skill++;
+        }
+        cout << endl;
     }
-
-    cout << endl;
-    int count_engimon = 0;
-    for (auto i = bagEngimon.begin(); i != bagEngimon.end(); ++i){
-        cout << count_engimon + 1 << ". " << *i << endl;
-        count_engimon++;
+    printAllEngimonInfo();
+    
+}
+template <class T1,class T2>
+void Inventory<T1, T2> :: printAllEngimonInfo() {
+    if (!this->isBagSkillsEmpty())
+    {
+        int count_engimon = 0;
+        for (auto i = bagEngimon.begin(); i != bagEngimon.end(); ++i){
+            cout << count_engimon + 1 << ". " << *i << endl;
+            count_engimon++;
+        }
     }
 }
 
