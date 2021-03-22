@@ -67,29 +67,21 @@ Engimon* Player::getEngimon()
 Engimon* Player::getClosestEnemy()
 {
     Occupier** listmusuh = new Occupier*[8];
-    // std::cout << "berhasil membuat occ" << std::endl;
-    // this->printPosition();
-
     int jumlahMusuh = 0;
     for (int i = 0; i < Position::MAX_X * Position::MAX_Y; i++)
     {
         int x = i % Position::MAX_X;
         int y = i / Position::MAX_X;
-        // std::cout << "test "<< x << " " << y << std::endl;
 
         if (x >= (this->position.x-1) && x <= (this->position.x+1) && y >= (this->position.y-1) && y <= (this->position.y+1)) 
         {
-            // std::cout << "cell sekitar" << std::endl;
             if ((this->m->cells[i].occupier) && this->m->cells[i].occupier->ocpType == Enemy_Type) 
             {
-                
                 listmusuh[jumlahMusuh] = m->cells[i].occupier;
                 jumlahMusuh++;
-
             }
         } 
     }
-    // std::cout << "jumlah musuh : " << jumlahMusuh << std::endl;
 
     switch (jumlahMusuh)
     {
@@ -108,15 +100,30 @@ Engimon* Player::getClosestEnemy()
            std::cout << std::endl;
         }
         int n;
-        int return_value = 0;
-
-        while (!return_value) 
+        while (true) 
         {
-            printf("Pilih musuh: ");
-            return_value = scanf("%d", &n);
-            while (getchar() !='\n' || n <= 0 || n > jumlahMusuh) continue;
+            
+            std::cout << "Pilih Musuh : ";
+            cin >> n;
+            try 
+            {
+                // JIKA gagal, reset input buffer
+                if (std::cin.fail()) 
+                {
+                    cin.clear();
+                    cin.ignore(INT_MAX,'\n');
+                    throw "Masukkan angka";
+                }
+                else if (n <= 0 || n > jumlahMusuh) throw "Masukkan angka yang valid";
+                else return listmusuh[n-1]->getEngimon();
+            }
+            catch (char const* error)
+            {
+                std::cerr << error << std::endl;
+                continue;
+            }
+            
         }
-        return listmusuh[return_value-1]->getEngimon();
     }
 }
 

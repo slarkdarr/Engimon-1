@@ -35,7 +35,6 @@ Map::Map(const char* namafile)
         while ( std::getline (myfile,line) )
         {
             if (line != "") ++maks_y;
-            // std::cout << line << std::endl;
         }
         myfile.close();
     }
@@ -46,8 +45,6 @@ Map::Map(const char* namafile)
     Map::MAX_Y = maks_y;
     Position::MAX_X = maks_x;
     Position::MAX_Y = maks_y;
-    // std::cout << MAX_X << std::endl;
-    // std::cout << MAX_Y << std::endl;
 
     this->cells = new Cell[Map::MAX_X * Map::MAX_Y];
     for (int i = 0; i < Map::MAX_X * Map::MAX_Y; i++)
@@ -119,10 +116,7 @@ void Map::setSea(int x_kiri, int x_kanan, int y_kiri, int y_kanan)
 
 void Map::printMap(int currentlevel)
 {
-    // const int Xlen = this->MAX_X;
-    // const int Ylen = this->MAX_Y;
 
-    // char mapTemp[Xlen][Ylen] {};
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     for (int i = 0; i < Map::MAX_X * Map::MAX_Y; i++)
     {
@@ -139,8 +133,10 @@ void Map::printMap(int currentlevel)
                 c = 'P';
                 colorMultiplier = 15;
                 break;
-            case Enemy_Type:
             case Pet_Type:
+                // Jika engimon == nullptr, tidak passtrough ke enemy
+                if (!this->cells[i].occupier->getEngimon()) break;
+            case Enemy_Type:
                 // bool condition = (cells[i].occupier->getLevel() >= currentlevel);
                 switch (cells[i].occupier->getElement())
                 {
@@ -207,16 +203,7 @@ void Map::printMap(int currentlevel)
         }
         SetConsoleTextAttribute(hConsole, colorMultiplier);
         std::cout << c;
-        SetConsoleTextAttribute(hConsole, 15);
-
     }
-    // for (int i = 0; i < Map::MAX_Y; i++)
-	// {
-	// 	for (int j = 0; j < Map::MAX_X; j++)
-	// 	{
-	// 		std::cout << mapTemp[j][i];
-	// 	}
-	// 	std::cout << std::endl;
-	// }
+    SetConsoleTextAttribute(hConsole, 15);
     std::cout << std::endl;
 }

@@ -54,6 +54,7 @@ bool ListEnemy::deleteEnemy(int no)
 }
 
 void ListEnemy::respawnEnemy()
+
 {
     srand(time(0));
     for (int i = 0; i < jmlhMusuh; i++)
@@ -84,7 +85,7 @@ void ListEnemy::moveAllRandom()
 // Contoh driver move
 int main(int argc, char const *argv[])
 {
-    Map* isekai = new Map("src/Map/map.txt");
+    Map* isekai = new Map("src/Map/map2.txt");
     Player* lumine = new Player(*isekai,5,5);
     ListEnemy* listMusuh = new ListEnemy(*isekai, *lumine, 20);
 
