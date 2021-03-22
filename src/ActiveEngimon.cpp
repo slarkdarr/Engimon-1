@@ -36,9 +36,9 @@ bool ActiveEngimon::setPositionOcc(int x, int y)
 }
 
 
-void ActiveEngimon::setEngimon(Engimon& e)
+void ActiveEngimon::setEngimon(Engimon* e)
 {
-	this->engimon = &e;
+	this->engimon = e;
 }
 
 Engimon* ActiveEngimon::getEngimon()

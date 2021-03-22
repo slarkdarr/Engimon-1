@@ -20,7 +20,7 @@ using namespace std;
 
 class Battle {
     public: 
-        static bool battle(Player& myplayer, ListEnemy& musuh);
+        static Player* battle(Player* myplayer, ListEnemy& musuh);
 };
 
 #endif

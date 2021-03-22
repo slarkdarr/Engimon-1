@@ -8,20 +8,20 @@ float maxFloat(float a, float b)
     return b;
 }
 
-bool Battle::battle(Player& myplayer, ListEnemy& listmusuh){
+Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
     // cout << "BATTLE!" << endl;
-    Engimon* engimonMusuh = myplayer.getClosestEnemy();
+    Engimon* engimonMusuh = myplayer->getClosestEnemy();
     // cout << "Berhasil menemukan musuh!" << endl;
-
     // Jika ada musuh (tidak null ptr)
     if (engimonMusuh)
     {
-        ElementType elPlayer1 =  myplayer.getEngimon()->getFirstElement();
-        ElementType elPlayer2 =  myplayer.getEngimon()->getSecondElement();
+        ulanglagi:
+        ElementType elPlayer1 =  myplayer->getEngimon()->getFirstElement();
+        ElementType elPlayer2 =  myplayer->getEngimon()->getSecondElement();
         ElementType elMusuh1 = engimonMusuh->getFirstElement();
         ElementType elMusuh2 = engimonMusuh->getSecondElement();
 
-        int playerLvl = myplayer.getLevel();
+        int playerLvl = myplayer->getLevel();
         int enemyLvl = engimonMusuh->getLevel();
 
         float playerElmAdv[4] = 
@@ -54,16 +54,38 @@ bool Battle::battle(Player& myplayer, ListEnemy& listmusuh){
 
         if (powerPlayer < powerEnemy)
         {
-            delete myplayer.getEngimon();
-            // Tampilin engimon lain tersedia
-            // myplayer.setActiveEngimon(Engimon& other);
+            std::cout << "Kalah power, Engimon Anda Mati" << std::endl;
+            delete myplayer->getEngimon();
+
+            myplayer->setActiveEngimon(nullptr);
+
+
+            // Jika tidak ada engimon tersisa
+            if (myplayer->inventory->isEngimonBagEmpty())
+            {
+                std::cout << "Tidak Ada Engimon Tersisia" << std::endl;
+                delete myplayer;
+                return nullptr;
+            }
+            else
+            {   
+                myplayer->inventory->printAllEngimonInfo();
+                // goto ulanglagi;
+            }
         }
+        // Jika Menang Power
         else
         {
-            
-            if (!myplayer.inventory->isFull())
+            if (!myplayer->inventory->isFull())
             {
-                myplayer.inventory->addEngimon(*engimonMusuh);
+                if(myplayer->inventory->addEngimon(*engimonMusuh))
+                {
+                    std::cout << "Beri Nama Engimon Baru anda : ";
+                    string nama;
+                    std::cin >>  nama;
+                    engimonMusuh->setName(nama);
+                    std::cout << std::endl;
+                }
             }
             else delete engimonMusuh;
 
@@ -74,14 +96,17 @@ bool Battle::battle(Player& myplayer, ListEnemy& listmusuh){
                     listmusuh.listEnemy[i]->setEngimon(nullptr);
                     delete listmusuh.listEnemy[i];
                     listmusuh.listEnemy[i] = new Enemy(*listmusuh.map, 
-                    rand() % 5, abs(rand() % (myplayer.getLevel() + 5) + (myplayer.getLevel() - 5)));
+                    rand() % 5, abs(rand() % (myplayer->getLevel() + 5) + (myplayer->getLevel() - 5)));
                     break;
                 }
             }
-            myplayer.getEngimon()->addExp(100);
-            
+            // Jika Engimon Suicide saat Penambahan xp
+            if (!myplayer->getEngimon()->addExp(100))
+            {
+
+            }
         }
-        return false;
+        return myplayer;
     }
-    return false;
+    return myplayer;
 }

@@ -11,7 +11,7 @@ Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
     this->activeEngimon = new ActiveEngimon(m,*temp);
     this->activeEngimon->setPositionOcc(5,6);
     this->inventory = new Inventory<Skill, Engimon>();
-    this->inventory->addEngimon(*temp);
+
 
 }
 
@@ -22,7 +22,7 @@ Player::Player(Map &m, int x, int y) : Occupier(m, x, y, Player_Type)
     if (x == 0 ) this->activeEngimon->setPositionOcc(1,y);
     else this->activeEngimon->setPositionOcc(x-1,y);
     this->inventory = new Inventory<Skill, Engimon>();
-    this->inventory->addEngimon(*temp);
+
 }
 
 int Player::getLevel()
@@ -54,7 +54,7 @@ bool Player::setPositionOcc(int x, int y)
     return false;
 }
 
-void Player::setActiveEngimon(Engimon& m)
+void Player::setActiveEngimon(Engimon* m)
 {
     this->activeEngimon->setEngimon(m);
 }
@@ -89,14 +89,14 @@ Engimon* Player::getClosestEnemy()
         std::cout << "Tidak ada musuh disekitar" << std::endl;
         return nullptr;
     case 1:
-        listmusuh[0]->getEngimon()->printInfo();
+        listmusuh[0]->getEngimon()->printInfoSafe();
         return listmusuh[0]->getEngimon();
     default:
         std::cout << "Ditemukan " << jumlahMusuh  << " Musuh!"<< std::endl;
         for (int i = 0; i < jumlahMusuh; i++)
         {
            std::cout << (i+1) << "." << std::endl;
-           listmusuh[i]->getEngimon()->printInfo(); 
+           listmusuh[i]->getEngimon()->printInfoSafe(); 
            std::cout << std::endl;
         }
         int n;
@@ -131,7 +131,7 @@ Engimon* Player::getClosestEnemy()
 	
 Player::~Player()
 {
-    delete inventory;
+    delete this->activeEngimon;
 }
 // Contoh driver move
 // int main(int argc, char const *argv[])

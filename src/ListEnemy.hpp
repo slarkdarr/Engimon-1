@@ -9,8 +9,8 @@ class ListEnemy
 		int jmlhMusuh;
 		Player* currentplayer;
 		Map* map;
-		ListEnemy(Map& map, Player& player);
-		ListEnemy(Map& map, Player& player, int size);
+		ListEnemy(Map& map, Player* player);
+		ListEnemy(Map& map, Player* player, int size);
 		bool deleteEnemy(int);
 		void moveAllRandom();
 		void respawnEnemy();

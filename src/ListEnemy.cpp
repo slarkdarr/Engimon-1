@@ -8,7 +8,7 @@
 
 
 
-ListEnemy::ListEnemy(Map& m, Player& player)
+ListEnemy::ListEnemy(Map& m, Player* player)
 {
     this->map = &m;
 	this->listEnemy = new Enemy*[10];
@@ -19,10 +19,10 @@ int abs(int x){
     return x;
 }
 
-ListEnemy::ListEnemy(Map& m, Player& player, int size)
+ListEnemy::ListEnemy(Map& m, Player* player, int size)
 {
     this->map = &m;
-    this->currentplayer = &player;
+    this->currentplayer = player;
 	this->listEnemy = new Enemy*[size];
     this->jmlhMusuh = size;
     srand(time(0));
@@ -30,7 +30,7 @@ ListEnemy::ListEnemy(Map& m, Player& player, int size)
     {
         // Ngerandom dari 0-4 untuk tipe;
         // Ngerandom dari  (player level-2) - (player level + 2) 
-        this->listEnemy[i] = new Enemy(m, rand() % 5, abs(rand() % (player.getLevel() + 5) + (player.getLevel() - 5)));
+        this->listEnemy[i] = new Enemy(m, rand() % 5, abs(rand() % (player->getLevel() + 5) + (player->getLevel() - 5)));
     }
     
 }
@@ -87,14 +87,20 @@ int main(int argc, char const *argv[])
 {
     Map* isekai = new Map("src/Map/map2.txt");
     Player* lumine = new Player(*isekai,5,5);
-    ListEnemy* listMusuh = new ListEnemy(*isekai, *lumine, 20);
-
-
+    ListEnemy* listMusuh = new ListEnemy(*isekai, lumine, 20);
+    // isekai->printMap(lumine->getLevel());
+    // delete lumine;
+    // lumine = nullptr;
+    // isekai->printMap(0);
+    playgame:
     string input;
-    bool ashiap = true;
-    while (ashiap)
+    // Selama Lumine Hidup / != nullptr
+    while (lumine)
     {
         system("CLS");
+        // std::cout << "test gokil\n";
+
+        listMusuh->moveAllRandom();
         isekai->printMap(lumine->getLevel());
         bool cond = false;
 
@@ -104,13 +110,26 @@ int main(int argc, char const *argv[])
             std::cin >> input;
             if (input == "battle") 
             {
-                cond = Battle::battle(*lumine, *listMusuh);
+                lumine = Battle::battle(lumine, *listMusuh);
+                cond = (!lumine);
             }
             else cond = lumine->move(input);
         }
         while (!cond);
-        listMusuh->moveAllRandom();
     }
-    
+    std::cout << "GAME OVER!" << std::endl;
+    std::cout << "Ingin Bermain lagi? yes/no " << std::endl;
+    std::cout << ">> ";
+    std::cin >> input;
+    if (input == "yes") 
+    {
+        lumine = new Player(*isekai,5,5);
+        goto playgame;
+    }
+    else
+    {
+        delete listMusuh;
+        delete isekai;
+    }
     return 0;
 }

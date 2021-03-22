@@ -21,11 +21,13 @@ public:
     // Engimon(string, const Engimon&, const Engimon&);
     Engimon& operator=(const Engimon&);
     void printInfo();
+    void printInfoSafe();
     virtual ~Engimon();
     string getName() const;
+    void setName(string);
     int getLevel() const;
     void setLevel(int level);
-    void addExp(int additionalExp);
+    bool addExp(int additionalExp);
     virtual ElementType getFirstElement();
     virtual ElementType getSecondElement();
     string getNamaSpecies() const;
