@@ -158,10 +158,11 @@ Engimon* Player::getClosestEnemy()
            std::cout << std::endl;
         }
         int n = validasiInput("Pilih Musuh : ", 0, jumlahMusuh, -1);
-        return listmusuh[n-1];
-
+        return listmusuh[n-1]->getEngimon();
     }
 }
+
+
 	
 Player::~Player()
 {
