@@ -5,7 +5,7 @@
 #include "Species/Engimon.hpp"
 #include "Species/Dragon.hpp"
 #include "ActiveEngimon.hpp"
-#include "Species/Skill.hpp"
+#include "Skill/Skill.hpp"
 #include "Inventory.hpp"
 #include "Enemy.hpp"
 #include <vector>

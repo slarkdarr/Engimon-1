@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include "Engimon.hpp"
-#include "Skill.hpp"
+#include "../Skill/Skill.hpp"
+
 using namespace std;
 
 Engimon::Engimon(){

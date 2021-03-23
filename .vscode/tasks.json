@@ -42,6 +42,7 @@
                 ".\\src\\Species\\**.cpp",
                 ".\\src\\Map\\**.cpp",
                 ".\\src\\**.cpp",
+                ".\\src\\Skill\\**.cpp",
                 "-o",
                 ".\\bin\\Main.exe"
             ]

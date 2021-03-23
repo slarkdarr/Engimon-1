@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Engimon.hpp"
 #include "Dragon.hpp"
-#include "Skill.hpp"
 
 using namespace std;
 

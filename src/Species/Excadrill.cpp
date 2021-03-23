@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Engimon.hpp"
 #include "Excadrill.hpp"
-#include "Skill.hpp"
+#include "../Skill/Skill.hpp"
 
 using namespace std;
 

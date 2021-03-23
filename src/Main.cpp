@@ -3,6 +3,7 @@
 
 int main(int argc, char const *argv[])
 {
+
     Map* isekai = new Map("src/Map/map2.txt");
     Player* myPlayer = new Player(*isekai,5,5);
     ListEnemy* listMusuh = new ListEnemy(*isekai, myPlayer, 20);
@@ -40,7 +41,7 @@ int main(int argc, char const *argv[])
             }
             else if (input == "set")
             {
-
+                
             }
             else cond = (!myPlayer->move(input));
         }

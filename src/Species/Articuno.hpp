@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Engimon.hpp"
 #include "../Element.hpp"
-#include "Skill.hpp"
+
 
 class Articuno : public Engimon {
     protected:

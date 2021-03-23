@@ -2,8 +2,9 @@
 #define ENGIMON_H
 
 #include <string>
-#include "Skill.hpp"
+#include "../Skill/Skill.hpp"
 #include "../Element.hpp"
+
 using namespace std;
 
 class Engimon{

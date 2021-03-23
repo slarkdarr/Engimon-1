@@ -6,7 +6,7 @@ using namespace std;
 #include <unordered_map>
 #include "Species/Engimon.hpp"
 #include "Species/Dragon.hpp"
-#include "Species/Skill.hpp"
+#include "Skill/Skill.hpp"
 
 
 

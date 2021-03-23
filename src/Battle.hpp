@@ -13,7 +13,7 @@
 #include "Species/Engimon.hpp"
 #include "Species/Excadrill.hpp"
 #include "Species/Raichu.hpp"
-#include "Species/Skill.hpp"
+#include "Skill/Skill.hpp"
 #include "Species/Squirtle.hpp"
 
 using namespace std;
