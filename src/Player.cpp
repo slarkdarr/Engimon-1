@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Inventory.hpp"
 #include "Map/Occupier.hpp"
-
+#include "Bag.hpp"
 
 Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
 {
@@ -64,6 +64,58 @@ void Player::printActiveEngimon()
     this->activeEngimon->engimon->printInfo();
 }
 
+int validasiInput(string pesan, int batasBawah, int batasAtas, int angkalain)
+{
+    int n2;
+    while (true) 
+    {
+        
+        std::cout << pesan;
+        cin >> n2;
+        try 
+        {
+            // JIKA gagal, reset input buffer
+            if (std::cin.fail()) 
+            {
+                cin.clear();
+                cin.ignore(INT_MAX,'\n');
+                throw "Masukkan angka";
+            }
+            else if (n2 <= batasBawah || n2 > batasAtas) throw "Masukkan angka yang valid";
+            else if (n2 == angkalain) throw "Masukkan angka bukan sebelumnya";
+            else return n2;
+        }
+        catch (char const* error)
+        {
+            std::cerr << error << std::endl;
+            continue;
+        } 
+    }
+    return n2;
+        
+}
+
+void Player::breeding()
+{
+    if(this->inventory->isEngimonBagEmpty() || this->inventory->EngimonBagSize() + 1 >= MAX_CAPACITY )
+        cout<<"Jumlah engimon tidak mencukupi"<<endl;
+    else if (this->inventory->isFull()) cout << "Inventory Penuh!!" << endl;
+    else
+    {
+        Bag* temp = this->inventory->listEngimon();
+        temp->Add(*this->getEngimon());
+        temp->printAllInfo();
+        int n1 = validasiInput("Pilih Engimon: 1: ", 0 , temp->neff, -1);
+        int n2 = validasiInput("Pilih Engimon: 2: ", 0 , temp->neff, n1);
+        // Logic breeding
+        Engimon* enji1 = temp->listEngimon[n1-1];
+        Engimon* enji2 = temp->listEngimon[n2-1];
+
+        std::cout << "belum lagi\n";
+    }
+}
+
+
 
 Engimon* Player::getEngimon()
 {
@@ -105,58 +157,13 @@ Engimon* Player::getClosestEnemy()
            listmusuh[i]->getEngimon()->printInfoSafe(); 
            std::cout << std::endl;
         }
-        int n;
-        while (true) 
-        {
-            
-            std::cout << "Pilih Musuh : ";
-            cin >> n;
-            try 
-            {
-                // JIKA gagal, reset input buffer
-                if (std::cin.fail()) 
-                {
-                    cin.clear();
-                    cin.ignore(INT_MAX,'\n');
-                    throw "Masukkan angka";
-                }
-                else if (n <= 0 || n > jumlahMusuh) throw "Masukkan angka yang valid";
-                else return listmusuh[n-1]->getEngimon();
-            }
-            catch (char const* error)
-            {
-                std::cerr << error << std::endl;
-                continue;
-            }
-            
-        }
+        int n = validasiInput("Pilih Musuh : ", 0, jumlahMusuh, -1);
+        return listmusuh[n-1];
+
     }
 }
-
-
 	
 Player::~Player()
 {
     delete this->activeEngimon;
 }
-// Contoh driver move
-// int main(int argc, char const *argv[])
-// {
-//     Map* isekai = new Map("src/Map/map.txt");
-//     Player* lumine = new Player(*isekai,5,5);
-
-//     string input;
-//     bool ashiap = true;
-//     while (ashiap)
-//     {
-//         isekai->printMap(lumine->getLevel());
-//         do
-//         {
-//             std::cout << ">> ";
-//             std::cin >> input;
-//         }
-//         while (!lumine->move(input));
-//     }
-    
-//     return 0;
-// }
