@@ -47,8 +47,8 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
         float playerMaxElAdv = maxElAdv(myengimon,engimonMusuh);
         float enemyMaxElAdv = maxElAdv(engimonMusuh,myengimon);
         
-        float powerPlayer = playerLvl * playerMaxElAdv; // + SUM(every skill’s base power * Mastery Level)
-        float powerEnemy = enemyLvl * enemyMaxElAdv; // + SUM(every skill’s base power * Mastery Level)
+        float powerPlayer = (playerLvl * playerMaxElAdv) + myengimon->sumSkillPower();
+        float powerEnemy = (enemyLvl * enemyMaxElAdv) + engimonMusuh->sumSkillPower();
 
         if (powerPlayer < powerEnemy)
         {
@@ -61,7 +61,7 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
             // Jika tidak ada engimon tersisa
             if (myplayer->inventory->isEngimonBagEmpty())
             {
-                std::cout << "Tidak Ada Engimon Tersisia" << std::endl;
+                std::cout << "Tidak Ada Engimon Tersisa" << std::endl;
                 delete myplayer;
                 return nullptr;
             }

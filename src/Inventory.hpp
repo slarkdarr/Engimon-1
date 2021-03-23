@@ -7,8 +7,9 @@ using namespace std;
 #include "Species/Engimon.hpp"
 #include "Species/Dragon.hpp"
 #include "Skill/Skill.hpp"
+#include "Bag.hpp"
 
-
+class Bag;
 
 template <class T1,class T2>
 class Inventory{
@@ -31,8 +32,9 @@ public:
     bool isSkillExist(Skill&) const;
     bool isEmpty();
     bool isEngimonBagEmpty();
+    int EngimonBagSize();
     bool isBagSkillsEmpty();
-
+    Bag* listEngimon();
     bool isFull();
     void purgeDict();
 

@@ -1,4 +1,3 @@
-
 #ifndef ARTICUNO_HPP
 #define ARTICUNO_HPP
 
@@ -10,7 +9,6 @@
 class Articuno : public Engimon {
     protected:
         Element *monElements;
-        Skill *monSkills;
         Engimon *monParents;
         void InitComp();
     public :

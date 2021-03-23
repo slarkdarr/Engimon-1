@@ -15,6 +15,7 @@ protected:
     int baseLevel;
     string monName;
     string namaSpecies;
+    Skill *monSkills;
     friend ostream& operator<<(ostream&, const Engimon&);
 
 public:
@@ -32,6 +33,7 @@ public:
     bool addExp(int additionalExp);
     virtual ElementType getFirstElement();
     virtual ElementType getSecondElement();
+    virtual float sumSkillPower();
     string getNamaSpecies() const;
 };
 

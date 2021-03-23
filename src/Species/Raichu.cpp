@@ -22,7 +22,6 @@ void Raichu::InitComp() {
     this->namaSpecies = "Raichu";
     this->monElements = new Element[2];
     monElements[0].setElement(Electric);
-    this->monSkills = new Skill[4];
     this->monParents = new Engimon[2];
 }
 

@@ -12,6 +12,7 @@ Engimon::Engimon(){
     this->baseLevel = 1;
     this->monExp = 0;
     this->monCtvExp = 2000;
+    this->monSkills = new Skill[4];
 }
 
 Engimon::Engimon(string monName){
@@ -21,6 +22,7 @@ Engimon::Engimon(string monName){
     this->baseLevel = 1;
     this->monExp = 0;
     this->monCtvExp = 2000;
+    this->monSkills = new Skill[4];
 }
 void Engimon::setName(string name)
 {
@@ -83,6 +85,18 @@ ElementType Engimon :: getSecondElement()
 {
     return None;
 }
+
+
+float Engimon :: sumSkillPower()
+{
+    float temp = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        temp += (this->monSkills[i].getBasePower() * this->monSkills[i].getMasteryLevel());
+    }
+    return temp;
+}
+
 
 Engimon :: ~Engimon(){
 

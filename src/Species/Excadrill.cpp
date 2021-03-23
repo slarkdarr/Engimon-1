@@ -22,7 +22,6 @@ void Excadrill::InitComp() {
     this->namaSpecies = "Excadrill";
     this->monElements = new Element[2];
     monElements[0].setElement(Ground);
-    this->monSkills = new Skill[4];
     this->monParents = new Engimon[2];
 }
 

@@ -35,6 +35,11 @@ bool Inventory<T1, T2> :: isEngimonBagEmpty() {
 }
 
 template <class T1,class T2>
+int Inventory<T1, T2> :: EngimonBagSize() {
+    return this->bagEngimon.size();
+}
+
+template <class T1,class T2>
 bool Inventory<T1, T2> :: isBagSkillsEmpty() {
     if (this->bagSkills.empty()) return true;
     return false;
@@ -127,6 +132,18 @@ void Inventory<T1, T2> :: printAllEngimonInfo() {
             count_engimon++;
         }
     }
+}
+template <class T1,class T2>
+Bag* Inventory<T1, T2> ::listEngimon() {
+    Bag* temp = new Bag();
+    if (!this->isEngimonBagEmpty())
+    {
+        for (auto i = bagEngimon.begin(); i != bagEngimon.end(); ++i){
+            temp->Add(*i);
+        }
+        return temp;
+    }
+    return nullptr;
 }
 
 template class Inventory<Skill, Engimon>;

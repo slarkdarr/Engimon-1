@@ -25,6 +25,7 @@ class Player : public Occupier
 		bool setPositionOcc(int x, int y);
 		void printActiveEngimon();
 		void setActiveEngimon(Engimon*);
+		void breeding();
 		Engimon* getEngimon();
 
 		Engimon* getClosestEnemy();

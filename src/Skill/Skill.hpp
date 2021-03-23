@@ -13,9 +13,11 @@ class Skill {
         string skillName;
         string skillType;
         Skill();
-        Skill(string);
+        Skill(string, string, int, int);
         Skill(const Skill&);
         string getSkillName() const;
+        int getBasePower() const;
+        int getMasteryLevel() const;
         bool operator==(const Skill&) const ;
 };
 

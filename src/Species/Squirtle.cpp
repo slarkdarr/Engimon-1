@@ -21,8 +21,7 @@ ElementType Squirtle :: getSecondElement(){
 void Squirtle::InitComp() {
     this->namaSpecies = "Squirtle";
     this->monElements = new Element[2];
-    monElements[0].setElement(Water);
-    this->monSkills = new Skill[4];
+    this->monElements[0].setElement(Water);
     this->monParents = new Engimon[2];
 }
 

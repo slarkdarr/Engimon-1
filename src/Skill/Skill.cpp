@@ -10,11 +10,11 @@ Skill::Skill() {
     this->masteryLevel = 0;
 }
 
-Skill::Skill(string skillName) {
+Skill::Skill(string skillName, string skillType, int basePower, int masteryLevel) {
     this->skillName = skillName;
-    this->skillType =  "Fire";
-    this->basePower = 100;
-    this->masteryLevel = 5;
+    this->skillType = skillType;
+    this->basePower = basePower;
+    this->masteryLevel = masteryLevel;
 }
 
 Skill :: Skill(const Skill& s) {
@@ -23,8 +23,15 @@ Skill :: Skill(const Skill& s) {
     this->basePower = s.basePower;
     this->masteryLevel = s.masteryLevel;
 }
+
 string Skill :: getSkillName() const{
     return this->skillName;
+}
+int Skill :: getBasePower() const {
+    return this->basePower;
+}
+int Skill :: getMasteryLevel() const {
+    return this->masteryLevel;
 }
 
 ostream& operator<<(ostream& o, const Skill& e){

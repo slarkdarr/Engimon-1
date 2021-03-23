@@ -9,7 +9,6 @@
 class Dragon : public Engimon {
     protected:
         Element *monElements;
-        Skill *monSkills;
         Engimon *monParents;
         void InitComp();
 

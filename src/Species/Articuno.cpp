@@ -22,7 +22,6 @@ void Articuno::InitComp() {
     this->namaSpecies = "Articuno";
     this->monElements = new Element[2];
     monElements[0].setElement(Ice);
-    this->monSkills = new Skill[4];
     this->monParents = new Engimon[2];
 }
 

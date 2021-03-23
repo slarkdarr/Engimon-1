@@ -21,7 +21,6 @@ void Dragon::InitComp() {
     this->namaSpecies = "Dragon";
     this->monElements = new Element[2];
     monElements[0].setElement(Fire);
-    this->monSkills = new Skill[4];
     this->monParents = new Engimon[2];
 }
 
