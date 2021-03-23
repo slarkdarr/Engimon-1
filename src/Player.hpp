@@ -23,6 +23,7 @@ class Player : public Occupier
 		~Player();
 		int getLevel();
 		bool setPositionOcc(int x, int y);
+		void printActiveEngimon();
 		void setActiveEngimon(Engimon*);
 		Engimon* getEngimon();
 

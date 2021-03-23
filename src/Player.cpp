@@ -59,6 +59,12 @@ void Player::setActiveEngimon(Engimon* m)
     this->activeEngimon->setEngimon(m);
 }
 
+void Player::printActiveEngimon()
+{
+    this->activeEngimon->engimon->printInfo();
+}
+
+
 Engimon* Player::getEngimon()
 {
     return this->activeEngimon->engimon;

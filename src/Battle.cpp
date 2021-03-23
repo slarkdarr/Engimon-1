@@ -8,6 +8,29 @@ float maxFloat(float a, float b)
     return b;
 }
 
+float maxElAdv(Engimon* a, Engimon* b)
+{
+    ElementType ela1 = a->getFirstElement();
+    ElementType ela2 = a->getSecondElement();
+    ElementType elb1 = b->getFirstElement();
+    ElementType elb2 = b->getSecondElement();
+
+    float elAdvA[4] = 
+    {
+        Element::elementAdv[make_pair(ela1, elb1)],
+        Element::elementAdv[make_pair(ela1, elb2)],
+        Element::elementAdv[make_pair(ela2, elb2)],
+        Element::elementAdv[make_pair(ela2, elb1)]
+    };
+
+    float elAdvAMax = elAdvA[0];
+    for (int i = 1; i < 4; i++)
+    {
+        elAdvAMax = maxFloat(elAdvA[i], elAdvAMax);
+    }
+    return elAdvAMax;
+}
+
 Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
     // cout << "BATTLE!" << endl;
     Engimon* engimonMusuh = myplayer->getClosestEnemy();
@@ -16,38 +39,13 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
     if (engimonMusuh)
     {
         ulanglagi:
-        ElementType elPlayer1 =  myplayer->getEngimon()->getFirstElement();
-        ElementType elPlayer2 =  myplayer->getEngimon()->getSecondElement();
-        ElementType elMusuh1 = engimonMusuh->getFirstElement();
-        ElementType elMusuh2 = engimonMusuh->getSecondElement();
+        auto myengimon = myplayer->getEngimon();
 
         int playerLvl = myplayer->getLevel();
         int enemyLvl = engimonMusuh->getLevel();
 
-        float playerElmAdv[4] = 
-        {
-            Element::elementAdv[std::make_pair(elPlayer1, elMusuh1)],
-            Element::elementAdv[std::make_pair(elPlayer1, elMusuh2)],
-            Element::elementAdv[std::make_pair(elPlayer2, elMusuh2)],
-            Element::elementAdv[std::make_pair(elPlayer2, elMusuh1)]
-        };
-
-        float enemyElmAdv[4] = 
-        {   
-            Element::elementAdv[std::make_pair(elMusuh1, elPlayer1)],
-            Element::elementAdv[std::make_pair(elMusuh1, elPlayer2)],
-            Element::elementAdv[std::make_pair(elMusuh2, elPlayer2)],
-            Element::elementAdv[std::make_pair(elMusuh2, elPlayer1)]
-        };
-
-        float playerMaxElAdv = playerElmAdv[0];
-        float enemyMaxElAdv = enemyElmAdv[0];
-
-        for (int i = 1; i < 4; i++)
-        {
-            playerMaxElAdv = maxFloat(playerElmAdv[i], playerMaxElAdv);
-            enemyMaxElAdv = maxFloat(enemyElmAdv[i], enemyMaxElAdv);
-        }
+        float playerMaxElAdv = maxElAdv(myengimon,engimonMusuh);
+        float enemyMaxElAdv = maxElAdv(engimonMusuh,myengimon);
         
         float powerPlayer = playerLvl * playerMaxElAdv; // + SUM(every skill’s base power * Mastery Level)
         float powerEnemy = enemyLvl * enemyMaxElAdv; // + SUM(every skill’s base power * Mastery Level)
@@ -76,19 +74,24 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
         // Jika Menang Power
         else
         {
+            std::cout << "Engimon Di Kalahkan\n";
+            
             if (!myplayer->inventory->isFull())
             {
-                if(myplayer->inventory->addEngimon(*engimonMusuh))
-                {
-                    std::cout << "Beri Nama Engimon Baru anda : ";
-                    string nama;
-                    std::cin >>  nama;
-                    engimonMusuh->setName(nama);
-                    std::cout << std::endl;
-                }
+                std::cout << "Engimon Menjadi Milik Anda" << std::endl;
+                std::cout << "Beri Nama Engimon Baru anda : ";
+                string nama;
+                std::cin >>  nama;
+                engimonMusuh->setName(nama);
+                myplayer->inventory->addEngimon(*engimonMusuh);
+                std::cout << std::endl;
             }
-            else delete engimonMusuh;
-
+            else 
+            {
+                std::cout << "Inventory Penuh!" << std::endl;
+                delete engimonMusuh;
+            }
+            // RESPAWN MUSUH
             for (int i = 0; i < listmusuh.jmlhMusuh; i++)
             {
                 if (listmusuh.listEnemy[i]->getEngimon() == engimonMusuh)
@@ -103,10 +106,9 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
             // Jika Engimon Suicide saat Penambahan xp
             if (!myplayer->getEngimon()->addExp(100))
             {
-
+                myplayer->setActiveEngimon(nullptr);
             }
         }
-        return myplayer;
     }
     return myplayer;
 }

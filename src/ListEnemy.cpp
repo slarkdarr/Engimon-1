@@ -71,66 +71,12 @@ void ListEnemy::respawnEnemy()
             break;
         }
     }
-    
 }
-
-
 
 void ListEnemy::moveAllRandom()
 {
+    srand(time(0));
     for (int i = 0; i < this->jmlhMusuh ; i++) this->listEnemy[i]->move(rand() % 4);
 }
 
 
-// Contoh driver move
-int main(int argc, char const *argv[])
-{
-    Map* isekai = new Map("src/Map/map2.txt");
-    Player* lumine = new Player(*isekai,5,5);
-    ListEnemy* listMusuh = new ListEnemy(*isekai, lumine, 20);
-    // isekai->printMap(lumine->getLevel());
-    // delete lumine;
-    // lumine = nullptr;
-    // isekai->printMap(0);
-    playgame:
-    string input;
-    // Selama Lumine Hidup / != nullptr
-    while (lumine)
-    {
-        system("CLS");
-        // std::cout << "test gokil\n";
-
-        listMusuh->moveAllRandom();
-        isekai->printMap(lumine->getLevel());
-        bool cond = false;
-
-        do
-        {
-            std::cout << ">> ";
-            std::cin >> input;
-            if (input == "battle") 
-            {
-                lumine = Battle::battle(lumine, *listMusuh);
-                cond = (!lumine);
-            }
-            else cond = lumine->move(input);
-        }
-        while (!cond);
-    }
-    
-    std::cout << "GAME OVER!" << std::endl;
-    std::cout << "Ingin Bermain lagi? yes/no " << std::endl;
-    std::cout << ">> ";
-    std::cin >> input;
-    if (input == "yes") 
-    {
-        lumine = new Player(*isekai,5,5);
-        goto playgame;
-    }
-    else
-    {
-        delete listMusuh;
-        delete isekai;
-    }
-    return 0;
-}

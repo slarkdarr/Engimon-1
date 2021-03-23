@@ -8,6 +8,7 @@ Engimon::Engimon(){
     this->monName = "";
     this->namaSpecies = "";
     this->monLevel = 1;
+    this->baseLevel = 1;
     this->monExp = 0;
     this->monCtvExp = 2000;
 }
@@ -16,6 +17,7 @@ Engimon::Engimon(string monName){
     this->monName = monName;
     this->namaSpecies = "";
     this->monLevel = 1;
+    this->baseLevel = 1;
     this->monExp = 0;
     this->monCtvExp = 2000;
 }
@@ -26,9 +28,10 @@ void Engimon::setName(string name)
 
 void Engimon::setLevel(int level) {
     this->monLevel = level;
+    this->baseLevel = level;
 }
 bool Engimon::addExp(int additionalExp) {
-    int virtualExp = this->monLevel * 100;
+    int virtualExp = baseLevel * 100;
     this->monExp += additionalExp;
     std::cout << "Anda Mendapatkan " << additionalExp << " exp" << std::endl;  
     if (monExp >= monCtvExp)
@@ -37,9 +40,9 @@ bool Engimon::addExp(int additionalExp) {
         return false;
     }
     else if (this->monLevel != ((this->monExp + virtualExp)/ 100))  {
-        std::cout << "LEVEL UP!! Engimon anda naik " 
-        << ((this->monExp + virtualExp)/ 100) - this->monLevel << " level" << std::endl; 
         this->monLevel = ((this->monExp + virtualExp) / 100);
+        std::cout << "LEVEL UP!! Engimon anda naik ke level " 
+        << monLevel << std::endl; 
     }
     return true;
 }
@@ -92,7 +95,7 @@ void Engimon::printInfo() {
     cout << "Nama : " << this->monName << endl;
     printInfoSafe();
     cout << "Exp : " << this->monExp << endl;
-    cout << "Cumulative Exp : " << this->monCtvExp << endl;
+    cout << "Maximum Exp : " << this->monCtvExp << endl;
 }
 
 void Engimon::printInfoSafe() {

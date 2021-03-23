@@ -119,7 +119,7 @@ void Inventory<T1, T2> :: printItem() {
 }
 template <class T1,class T2>
 void Inventory<T1, T2> :: printAllEngimonInfo() {
-    if (!this->isBagSkillsEmpty())
+    if (!this->isEngimonBagEmpty())
     {
         int count_engimon = 0;
         for (auto i = bagEngimon.begin(); i != bagEngimon.end(); ++i){

@@ -11,6 +11,7 @@ protected:
     int monLevel;
     int monExp;
     int monCtvExp;
+    int baseLevel;
     string monName;
     string namaSpecies;
     friend ostream& operator<<(ostream&, const Engimon&);
