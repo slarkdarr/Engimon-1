@@ -9,17 +9,13 @@
 
 class Squirtle : public Engimon {
     protected:
-        Engimon *monParents;
         void InitComp();
     public :
         Squirtle();
         Squirtle(string);
-        Squirtle(const Squirtle&);
-        Squirtle(string, const Engimon&, const Engimon&);
-        Engimon& operator=(const Engimon&);
+        Squirtle(string nama, const Engimon& other1, const Engimon& other2);
+        // Engimon& operator=(const Engimon&);
         ~Squirtle();
-        string getNameParent();
-        void printInfo();
 };
 
 #endif

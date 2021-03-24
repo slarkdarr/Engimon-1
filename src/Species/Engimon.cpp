@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Engimon::Engimon(){
+void Engimon::InitComp(){
     this->monName = "";
     this->namaSpecies = "";
     this->monLevel = 1;
@@ -14,19 +14,17 @@ Engimon::Engimon(){
     this->monCtvExp = 2000;
     this->monSkills = new Skill[4];
     this->monElements = new Element[2];
+    this->monParents = nullptr;
 
 }
 
-Engimon::Engimon(string monName){
-    this->monName = monName;
-    this->namaSpecies = "";
-    this->monLevel = 1;
-    this->baseLevel = 1;
-    this->monExp = 0;
-    this->monCtvExp = 2000;
-    this->monSkills = new Skill[4];
-    this->monElements = new Element[2];
+Engimon::Engimon(){
+    InitComp();
+}
 
+Engimon::Engimon(string monName){
+    InitComp();
+    this->monName = monName;
 }
 
 Engimon::Engimon(const Engimon& other){
@@ -41,6 +39,19 @@ Engimon::Engimon(const Engimon& other){
     this->monElements = new Element[2];
     this->monElements[0].setElement(other.monElements[0].getElementType());
     this->monElements[1].setElement(other.monElements[1].getElementType());
+    if (other.monParents  != nullptr) {
+        this->monParents = new Engimon[2];
+        this->monParents[0] = other.monParents[0];
+        this->monParents[1] = other.monParents[1];
+    }
+}
+
+Engimon::Engimon(string name, const Engimon& other1, const Engimon& other2) {
+    InitComp();
+    this->monName = name;
+    this->monParents = new Engimon[2];
+    this->monParents[0] = other1;
+    this->monParents[1] = other2;
 }
 
 
@@ -79,6 +90,11 @@ Engimon& Engimon::operator=(const Engimon& other){
     this->baseLevel = other.baseLevel;
     this->monExp = other.monExp;
     this->monCtvExp = other.monCtvExp;
+    if (other.monParents) {
+        this->monParents = new Engimon[2];
+        this->monParents[0] = other.monParents[0];
+        this->monParents[1] = other.monParents[1];
+    }
     return *this;
 }
 
@@ -127,6 +143,24 @@ void Engimon::printInfo() {
     printInfoSafe();
     cout << "Exp : " << this->monExp << endl;
     cout << "Maximum Exp : " << this->monCtvExp << endl;
+    cout << "List Elemen : "<< "\n";
+    cout << "Elemen 1 : " << this->monElements[0].to_string() << endl;
+    if(this->monElements[1].getElementType() != ElementType :: None) cout << "Elemen 2 : " << this->monElements[1].to_string() << endl;
+    cout << "List skils :" << "\n";
+    for (size_t i = 0; i < 4; i++)
+    {
+        if(this->monSkills->getSkillName() != "None"){
+            cout << this->monSkills[i].getSkillName() << ", ";
+        }
+    }
+    cout << endl;
+    cout << "List nama dan spesies Parent : \n";
+    if (this->monParents) {
+        for (size_t j = 0; j < 2 ; j++)
+        {
+            cout << this->monParents[j].getName() << " Spesies : " << this->monParents[j].getNamaSpecies() << endl; 
+        }
+    }
 }
 
 void Engimon::printInfoSafe() {

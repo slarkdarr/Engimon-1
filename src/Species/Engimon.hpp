@@ -8,6 +8,8 @@
 using namespace std;
 
 class Engimon{
+private:
+    void InitComp();
 protected:
     int monLevel;
     int monExp;
@@ -15,8 +17,10 @@ protected:
     int baseLevel;
     string monName;
     string namaSpecies;
-    Skill *monSkills;
-    Element *monElements;
+    Skill* monSkills;
+    Element* monElements;
+    Engimon* monParents;
+
 
     friend ostream& operator<<(ostream&, const Engimon&);
 
@@ -24,9 +28,9 @@ public:
     Engimon();
     Engimon(string);
     Engimon(const Engimon&);
-    // Engimon(string, const Engimon&, const Engimon&);
+    Engimon(string, const Engimon&, const Engimon&);
     Engimon& operator=(const Engimon&);
-    virtual void printInfo();
+    void printInfo();
     void printInfoSafe();
     virtual ~Engimon();
     string getName() const;
@@ -38,6 +42,7 @@ public:
     virtual ElementType getSecondElement();
     virtual float sumSkillPower();
     string getNamaSpecies() const;
+    // string getNamaParent();
     static float maxElAdv(Engimon* a, Engimon* b);
 
 };

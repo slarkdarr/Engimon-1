@@ -38,7 +38,9 @@ int Player::validasiInput(std::string pesan, int batasBawah, int batasAtas, int 
 
 Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
 {
-    Dragon* temp = new Dragon("Charizard");
+    Articuno asik("EsBatu");
+    Excadrill batu("batuan");
+    Dragon* temp = new Dragon("Charizard",asik,batu);
     this->activeEngimon = new ActiveEngimon(m,*temp);
     this->activeEngimon->setPositionOcc(5,6);
     this->inventory = new Inventory<Skill, Engimon>();
@@ -48,7 +50,9 @@ Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
 
 Player::Player(Map &m, int x, int y) : Occupier(m, x, y, Player_Type)
 {
-    Dragon* temp = new Dragon("Charizard");
+    Articuno asik("EsBatu");
+    Excadrill batu("batuan");
+    Dragon* temp = new Dragon("Charizard",asik,batu);
     this->activeEngimon = new ActiveEngimon(m,*temp);
     if (x == 0 ) this->activeEngimon->setPositionOcc(1,y);
     else this->activeEngimon->setPositionOcc(x-1,y);

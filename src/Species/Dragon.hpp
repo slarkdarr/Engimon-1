@@ -8,18 +8,14 @@
 
 class Dragon : public Engimon {
     protected:
-        Engimon *monParents;
         void InitComp();
 
     public :
         Dragon();
         Dragon(string);
-        Dragon(const Dragon&);
-        Dragon(string, const Engimon&, const Engimon&);
-        Engimon& operator=(const Engimon&);
+        Dragon(string, const Engimon& other1, const Engimon& other2);
+        // Engimon& operator=(const Engimon&);
         ~Dragon();
-        string getNameParent();
-        void printInfo();
 };
 
 #endif
