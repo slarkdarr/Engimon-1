@@ -8,7 +8,8 @@ unordered_map<Skill, int, SkillHashFunction> Inventory<T1,T2>::skillDict;
 
 template <class T1,class T2>
 Inventory<T1, T2> :: Inventory() {
-
+    this->nEngimon=0;
+    this->nskill=0;
 }
 
 template <class T1,class T2>
@@ -57,6 +58,7 @@ bool Inventory<T1,T2> :: addEngimon(Engimon& e){
     else{
         this->bagEngimon.push_back(e);
         cout << "Engimon berhasil dimasukkan" << endl;
+        nEngimon;
         return true;
     }
     return false;
@@ -72,6 +74,7 @@ void Inventory<T1, T2> :: addSkill(Skill& s){
         skillDict[s] = 1;
         this->bagSkills.push_back(s);
         cout << "Skill berhasil dimasukkan" << endl;
+        nskill++;
     }
 }
 
@@ -83,6 +86,7 @@ void Inventory<T1, T2> :: removeSkill(int x){
         this->skillDict[bagSkills[x-1]]--;
         this->bagSkills.erase(bagSkills.begin() + (x - 1));
         cout << "Skills berhasil dihapus" << endl;
+        nskill--;
     };
 }
 
@@ -93,6 +97,7 @@ void Inventory<T1, T2> :: removeEngimon(int x){
     else{
         this->bagEngimon.erase(bagEngimon.begin() + (x - 1));
         cout << "Engimon berhasil dihapus" << endl;
+        nEngimon--;
     };
 }
 
@@ -114,8 +119,7 @@ void Inventory<T1, T2> :: printItem() {
     {
         int count_skill = 0;
         for (auto i = bagSkills.begin(); i != bagSkills.end(); ++i){
-            cout << count_skill + 1 << ". " << *i << " || count : " << skillDict[*i] << endl;
-            count_skill++;
+            cout << ++count_skill << ". " << *i << " || count : " << skillDict[*i] << endl;
         }
         cout << endl;
     }
@@ -128,8 +132,7 @@ void Inventory<T1, T2> :: printAllEngimonInfo() {
     {
         int count_engimon = 0;
         for (auto i = bagEngimon.begin(); i != bagEngimon.end(); ++i){
-            cout << count_engimon + 1 << ". " << *i << endl;
-            count_engimon++;
+            cout << ++count_engimon << ". " << *i << endl;
         }
     }
 }
@@ -144,6 +147,15 @@ Bag* Inventory<T1, T2> ::listEngimon() {
         return temp;
     }
     return nullptr;
+}
+
+template <class T1,class T2>
+int Inventory<T1, T2> :: engimonCount() const{
+    return this->nEngimon;
+}
+template <class T1,class T2>
+int Inventory<T1, T2> :: skillCount() const{
+    return this->nskill;
 }
 
 template class Inventory<Skill, Engimon>;

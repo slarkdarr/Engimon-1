@@ -40,8 +40,9 @@ ListEnemy::~ListEnemy()
 	for (int i = 0; i < jmlhMusuh; i++)
     {
         delete this->listEnemy[i];
+        // this->map->printMap(0);
     }
-
+    // cout << "Berhasil terdestruksi semua" << endl;
     delete[] this->listEnemy;
 }
 

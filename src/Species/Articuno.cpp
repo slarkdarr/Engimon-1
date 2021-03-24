@@ -10,17 +10,9 @@ string Articuno :: getNameParent(){
     return this->monParents[0].getName();
 }
 
-ElementType Articuno :: getFirstElement(){
-    return this->monElements[0].getElementType();
-}
-
-ElementType Articuno :: getSecondElement(){
-    return this->monElements[1].getElementType();
-}
 
 void Articuno::InitComp() {
     this->namaSpecies = "Articuno";
-    this->monElements = new Element[2];
     monElements[0].setElement(Ice);
     this->monParents = new Engimon[2];
 }
@@ -32,6 +24,12 @@ Articuno :: Articuno() : Engimon(){
 Articuno :: Articuno(string name) : Engimon(name){
     InitComp();
 };
+
+Articuno::Articuno(const Articuno& other) : Engimon(other) {
+    this->monParents = new Engimon[2];
+    monParents[0] = other.monParents[0];
+    monParents[1] = other.monParents[1];
+}
 
 Articuno :: Articuno(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
     InitComp();
@@ -49,6 +47,7 @@ Articuno :: ~Articuno(){
     delete[] monElements;
     delete[] monSkills;
     delete[] monParents;
+    delete[] monElements;
 }
 
 void Articuno :: printInfo() {

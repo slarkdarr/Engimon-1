@@ -8,18 +8,16 @@
 
 class Articuno : public Engimon {
     protected:
-        Element *monElements;
         Engimon *monParents;
         void InitComp();
     public :
         Articuno();
         Articuno(string);
+        Articuno(const Articuno&);
         Articuno(string, const Engimon&, const Engimon&);
         Engimon& operator=(const Engimon&);
         ~Articuno();
         string getNameParent();
-        ElementType getFirstElement();
-        ElementType getSecondElement();
         void printInfo();
 };
 

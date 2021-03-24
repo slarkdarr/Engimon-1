@@ -9,17 +9,9 @@ string Dragon :: getNameParent(){
     return this->monParents[0].getName();
 }
 
-ElementType Dragon :: getFirstElement(){
-    return this->monElements[0].getElementType();
-}
-
-ElementType Dragon :: getSecondElement(){
-    return this->monElements[1].getElementType();
-}
 
 void Dragon::InitComp() {
     this->namaSpecies = "Dragon";
-    this->monElements = new Element[2];
     monElements[0].setElement(Fire);
     this->monParents = new Engimon[2];
 }
@@ -31,6 +23,13 @@ Dragon :: Dragon() : Engimon(){
 Dragon :: Dragon(string name) : Engimon(name){
     InitComp();
 };
+
+Dragon::Dragon(const Dragon& other) : Engimon(other) {
+    this->monParents = new Engimon[2];
+    monParents[0] = other.monParents[0];
+    monParents[1] = other.monParents[1];
+}
+
 
 Dragon :: Dragon(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
     InitComp();
@@ -65,7 +64,7 @@ void Dragon :: printInfo() {
     cout << "List nama dan spesies Parent : \n";
     for (size_t j = 0; j < 2 ; j++)
     {
-          cout << this->monParents[j].getName() << " Spesies : " << this->monParents[j].getNamaSpecies() << endl; 
+        cout << this->monParents[j].getName() << " Spesies : " << this->monParents[j].getNamaSpecies() << endl; 
     }
 }
 

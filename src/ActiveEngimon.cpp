@@ -19,23 +19,6 @@ int ActiveEngimon :: getLevel()
 	return this->engimon->getLevel();
 }
 
-bool ActiveEngimon::setPositionOcc(int x, int y)
-{
-	if (Position::isValidCoordinate(x,y))
-    {
-        if (!m->cells[x + y * Position::MAX_X].occupier)
-        {
-            m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
-            m->cells[x + y * Position::MAX_X].setOccupier(this);
-            this->position.setPosition(x,y);
-            return true;
-        }
-        return false;
-    }
-    return false;
-}
-
-
 void ActiveEngimon::setEngimon(Engimon* e)
 {
 	this->engimon = e;

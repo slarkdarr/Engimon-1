@@ -19,7 +19,6 @@ class ActiveEngimon  : public Occupier
 		int getLevel();
 		void setEngimon(Engimon*);
 		Engimon* getEngimon();
-		bool setPositionOcc(int, int);
 		~ActiveEngimon();
 
 };

@@ -8,8 +8,11 @@ Occupier::Occupier(Map& m)
 	this->position = Position();
     this->ocpType = Enemy_Type;
     this->m = &m;
-    if(!setPositionOcc(0,0)) throw 999;
-
+    if(!setPositionOcc(0,0)) 
+    {
+        std::cout << "error spawn x:0 y:0" << std::endl;
+        throw 999;
+    }
 }
 
 Occupier::Occupier(Map& m, int x, int y, Occupier_Type octype)
@@ -17,7 +20,11 @@ Occupier::Occupier(Map& m, int x, int y, Occupier_Type octype)
 	this->position = Position(x,y);
     this->ocpType = octype;
     this->m = &m;
-    if(!setPositionOcc(x,y)) throw 1998;
+    if(!setPositionOcc(x,y)) 
+    {
+        std::cout << "error spawn x:"<< x << " y:" << y << std::endl;
+        throw 1998;
+    }
 }
 
 Occupier :: ~Occupier() 
@@ -41,10 +48,8 @@ bool Occupier::setPositionOcc(int x, int y)
             this->position.setPosition(x,y);
             return true;
         }
-        std::cout << "Cell ditempati!" << std::endl;
         return false;
     }
-    std::cout << "MENTOK BOS!" << std::endl;
     return false;
 }
 

@@ -16,14 +16,17 @@ protected:
     string monName;
     string namaSpecies;
     Skill *monSkills;
+    Element *monElements;
+
     friend ostream& operator<<(ostream&, const Engimon&);
 
 public:
     Engimon();
     Engimon(string);
+    Engimon(const Engimon&);
     // Engimon(string, const Engimon&, const Engimon&);
     Engimon& operator=(const Engimon&);
-    void printInfo();
+    virtual void printInfo();
     void printInfoSafe();
     virtual ~Engimon();
     string getName() const;

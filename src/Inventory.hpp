@@ -16,7 +16,9 @@ class Inventory{
 
 private:
     vector<T1> bagSkills;
+    int nskill;
     vector<T2> bagEngimon;
+    int nEngimon;
     // typedef unordered_map<Skill, int, SkillHashFunction> umapSkill;
     static unordered_map<Skill, int, SkillHashFunction> skillDict;
 
@@ -35,6 +37,8 @@ public:
     int EngimonBagSize();
     bool isBagSkillsEmpty();
     Bag* listEngimon();
+    int engimonCount() const;
+    int skillCount() const;
     bool isFull();
     void purgeDict();
 

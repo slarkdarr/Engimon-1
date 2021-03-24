@@ -10,17 +10,9 @@ string Raichu :: getNameParent(){
     return this->monParents[0].getName();
 }
 
-ElementType Raichu :: getFirstElement(){
-    return this->monElements[0].getElementType();
-}
-
-ElementType Raichu :: getSecondElement(){
-    return this->monElements[1].getElementType();
-}
 
 void Raichu::InitComp() {
     this->namaSpecies = "Raichu";
-    this->monElements = new Element[2];
     monElements[0].setElement(Electric);
     this->monParents = new Engimon[2];
 }
@@ -32,6 +24,12 @@ Raichu :: Raichu() : Engimon(){
 Raichu :: Raichu(string name) : Engimon(name){
     InitComp();
 };
+
+Raichu::Raichu(const Raichu& other) : Engimon(other) {
+    this->monParents = new Engimon[2];
+    monParents[0] = other.monParents[0];
+    monParents[1] = other.monParents[1];
+}
 
 Raichu :: Raichu(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
     InitComp();

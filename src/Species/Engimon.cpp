@@ -13,6 +13,8 @@ Engimon::Engimon(){
     this->monExp = 0;
     this->monCtvExp = 2000;
     this->monSkills = new Skill[4];
+    this->monElements = new Element[2];
+
 }
 
 Engimon::Engimon(string monName){
@@ -23,7 +25,26 @@ Engimon::Engimon(string monName){
     this->monExp = 0;
     this->monCtvExp = 2000;
     this->monSkills = new Skill[4];
+    this->monElements = new Element[2];
+
 }
+
+Engimon::Engimon(const Engimon& other){
+    this->monName = other.monName;
+    this->namaSpecies = other.namaSpecies;
+    this->monLevel = other.monLevel;
+    this->baseLevel = other.baseLevel;
+    this->monExp = other.monExp;
+    this->monCtvExp = other.monCtvExp;
+    this->monSkills = new Skill[4];
+    for (int i = 0; i < 4; i++) this->monSkills[i] = other.monSkills[i];
+    this->monElements = new Element[2];
+    this->monElements[0].setElement(other.monElements[0].getElementType());
+    this->monElements[1].setElement(other.monElements[1].getElementType());
+}
+
+
+
 void Engimon::setName(string name)
 {
     this->monName = name;
@@ -50,17 +71,12 @@ bool Engimon::addExp(int additionalExp) {
     return true;
 }
 
-// Engimon::Engimon(string monName, const Engimon& parent1, const Engimon& parent2){
-//     this->monName = monName;
-//     this->monLevel = 5;
-//     this->monExp = 0;
-//     this->monCtvExp = 0;
-// }
 
 Engimon& Engimon::operator=(const Engimon& other){
     this->monName = other.getName();
     this->namaSpecies = other.getNamaSpecies();
     this->monLevel = other.monLevel;
+    this->baseLevel = other.baseLevel;
     this->monExp = other.monExp;
     this->monCtvExp = other.monCtvExp;
     return *this;
@@ -78,12 +94,12 @@ int Engimon :: getLevel() const{
 
 ElementType Engimon :: getFirstElement()
 {
-    return None;
+    return this->monElements[0].getElementType();
 }
 
 ElementType Engimon :: getSecondElement()
 {
-    return None;
+    return this->monElements[1].getElementType();
 }
 
 

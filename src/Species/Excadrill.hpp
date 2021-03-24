@@ -9,18 +9,16 @@
 
 class Excadrill : public Engimon {
     protected:
-        Element *monElements;
         Engimon *monParents;
         void InitComp();
     public :
         Excadrill();
         Excadrill(string);
+        Excadrill(const Excadrill&);
         Excadrill(string, const Engimon&, const Engimon&);
         Engimon& operator=(const Engimon&);
         ~Excadrill();
         string getNameParent();
-        ElementType getFirstElement();
-        ElementType getSecondElement();
         void printInfo();
 };
 

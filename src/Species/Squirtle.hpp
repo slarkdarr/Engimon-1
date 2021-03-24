@@ -9,18 +9,16 @@
 
 class Squirtle : public Engimon {
     protected:
-        Element *monElements;
         Engimon *monParents;
         void InitComp();
     public :
         Squirtle();
         Squirtle(string);
+        Squirtle(const Squirtle&);
         Squirtle(string, const Engimon&, const Engimon&);
         Engimon& operator=(const Engimon&);
         ~Squirtle();
         string getNameParent();
-        ElementType getFirstElement();
-        ElementType getSecondElement();
         void printInfo();
 };
 

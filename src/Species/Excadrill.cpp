@@ -10,17 +10,8 @@ string Excadrill :: getNameParent(){
     return this->monParents[0].getName();
 }
 
-ElementType Excadrill :: getFirstElement(){
-    return this->monElements[0].getElementType();
-}
-
-ElementType Excadrill :: getSecondElement(){
-    return this->monElements[1].getElementType();
-}
-
 void Excadrill::InitComp() {
     this->namaSpecies = "Excadrill";
-    this->monElements = new Element[2];
     monElements[0].setElement(Ground);
     this->monParents = new Engimon[2];
 }
@@ -32,6 +23,12 @@ Excadrill :: Excadrill() : Engimon(){
 Excadrill :: Excadrill(string name) : Engimon(name){
     InitComp();
 };
+
+Excadrill::Excadrill(const Excadrill& other) : Engimon(other) {
+    this->monParents = new Engimon[2];
+    monParents[0] = other.monParents[0];
+    monParents[1] = other.monParents[1];
+}
 
 Excadrill :: Excadrill(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
     InitComp();

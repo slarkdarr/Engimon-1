@@ -10,17 +10,8 @@ string Squirtle :: getNameParent(){
     return this->monParents[0].getName();
 }
 
-ElementType Squirtle :: getFirstElement(){
-    return this->monElements[0].getElementType();
-}
-
-ElementType Squirtle :: getSecondElement(){
-    return this->monElements[1].getElementType();
-}
-
 void Squirtle::InitComp() {
     this->namaSpecies = "Squirtle";
-    this->monElements = new Element[2];
     this->monElements[0].setElement(Water);
     this->monParents = new Engimon[2];
 }
@@ -32,6 +23,12 @@ Squirtle :: Squirtle() : Engimon(){
 Squirtle :: Squirtle(string name) : Engimon(name){
     InitComp();
 };
+
+Squirtle::Squirtle(const Squirtle& other) : Engimon(other) {
+    this->monParents = new Engimon[2];
+    monParents[0] = other.monParents[0];
+    monParents[1] = other.monParents[1];
+}
 
 Squirtle :: Squirtle(string name , const Engimon& parent1, const Engimon& parent2) : Engimon(name){
     InitComp();
