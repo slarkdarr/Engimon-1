@@ -12,7 +12,7 @@ class Raichu : public Engimon {
     public :
         Raichu();
         Raichu(string);
-        Raichu(string nama, const Engimon& other1, const Engimon& other2);
+        Raichu(string nama, Engimon& other1, Engimon& other2);
         // Engimon& operator=(const Engimon&);
         ~Raichu();
 

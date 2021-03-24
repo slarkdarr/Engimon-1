@@ -41,22 +41,23 @@ Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
     Articuno asik("EsBatu");
     Excadrill batu("batuan");
     Dragon* temp = new Dragon("Charizard",asik,batu);
+    Squirtle* temp2 = new Squirtle("Kura-kura");
     this->activeEngimon = new ActiveEngimon(m,*temp);
     this->activeEngimon->setPositionOcc(5,6);
     this->inventory = new Inventory<Skill, Engimon>();
-
+    this->inventory->addEngimon(*temp2);
 
 }
 
 Player::Player(Map &m, int x, int y) : Occupier(m, x, y, Player_Type)
 {
-    Articuno asik("EsBatu");
-    Excadrill batu("batuan");
-    Dragon* temp = new Dragon("Charizard",asik,batu);
+    Squirtle* temp2 = new Squirtle("Kura-kura");
+    Dragon* temp = new Dragon("Charizard");
     this->activeEngimon = new ActiveEngimon(m,*temp);
     if (x == 0 ) this->activeEngimon->setPositionOcc(1,y);
     else this->activeEngimon->setPositionOcc(x-1,y);
     this->inventory = new Inventory<Skill, Engimon>();
+    this->inventory->addEngimon(*temp2);
 
 }
 
@@ -114,8 +115,11 @@ void Player::breeding()
         // Logic breeding
         Engimon* enji1 = temp->listItem[n1-1];
         Engimon* enji2 = temp->listItem[n2-1];
-
-        std::cout << "belum lagi\n";
+        string input;
+        std::cout << "Beri nama pada anak engimon: ";
+        std::cin >> input;
+        Engimon* anak = new Engimon(input, *enji1, *enji2);
+        this->inventory->addEngimon(*anak);
     }
 }
 

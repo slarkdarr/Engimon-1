@@ -19,7 +19,12 @@ class Skill {
         int getBasePower() const;
         int getMasteryLevel() const;
         void printInfo();
-        bool operator==(const Skill&) const ;
+        friend bool operator==(const Skill& c1, const Skill& c2);
+        friend bool operator!=(const Skill& c1, const Skill& c2);
+        friend bool operator>(const Skill &c1, const Skill &c2);
+        friend bool operator<(const Skill &c1, const Skill &c2);
+	    friend bool operator>=(const Skill &c1, const Skill &c2);
+        friend bool operator!=(const Skill& c1, const Skill& c2);
 };
 
 class SkillHashFunction{

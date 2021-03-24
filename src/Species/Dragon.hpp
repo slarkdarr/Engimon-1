@@ -13,7 +13,7 @@ class Dragon : public Engimon {
     public :
         Dragon();
         Dragon(string);
-        Dragon(string, const Engimon& other1, const Engimon& other2);
+        Dragon(string, Engimon& other1, Engimon& other2);
         // Engimon& operator=(const Engimon&);
         ~Dragon();
 };

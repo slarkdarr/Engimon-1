@@ -13,7 +13,7 @@ class Squirtle : public Engimon {
     public :
         Squirtle();
         Squirtle(string);
-        Squirtle(string nama, const Engimon& other1, const Engimon& other2);
+        Squirtle(string nama, Engimon& other1, Engimon& other2);
         // Engimon& operator=(const Engimon&);
         ~Squirtle();
 };

@@ -1,11 +1,9 @@
 #ifndef EXCADRILL_HPP
 #define EXCADRILL_HPP
 
-
 #include <iostream>
 #include "Engimon.hpp"
 #include "../Element.hpp"
-
 
 class Excadrill : public Engimon {
     protected:
@@ -13,7 +11,7 @@ class Excadrill : public Engimon {
     public :
         Excadrill();
         Excadrill(string);
-        Excadrill(string nama, const Engimon& other1, const Engimon& other2);
+        Excadrill(string nama, Engimon& other1, Engimon& other2);
         // Engimon& operator=(const Engimon&);
         ~Excadrill();
 };

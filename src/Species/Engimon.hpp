@@ -28,7 +28,7 @@ public:
     Engimon();
     Engimon(string);
     Engimon(const Engimon&);
-    Engimon(string, const Engimon&, const Engimon&);
+    Engimon(string, Engimon&, Engimon&);
     Engimon& operator=(const Engimon&);
     void printInfo();
     void printInfoSafe();
@@ -38,12 +38,14 @@ public:
     int getLevel() const;
     void setLevel(int level);
     bool addExp(int additionalExp);
+    bool isContainSkill(Skill);
     virtual ElementType getFirstElement();
     virtual ElementType getSecondElement();
     virtual float sumSkillPower();
     string getNamaSpecies() const;
     // string getNamaParent();
     static float maxElAdv(Engimon* a, Engimon* b);
+    int* quickSort(int*, int);
 
 };
 

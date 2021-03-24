@@ -37,16 +37,26 @@ void Skill::printInfo(){
     cout << *this << endl;
 }
 
-
 ostream& operator<<(ostream& o, const Skill& e){
     o << "Skill || Nama : " << e.skillName << " || Type :  " << e.skillType << " || basePower : " << e.basePower << " || masteryLevel : " << e.masteryLevel;
     return o;
 }
 
-bool Skill::operator==(const Skill& s) const {
-    if (this->skillName == s.skillName &&
-        this->skillType == s.skillType){
-            return true;
-        } 
-    return false;
+bool operator==(const Skill& c1, const Skill& c2){
+    return (c1.skillName == c2.skillName && c1.skillType == c2.skillType);
+}
+bool operator>(const Skill &c1, const Skill &c2){
+    return c1.masteryLevel > c2.masteryLevel;
+}
+bool operator>=(const Skill &c1, const Skill &c2){
+    return c1.masteryLevel >= c2.masteryLevel;
+}
+bool operator<(const Skill &c1, const Skill &c2){
+    return !(c1 >= c2);
+}
+bool operator<=(const Skill &c1, const Skill &c2){
+    return !(c1 > c2);;
+}
+bool operator!=(const Skill& c1, const Skill& c2){
+    return !(c1 == c2);
 }

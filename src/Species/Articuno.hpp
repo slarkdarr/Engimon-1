@@ -12,7 +12,7 @@ class Articuno : public Engimon {
     public :
         Articuno();
         Articuno(string);
-        Articuno(string nama, const Engimon& other1, const Engimon& other2);
+        Articuno(string nama, Engimon& other1, Engimon& other2);
         // Engimon& operator=(const Engimon&);
         ~Articuno();
 };

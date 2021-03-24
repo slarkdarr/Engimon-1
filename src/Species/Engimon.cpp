@@ -15,7 +15,6 @@ void Engimon::InitComp(){
     this->monSkills = new Skill[4];
     this->monElements = new Element[2];
     this->monParents = nullptr;
-
 }
 
 Engimon::Engimon(){
@@ -46,14 +45,76 @@ Engimon::Engimon(const Engimon& other){
     }
 }
 
-Engimon::Engimon(string name, const Engimon& other1, const Engimon& other2) {
+
+bool Engimon::isContainSkill(Skill a){
+    for (int i = 0; i < 4; i++)
+    {
+        if (a == this->monSkills[i]) return true;
+    }
+    return false;
+}
+
+Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
     InitComp();
     this->monName = name;
+    this->namaSpecies = "ANAK";
     this->monParents = new Engimon[2];
     this->monParents[0] = other1;
     this->monParents[1] = other2;
+    other1.monLevel -= 30;
+    other2.monLevel -= 30;
+    
+    Skill* temporaryskill = new Skill[8];
+    for (int i = 0; i < 4; i++)
+    {
+        temporaryskill[i] = other1.monSkills[i];
+        temporaryskill[i+4] = other2.monSkills[i];
+    }
+    for (int i = 0; i < 8; i++)
+    {
+        cout << temporaryskill[i] << endl;
+    }
+    // Sorting skill
+    int i, j; 
+    Skill temp;
+    for (i = 0; i < 7-1; i++) {     
+        for (j = 0; j < 7-i-1; j++)  {
+            if (temporaryskill[j] < temporaryskill[j+1]) {
+                Skill temp = temporaryskill[j]; 
+                temporaryskill[j] = temporaryskill[j+1]; 
+                temporaryskill[j+1] = temp; 
+            }
+        }
+    }
+    for (int i = 0; i < 8; i++)
+    {
+        cout << temporaryskill[i] << endl;
+    }
+    this->monSkills[0] = temporaryskill[0];
+    cout << "berhasil" << endl;
+    int angka = 1;
+    for (int i = 1; i < 7; i++)
+    {
+        if (!isContainSkill(temporaryskill[i])) this->monSkills[angka++] = temporaryskill[i];
+        if (angka == 4) break;
+    }
+    ElementType elbokap1 = other1.getFirstElement();
+    ElementType elbokap2 = other1.getSecondElement();
+    ElementType elnyokap1 = other2.getFirstElement();
+    ElementType elnyokap2 = other2.getSecondElement();
+    if (elbokap2 == None && elnyokap2 == None) {
+        this->monElements[0].setElement(elbokap1);
+        if (elbokap1 != elnyokap1){
+            this->monElements[1].setElement(elnyokap1);
+        }
+    }
+    else if (elbokap1 == elnyokap1 && elbokap2 == elnyokap2){
+        this->monElements[0].setElement(elbokap1);
+        this->monElements[1].setElement(elbokap2);
+    }
+    
+    
 }
-
 
 
 void Engimon::setName(string name)
@@ -196,3 +257,38 @@ float Engimon::maxElAdv(Engimon* a, Engimon* b)
     }
     return elAdvAMax;
 }
+
+// int* Engimon::quickSort(int* arr, int size) {
+//     int lenLess = 0;
+//     int lenMore = 0;
+//     int lenPivot = 0;
+//     int* less = new int[lenLess];
+//     int* pivotList = new int[lenPivot];
+//     int* more = new int[lenMore];
+    
+//     if (size <= 1) {
+//         return arr;
+//     }
+//     else {
+//         int pivot = arr[0];
+//         for (int i = 0; i < size; i++) {
+//             if (arr[i] < pivot) {
+//                 less[lenLess++] = arr[i];
+//             }
+//             else if (arr[i] > pivot) {
+//                 more[lenMore++] = arr[i];
+//             }
+//             else {
+//                 pivotList[lenPivot++] = arr[i];
+//             }
+//         }
+//         less = quickSort(less, lenLess);
+//         more = quickSort(more, lenMore);
+        
+//         int* result = new int(lenLess+lenPivot+lenMore);
+//         copy(less, less+lenLess, result);
+//         copy(pivot, less+lenLess, result+lenLess);
+//         copy(more, more+lenPivot, result+lenPivot);
+//         return result;
+//     }
+// }
