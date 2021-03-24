@@ -9,6 +9,7 @@ using namespace std;
 #include "Skill/Skill.hpp"
 #include "Bag.hpp"
 
+template <class T>
 class Bag;
 
 template <class T1,class T2>
@@ -36,7 +37,7 @@ public:
     bool isEngimonBagEmpty();
     int EngimonBagSize();
     bool isBagSkillsEmpty();
-    Bag* listEngimon();
+    Bag<Engimon>* listEngimon();
     int engimonCount() const;
     int skillCount() const;
     bool isFull();

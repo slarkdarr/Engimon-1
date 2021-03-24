@@ -38,6 +38,8 @@ public:
     virtual ElementType getSecondElement();
     virtual float sumSkillPower();
     string getNamaSpecies() const;
+    static float maxElAdv(Engimon* a, Engimon* b);
+
 };
 
 #endif

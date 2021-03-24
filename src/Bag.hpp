@@ -4,13 +4,13 @@
 #include "Species/Engimon.hpp"
 #include "Inventory.hpp"
 
-
+template<class T>
 class Bag  
 {	
 	public:
-		Engimon** listEngimon;
+		T** listItem;
 		int neff;
-		bool Add(Engimon& other);
+		bool Add(T& other);
 		void printAllInfo();
 		Bag();
 		~Bag();

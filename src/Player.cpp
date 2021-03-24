@@ -102,14 +102,14 @@ void Player::breeding()
     else if (this->inventory->isFull()) cout << "Inventory Penuh!!" << endl;
     else
     {
-        Bag* temp = this->inventory->listEngimon();
+        Bag<Engimon>* temp = this->inventory->listEngimon();
         temp->Add(*this->getEngimon());
         temp->printAllInfo();
         int n1 = validasiInput("Pilih Engimon 1: ", 0 , temp->neff, -1);
         int n2 = validasiInput("Pilih Engimon 2: ", 0 , temp->neff, n1);
         // Logic breeding
-        Engimon* enji1 = temp->listEngimon[n1-1];
-        Engimon* enji2 = temp->listEngimon[n2-1];
+        Engimon* enji1 = temp->listItem[n1-1];
+        Engimon* enji2 = temp->listItem[n2-1];
 
         std::cout << "belum lagi\n";
     }
@@ -155,12 +155,13 @@ bool Player::setEngimon()
 {
     if (this->inventory->isEngimonBagEmpty()) {std::cout <<"tidak ada engimon lain"<< std::endl; return false;}
     this->inventory->printAllEngimonInfo();
-    Bag* temp = this->inventory->listEngimon();
+    Bag<Engimon>* temp = this->inventory->listEngimon();
     int n1 = validasiInput("Pilih Engimon: ", 0 , temp->neff, -1);
-    Engimon* temp2 = new Engimon(*temp->listEngimon[n1-1]);
+    Engimon* temp2 = new Engimon(*temp->listItem[n1-1]);
     this->inventory->removeEngimon(n1);
     this->inventory->addEngimon(*this->getEngimon());
     this->setActiveEngimon(temp2);
+    delete temp;
     return true;
 }
 

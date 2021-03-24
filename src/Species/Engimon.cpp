@@ -133,3 +133,32 @@ void Engimon::printInfoSafe() {
     cout << "Nama Spesies : " << this->namaSpecies << endl;
     cout << "Level : " << this->monLevel << endl;
 }
+
+float maxFloat(float a, float b)
+{
+    if (a > b) return a;
+    return b;
+}
+
+float Engimon::maxElAdv(Engimon* a, Engimon* b)
+{
+    ElementType ela1 = a->getFirstElement();
+    ElementType ela2 = a->getSecondElement();
+    ElementType elb1 = b->getFirstElement();
+    ElementType elb2 = b->getSecondElement();
+
+    float elAdvA[4] = 
+    {
+        Element::elementAdv[make_pair(ela1, elb1)],
+        Element::elementAdv[make_pair(ela1, elb2)],
+        Element::elementAdv[make_pair(ela2, elb2)],
+        Element::elementAdv[make_pair(ela2, elb1)]
+    };
+
+    float elAdvAMax = elAdvA[0];
+    for (int i = 1; i < 4; i++)
+    {
+        elAdvAMax = maxFloat(elAdvA[i], elAdvAMax);
+    }
+    return elAdvAMax;
+}

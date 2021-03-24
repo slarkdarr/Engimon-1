@@ -135,8 +135,8 @@ void Inventory<T1, T2> :: printAllEngimonInfo() {
     }
 }
 template <class T1,class T2>
-Bag* Inventory<T1, T2> ::listEngimon() {
-    Bag* temp = new Bag();
+Bag<Engimon>* Inventory<T1, T2> ::listEngimon() {
+    Bag<Engimon>* temp = new Bag<Engimon>();
     if (!this->isEngimonBagEmpty())
     {
         for (auto i = bagEngimon.begin(); i != bagEngimon.end(); ++i){

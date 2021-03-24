@@ -4,12 +4,9 @@
 int main(int argc, char const *argv[])
 {
 
-    Map* isekai = new Map("src/Map/map2.txt");
+    Map* isekai = new Map("src/Map/map.txt");
     Player* myPlayer = new Player(*isekai,5,5);
     ListEnemy* listMusuh = new ListEnemy(*isekai, myPlayer, 20);
-
-    
-
     
     playgame:
     string input;
@@ -19,15 +16,15 @@ int main(int argc, char const *argv[])
         system("CLS");
         listMusuh->moveAllRandom();
         isekai->printMap(myPlayer->getLevel());
-        std::cout << "Command tersedia: w/a/s/d, battle, list, info, use, throw, set." << std::endl;
+        std::cout << "Command tersedia: w/a/s/d, battle, list, info, use, throw, set, quit" << std::endl;
 
         bool cond = true;
 
         do
         {
+            std::cout << std::endl;
             std::cout << ">> ";
             std::cin >> input;
-            std::cout << std::endl;
 
             // Battle
             if (input == "battle") 
@@ -60,9 +57,16 @@ int main(int argc, char const *argv[])
             {
                 cond = !myPlayer->setEngimon();
             }
+            // buang skill / engimon
             else if (input == "throw")
             {
                 myPlayer->removeItem();
+            }
+            else if (input == "quit")
+            {
+                delete myPlayer;
+                myPlayer = nullptr;
+                cond = false;
             }
             else cond = (!myPlayer->move(input));
         }

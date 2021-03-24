@@ -18,6 +18,7 @@ class Skill {
         string getSkillName() const;
         int getBasePower() const;
         int getMasteryLevel() const;
+        void printInfo();
         bool operator==(const Skill&) const ;
 };
 

@@ -1,38 +1,39 @@
 #include "Bag.hpp"  
 
-
-Bag::Bag()
+template <class T>
+Bag<T>::Bag()
 {
-	this->listEngimon = new Engimon*[MAX_CAPACITY];
+	this->listItem = new T*[MAX_CAPACITY];
     this->neff =0; 
 }
-
-bool Bag::Add(Engimon& other)
+template <class T>
+bool Bag<T>::Add(T& other)
 {
     if (neff <= MAX_CAPACITY)
     {
-        this->listEngimon[neff] = &other;
+        this->listItem[neff] = &other;
         neff++;
         return true;
     }
     return false;
 }
-
-void Bag::printAllInfo()
+template <class T>
+void Bag<T>::printAllInfo()
 {
     for (int i = 0; i < neff; i++)
     {
         std::cout << (i+1) << std::endl;
-        this->listEngimon[i]->printInfo();
+        this->listItem[i]->printInfo();
         std::cout << std::endl;
     }
     
 }
 
-
-	
-Bag::~Bag()
+template <class T>
+Bag<T>::~Bag()
 {
 	
 }
 
+template class Bag<Skill>;
+template class Bag<Engimon>;

@@ -2,34 +2,7 @@
 #include <iostream>
 using namespace std;
 
-float maxFloat(float a, float b)
-{
-    if (a > b) return a;
-    return b;
-}
 
-float maxElAdv(Engimon* a, Engimon* b)
-{
-    ElementType ela1 = a->getFirstElement();
-    ElementType ela2 = a->getSecondElement();
-    ElementType elb1 = b->getFirstElement();
-    ElementType elb2 = b->getSecondElement();
-
-    float elAdvA[4] = 
-    {
-        Element::elementAdv[make_pair(ela1, elb1)],
-        Element::elementAdv[make_pair(ela1, elb2)],
-        Element::elementAdv[make_pair(ela2, elb2)],
-        Element::elementAdv[make_pair(ela2, elb1)]
-    };
-
-    float elAdvAMax = elAdvA[0];
-    for (int i = 1; i < 4; i++)
-    {
-        elAdvAMax = maxFloat(elAdvA[i], elAdvAMax);
-    }
-    return elAdvAMax;
-}
 
 Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
     // cout << "BATTLE!" << endl;
@@ -44,8 +17,8 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
         int playerLvl = myplayer->getLevel();
         int enemyLvl = engimonMusuh->getLevel();
 
-        float playerMaxElAdv = maxElAdv(myengimon,engimonMusuh);
-        float enemyMaxElAdv = maxElAdv(engimonMusuh,myengimon);
+        float playerMaxElAdv = Engimon::maxElAdv(myengimon,engimonMusuh);
+        float enemyMaxElAdv = Engimon::maxElAdv(engimonMusuh,myengimon);
         
         float powerPlayer = (playerLvl * playerMaxElAdv) + myengimon->sumSkillPower();
         float powerEnemy = (enemyLvl * enemyMaxElAdv) + engimonMusuh->sumSkillPower();
@@ -68,11 +41,12 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
             else
             {   
                 myplayer->inventory->printAllEngimonInfo();
-                Bag* temp = myplayer->inventory->listEngimon();
+                Bag<Engimon>* temp = myplayer->inventory->listEngimon();
                 int n1 = Player::validasiInput("Pilih Engimon: ", 0 , temp->neff, -1);
-                Engimon* temp2 = new Engimon(*temp->listEngimon[n1-1]);
+                Engimon* temp2 = new Engimon(*temp->listItem[n1-1]);
                 myplayer->inventory->removeEngimon(n1);
                 myplayer->setActiveEngimon(temp2);
+                delete temp;
                 goto ulanglagi;
             }
         }
