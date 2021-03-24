@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Inventory.hpp"
 #include "Map/Occupier.hpp"
+#include "time.h"
 #include "Bag.hpp"
 
 
@@ -217,6 +218,18 @@ Engimon* Player::getClosestEnemy()
         int n = validasiInput("Pilih Musuh : ", 0, jumlahMusuh, -1);
         return listmusuh[n-1]->getEngimon();
     }
+}
+
+std::string randomKata() {
+    std::string possibleWords[] = {"AYO KITA PASTI MENANG","GORENG-GORENG DULU GA SIH ?", "ASHIAPPPP !!", "CHUAKKZZZZ", "LET'S GET IT",
+    "LET'S CONQUER THE LAND OF DAWN", "OM TELOLET OM", "ANJAY MABAR HAYUU"};
+    srand(time(0));
+    return possibleWords[rand() % 8];
+};
+
+void Player::interact()
+{
+    cout << this->getEngimon()->getName() << ": " << randomKata() << endl;
 }
 
 

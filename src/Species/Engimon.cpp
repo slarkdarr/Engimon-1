@@ -57,7 +57,6 @@ bool Engimon::isContainSkill(Skill a){
 Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
     InitComp();
     this->monName = name;
-    this->namaSpecies = "ANAK";
     this->monParents = new Engimon[2];
     this->monParents[0] = other1;
     this->monParents[1] = other2;
@@ -70,10 +69,7 @@ Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
         temporaryskill[i] = other1.monSkills[i];
         temporaryskill[i+4] = other2.monSkills[i];
     }
-    for (int i = 0; i < 8; i++)
-    {
-        cout << temporaryskill[i] << endl;
-    }
+
     // Sorting skill
     int i, j; 
     Skill temp;
@@ -86,34 +82,49 @@ Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
             }
         }
     }
-    for (int i = 0; i < 8; i++)
-    {
-        cout << temporaryskill[i] << endl;
-    }
+
     this->monSkills[0] = temporaryskill[0];
-    cout << "berhasil" << endl;
+
     int angka = 1;
     for (int i = 1; i < 7; i++)
     {
         if (!isContainSkill(temporaryskill[i])) this->monSkills[angka++] = temporaryskill[i];
+        else 
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (this->monSkills[j] == temporaryskill[i]) {this->monSkills[j].masteryLevel++; break;}
+
+            }
+        }
         if (angka == 4) break;
     }
     ElementType elbokap1 = other1.getFirstElement();
     ElementType elbokap2 = other1.getSecondElement();
     ElementType elnyokap1 = other2.getFirstElement();
     ElementType elnyokap2 = other2.getSecondElement();
-    if (elbokap2 == None && elnyokap2 == None) {
-        this->monElements[0].setElement(elbokap1);
-        if (elbokap1 != elnyokap1){
-            this->monElements[1].setElement(elnyokap1);
+
+    float maxEladvA = maxElAdv(&other1, &other2);
+    float maxEladvB = maxElAdv(&other2, &other1);
+
+    if (maxEladvA > maxEladvB) 
+    {
+        this->namaSpecies = other1.namaSpecies;
+    }
+    else
+    {
+        this->namaSpecies = other2.namaSpecies;
+    }
+    // Kasus single element
+    if (elbokap2 == None && elnyokap2 == None) 
+    {
+        if (maxEladvA > maxEladvB) 
+        {
+            this->monElements[0].setElement(elbokap1);
         }
+        else this->monElements[0].setElement(elnyokap1);
     }
-    else if (elbokap1 == elnyokap1 && elbokap2 == elnyokap2){
-        this->monElements[0].setElement(elbokap1);
-        this->monElements[1].setElement(elbokap2);
-    }
-    
-    
+    // Kasus double element
 }
 
 
@@ -185,7 +196,7 @@ float Engimon :: sumSkillPower()
     float temp = 0;
     for (int i = 0; i < 4; i++)
     {
-        temp += (this->monSkills[i].getBasePower() * this->monSkills[i].getMasteryLevel());
+        temp += (this->monSkills[i].getBasePower() * this->monSkills[i].masteryLevel);
     }
     return temp;
 }
@@ -215,11 +226,11 @@ void Engimon::printInfo() {
         }
     }
     cout << endl;
-    cout << "List nama dan spesies Parent : \n";
     if (this->monParents) {
+        cout << "List nama dan spesies Parent : \n";
         for (size_t j = 0; j < 2 ; j++)
         {
-            cout << this->monParents[j].getName() << " Spesies : " << this->monParents[j].getNamaSpecies() << endl; 
+            cout << this->monParents[j].getName() << " | Spesies : " << this->monParents[j].getNamaSpecies() << endl; 
         }
     }
 }

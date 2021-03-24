@@ -7,9 +7,10 @@ using namespace std;
 class Skill {
     protected:
         int basePower;
-        int masteryLevel;
+        
         friend ostream& operator<<(ostream& os, const Skill& s);
     public:
+        int masteryLevel;
         string skillName;
         string skillType;
         Skill();
@@ -17,7 +18,6 @@ class Skill {
         Skill(const Skill&);
         string getSkillName() const;
         int getBasePower() const;
-        int getMasteryLevel() const;
         void printInfo();
         friend bool operator==(const Skill& c1, const Skill& c2);
         friend bool operator!=(const Skill& c1, const Skill& c2);

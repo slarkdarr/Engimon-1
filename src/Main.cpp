@@ -1,12 +1,7 @@
 // Contoh driver game
 #include "Battle.hpp"
 
-std::string randomKata() {
-    std::string possibleWords[] = {"AYO KITA PASTI MENANG","GORENG-GORENG DULU GA SIH ?", "ASHIAPPPP !!", "CHUAKKZZZZ", "LET'S GET IT",
-    "LET'S CONQUER THE LAND OF DAWN", "OM TELOLET OM", "ANJAY MABAR HAYUU"};
-    srand(time(0));
-    return possibleWords[rand() % 8];
-};
+
 
 int main(int argc, char const *argv[])
 {
@@ -23,8 +18,8 @@ int main(int argc, char const *argv[])
         system("CLS");
         listMusuh->moveAllRandom();
         isekai->printMap(myPlayer->getLevel());
-        std::cout << "Command tersedia: w/a/s/d, battle, list, info, use, throw, set, quit" << std::endl;
-
+        std::cout << "Command tersedia: w/a/s/d, breed, battle, list, info, use, throw, set, quit" << std::endl;
+        myPlayer->interact();
         bool cond = true;
 
         do
@@ -40,7 +35,7 @@ int main(int argc, char const *argv[])
                 cond = (myPlayer);
             }
             // breeding
-            else if (input == "breeding")
+            else if (input == "breed")
             {
                 myPlayer->breeding();
             }

@@ -30,9 +30,7 @@ string Skill :: getSkillName() const{
 int Skill :: getBasePower() const {
     return this->basePower;
 }
-int Skill :: getMasteryLevel() const {
-    return this->masteryLevel;
-}
+
 void Skill::printInfo(){
     cout << *this << endl;
 }

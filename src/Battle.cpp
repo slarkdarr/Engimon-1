@@ -22,15 +22,14 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
         
         float powerPlayer = (playerLvl * playerMaxElAdv) + myengimon->sumSkillPower();
         float powerEnemy = (enemyLvl * enemyMaxElAdv) + engimonMusuh->sumSkillPower();
-
+        std::cout << "Power Engimon Anda: " << powerPlayer << endl;
+        std::cout << "Power Engimon Lawan: " << powerEnemy << endl;
         if (powerPlayer < powerEnemy)
         {
             std::cout << "Kalah power, Engimon Anda Mati" << std::endl;
             delete myplayer->getEngimon();
 
             myplayer->setActiveEngimon(nullptr);
-
-
             // Jika tidak ada engimon tersisa
             if (myplayer->inventory->isEngimonBagEmpty())
             {
