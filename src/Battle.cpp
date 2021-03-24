@@ -68,7 +68,12 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
             else
             {   
                 myplayer->inventory->printAllEngimonInfo();
-                // goto ulanglagi;
+                Bag* temp = myplayer->inventory->listEngimon();
+                int n1 = Player::validasiInput("Pilih Engimon: ", 0 , temp->neff, -1);
+                Engimon* temp2 = new Engimon(*temp->listEngimon[n1-1]);
+                myplayer->inventory->removeEngimon(n1);
+                myplayer->setActiveEngimon(temp2);
+                goto ulanglagi;
             }
         }
         // Jika Menang Power

@@ -19,7 +19,7 @@ enum Occupier_Type {
 class Occupier  
 {
 	protected:
-		Position position;
+		Position* position;
 		Map* m;
 		
 	public:

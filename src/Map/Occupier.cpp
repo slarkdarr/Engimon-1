@@ -5,19 +5,19 @@
 
 Occupier::Occupier(Map& m)
 {
-	this->position = Position();
+	this->position = new Position();
     this->ocpType = Enemy_Type;
     this->m = &m;
     if(!setPositionOcc(0,0)) 
     {
         std::cout << "error spawn x:0 y:0" << std::endl;
-        throw 999;
+        // throw 999;
     }
 }
 
 Occupier::Occupier(Map& m, int x, int y, Occupier_Type octype)
 {
-	this->position = Position(x,y);
+	this->position = new Position(x,y);
     this->ocpType = octype;
     this->m = &m;
     if(!setPositionOcc(x,y)) 
@@ -29,12 +29,13 @@ Occupier::Occupier(Map& m, int x, int y, Occupier_Type octype)
 
 Occupier :: ~Occupier() 
 {
-    m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
+    m->cells[this->position->x + this->position->y * Position::MAX_X].setOccupier(nullptr);
+    delete this->position;
 }
 
 	
 Position Occupier::getPosition(){
-    return this->position;
+    return *this->position;
 }
 
 bool Occupier::setPositionOcc(int x, int y)
@@ -43,9 +44,9 @@ bool Occupier::setPositionOcc(int x, int y)
     {
         if (!m->cells[x + y * Position::MAX_X].occupier)
         {
-            m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
+            m->cells[this->position->x + this->position->y * Position::MAX_X].setOccupier(nullptr);
             m->cells[x + y * Position::MAX_X].setOccupier(this);
-            this->position.setPosition(x,y);
+            this->position->setPosition(x,y);
             return true;
         }
         return false;
@@ -56,8 +57,8 @@ bool Occupier::setPositionOcc(int x, int y)
 bool Occupier::move(std::string str) 
 {
     char c = str[0];
-    int x = this->position.x;
-    int y = this->position.y;
+    int x = this->position->x;
+    int y = this->position->y;
     switch (c)
     {
     case 'w':
@@ -82,8 +83,8 @@ bool Occupier::move(std::string str)
 
 void Occupier::printPosition()
 {
-    std::cout << this->position.x << std::endl;
-    std::cout << this->position.y << std::endl;
+    std::cout << this->position->x << std::endl;
+    std::cout << this->position->y << std::endl;
 }
 
 // int main(int argc, char const *argv[])

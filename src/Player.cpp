@@ -6,21 +6,21 @@
 #include "Bag.hpp"
 
 
-int validasiInput(string pesan, int batasBawah, int batasAtas, int angkalain)
+int Player::validasiInput(std::string pesan, int batasBawah, int batasAtas, int angkalain)
 {
     int n2;
     while (true) 
     {
         
         std::cout << pesan;
-        cin >> n2;
+        std::cin >> n2;
         try 
         {
             // JIKA gagal, reset input buffer
             if (std::cin.fail()) 
             {
-                cin.clear();
-                cin.ignore(INT_MAX,'\n');
+                std::cin.clear();
+                std::cin.ignore(INT_MAX,'\n');
                 throw "Masukkan angka";
             }
             else if (n2 <= batasBawah || n2 > batasAtas) throw "Masukkan angka yang valid";
@@ -72,10 +72,10 @@ bool Player::setPositionOcc(int x, int y)
     {
         if (m->cells[x + y * Position::MAX_X].occupier == this->activeEngimon || !m->cells[x + y * Position::MAX_X].occupier)
         {
-            m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
-            this->activeEngimon->setPositionOcc(this->position.x, this->position.y);
+            m->cells[this->position->x + this->position->y * Position::MAX_X].setOccupier(nullptr);
+            this->activeEngimon->setPositionOcc(this->position->x, this->position->y);
             m->cells[x + y * Position::MAX_X].setOccupier(this);
-            this->position.setPosition(x,y);
+            this->position->setPosition(x,y);
             return true;
         }
         std::cout << "Cell ditempati!" << std::endl;
@@ -130,7 +130,7 @@ void Player::removeItem()
         case 1:
             if (!this->inventory->isBagSkillsEmpty()) 
             {
-                int num2 = validasiInput("Pilih skill untuk dibuang: ", -1,this->inventory->skillCount(),-1);
+                int num2 = validasiInput("Pilih skill untuk dibuang: ", -1,9999,-1);
                 if (num2 == 0) break;
                 this->inventory->removeSkill(num2);
             }
@@ -138,7 +138,7 @@ void Player::removeItem()
         case 2:
             if (!this->inventory->isEngimonBagEmpty()) 
             {
-                int num2 = validasiInput("Pilih Engimon untuk dibuang: ", -1,this->inventory->engimonCount(),-1);
+                int num2 = validasiInput("Pilih Engimon untuk dibuang: ", -1,9999,-1);
                 if (num2 == 0) break;
                 this->inventory->removeEngimon(num2);
             }
@@ -148,8 +148,8 @@ void Player::removeItem()
         }
 
     }
-
 }
+
 
 bool Player::setEngimon()
 {
@@ -179,7 +179,7 @@ Engimon* Player::getClosestEnemy()
         int x = i % Position::MAX_X;
         int y = i / Position::MAX_X;
 
-        if (x >= (this->position.x-1) && x <= (this->position.x+1) && y >= (this->position.y-1) && y <= (this->position.y+1)) 
+        if (x >= (this->position->x-1) && x <= (this->position->x+1) && y >= (this->position->y-1) && y <= (this->position->y+1)) 
         {
             if ((this->m->cells[i].occupier) && this->m->cells[i].occupier->ocpType == Enemy_Type) 
             {

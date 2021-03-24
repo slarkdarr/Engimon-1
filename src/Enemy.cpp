@@ -61,9 +61,9 @@ bool Enemy::setPositionOcc(int x, int y)
     {
         if (!m->cells[x + y * Position::MAX_X].occupier && this->cellType == this->m->cells[x + y * Position::MAX_X].cellType)
         {
-            m->cells[this->position.x + this->position.y * Position::MAX_X].setOccupier(nullptr);
+            m->cells[this->position->x + this->position->y * Position::MAX_X].setOccupier(nullptr);
             m->cells[x + y * Position::MAX_X].setOccupier(this);
-            this->position.setPosition(x,y);
+            this->position->setPosition(x,y);
             return true;
         }
         // std::cout << "Cell ditempati!" << std::endl;
@@ -74,8 +74,8 @@ bool Enemy::setPositionOcc(int x, int y)
 }
 bool Enemy::move(int rand)
 {
-    int x = this->position.x;
-    int y = this->position.y;
+    int x = this->position->x;
+    int y = this->position->y;
     switch (rand)
     {
     case 0:

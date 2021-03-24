@@ -39,11 +39,11 @@ ListEnemy::~ListEnemy()
 {
 	for (int i = 0; i < jmlhMusuh; i++)
     {
-        delete this->listEnemy[i];
+        map->cells[this->listEnemy[i]->getPosition().x + this->listEnemy[i]->getPosition().y * Position::MAX_X].setOccupier(nullptr);
         // this->map->printMap(0);
     }
-    // cout << "Berhasil terdestruksi semua" << endl;
     delete[] this->listEnemy;
+    // cout << "Berhasil terdestruksi semua" << endl;
 }
 
 bool ListEnemy::deleteEnemy(int no)

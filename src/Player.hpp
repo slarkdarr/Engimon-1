@@ -31,6 +31,7 @@ class Player : public Occupier
 		Engimon* getEngimon();
 		Engimon* getClosestEnemy();
 		ElementType getElement();
+		static int validasiInput(std::string pesan, int batasBawah, int batasAtas, int angkalain);
 
 };
 

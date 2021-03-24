@@ -85,7 +85,6 @@ void Inventory<T1, T2> :: removeSkill(int x){
     else{
         this->skillDict[bagSkills[x-1]]--;
         this->bagSkills.erase(bagSkills.begin() + (x - 1));
-        cout << "Skills berhasil dihapus" << endl;
         nskill--;
     };
 }
@@ -96,7 +95,6 @@ void Inventory<T1, T2> :: removeEngimon(int x){
     else if(this->bagEngimon.size() < x || x <= 0) cout << "Angka tidak valid" << endl;
     else{
         this->bagEngimon.erase(bagEngimon.begin() + (x - 1));
-        cout << "Engimon berhasil dihapus" << endl;
         nEngimon--;
     };
 }

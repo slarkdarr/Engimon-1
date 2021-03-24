@@ -8,6 +8,7 @@ int main(int argc, char const *argv[])
     Player* myPlayer = new Player(*isekai,5,5);
     ListEnemy* listMusuh = new ListEnemy(*isekai, myPlayer, 20);
 
+    
 
     
     playgame:

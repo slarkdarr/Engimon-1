@@ -23,7 +23,7 @@ class Enemy  : public Occupier
 		void setEngimon(Engimon*);
 		bool setPositionOcc(int, int);
 		bool move(int);
-		~Enemy();
+		virtual ~Enemy();
 
 };
 #endif
