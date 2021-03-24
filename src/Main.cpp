@@ -1,6 +1,13 @@
 // Contoh driver game
 #include "Battle.hpp"
 
+std::string randomKata() {
+    std::string possibleWords[] = {"AYO KITA PASTI MENANG","GORENG-GORENG DULU GA SIH ?", "ASHIAPPPP !!", "CHUAKKZZZZ", "LET'S GET IT",
+    "LET'S CONQUER THE LAND OF DAWN", "OM TELOLET OM", "ANJAY MABAR HAYUU"};
+    srand(time(0));
+    return possibleWords[rand() % 8];
+};
+
 int main(int argc, char const *argv[])
 {
 
