@@ -129,6 +129,8 @@ void Player::breeding()
             std::cout << "Level Engimon Tidak Mencukupi" << std::endl;
             return; 
         }
+        enji1->setLevel(enji1->getLevel() - 30);
+        enji2->setLevel(enji2->getLevel() - 30);
         string input;
         std::cout << "Beri nama pada anak engimon: ";
         std::cin >> input;
