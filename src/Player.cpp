@@ -41,7 +41,7 @@ Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
 {
     Articuno asik("EsBatu");
     Excadrill batu("batuan");
-    Dragon* temp = new Dragon("Charizard",asik,batu);
+    Dragon* temp = new Dragon("Charizard");
     Squirtle* temp2 = new Squirtle("Kura-kura");
     this->activeEngimon = new ActiveEngimon(m,*temp);
     this->activeEngimon->setPositionOcc(5,6);
@@ -54,11 +54,15 @@ Player::Player(Map &m, int x, int y) : Occupier(m, x, y, Player_Type)
 {
     Squirtle* temp2 = new Squirtle("Kura-kura");
     Dragon* temp = new Dragon("Charizard");
+    Seismotoad* temp3 = new Seismotoad("Yuhu");
+    Kyogre* temp4 = new Kyogre("KyOGRE");
     this->activeEngimon = new ActiveEngimon(m,*temp);
     if (x == 0 ) this->activeEngimon->setPositionOcc(1,y);
     else this->activeEngimon->setPositionOcc(x-1,y);
     this->inventory = new Inventory<Skill, Engimon>();
     this->inventory->addEngimon(*temp2);
+    this->inventory->addEngimon(*temp3);
+    this->inventory->addEngimon(*temp4);
 
 }
 
@@ -176,6 +180,7 @@ void Player::useSkill()
     Skill skilltemp;
     skilltemp = *temp->listItem[n1-1];
     if (this->getEngimon()->learnSkill(skilltemp)) this->inventory->removeSkill(n1);
+    delete temp;
 } 
 
 bool Player::setEngimon()
@@ -184,10 +189,17 @@ bool Player::setEngimon()
     this->inventory->printAllEngimonInfo();
     Bag<Engimon>* temp = this->inventory->listEngimon();
     int n1 = validasiInput("Pilih Engimon: ", 0 , temp->neff, -1);
-    Engimon* temp2 = new Engimon(*temp->listItem[n1-1]);
+    Engimon* engimonlama = temp->listItem[n1-1];
+    cout << "Engimon Lama" << endl;
+    cout << *engimonlama << endl;
+    Engimon* temp2 = new Engimon(*engimonlama);
+    cout << "Engimon Baru" << endl;
+    cout << *temp2 << endl;
     this->inventory->removeEngimon(n1);
     this->inventory->addEngimon(*this->getEngimon());
+    this->setActiveEngimon(nullptr);
     this->setActiveEngimon(temp2);
+    engimonlama = nullptr;
     delete temp;
     return true;
 }

@@ -12,8 +12,6 @@ class Raichu : public Engimon {
     public :
         Raichu();
         Raichu(string);
-        Raichu(string nama, Engimon& other1, Engimon& other2);
-        // Engimon& operator=(const Engimon&);
         ~Raichu();
 
 };

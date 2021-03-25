@@ -12,8 +12,6 @@ class Seismotoad : public Engimon {
     public :
         Seismotoad();
         Seismotoad(string);
-        Seismotoad(string, Engimon& other1, Engimon& other2);
-        // Engimon& operator=(const Engimon&);
         ~Seismotoad();
 };
 

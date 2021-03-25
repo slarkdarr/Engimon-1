@@ -1,12 +1,12 @@
-// Contoh driver game
+// // Contoh driver game
 #include "Battle.hpp"
-
+#include "time.h"
 
 
 int main(int argc, char const *argv[])
 {
 
-    Map* isekai = new Map("src/Map/map.txt");
+    Map* isekai = new Map("src/Map/map1.txt");
     Player* myPlayer = new Player(*isekai,5,5);
     ListEnemy* listMusuh = new ListEnemy(*isekai, myPlayer, 20);
     

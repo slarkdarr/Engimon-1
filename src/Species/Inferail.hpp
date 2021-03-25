@@ -12,8 +12,6 @@ class Inferail : public Engimon {
     public :
         Inferail();
         Inferail(string);
-        Inferail(string, Engimon& other1, Engimon& other2);
-        // Engimon& operator=(const Engimon&);
         ~Inferail();
 };
 

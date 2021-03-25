@@ -12,8 +12,6 @@ class Articuno : public Engimon {
     public :
         Articuno();
         Articuno(string);
-        Articuno(string nama, Engimon& other1, Engimon& other2);
-        // Engimon& operator=(const Engimon&);
         ~Articuno();
 };
 

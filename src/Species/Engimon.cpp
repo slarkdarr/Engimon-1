@@ -2,7 +2,7 @@
 #include <string>
 #include "Engimon.hpp"
 #include "../Skill/Skill.hpp"
-
+#include "../Player.hpp"
 using namespace std;
 
 void Engimon::InitComp(){
@@ -55,6 +55,13 @@ bool Engimon::isContainSkill(Skill a){
 }
 
 bool Engimon::learnSkill(Skill other){
+    if (other.getSkillName() == "AntiAging")
+    {
+        this->monCtvExp += 1000;
+        std::cout << "Maximum Exp Bertambah 1000" << std::endl;
+        return true;
+
+    }
     if (this->isContainSkill(other)) 
     {
         std::cout << "Skill sudah dipelajari" <<  endl;
@@ -64,27 +71,36 @@ bool Engimon::learnSkill(Skill other){
         ||  this->monElements[1].to_string() == other.skillType) {
         for (int i = 0; i < 4; i++)
         {
-            if (this->monSkills[i].getSkillName() != "None") {
+            if (this->monSkills[i].getSkillName() == "None") {
                 this->monSkills[i] = other;
-                std::cout << "Skill berhasil di learn" <<  endl;
+                std::cout << "Skill berhasil di learn" <<  std::endl;
                 return true;
             }
         }
-        std::cout << "Slot skill penuh" <<  endl;
+        std::cout << "Slot skill penuh" <<  std::endl;
+        std::string input;
+        cout << "Apakah ingin menimpa skill yang ada? y/n: ";
+        std::cin >> input;
+        if (input == "y" || input == "yes"){
+            printInfoSkill();
+            int inpt = Player::validasiInput("Pilih skill: ", 0, 4, -1);
+            this->monSkills[inpt - 1] = other;
+            std::cout << "Skill berhasil di learn" <<  std::endl;
+            return true;
+        }  
         return false;
     }
     std::cout << "Elemen skill tidak sesuai" << std::endl;
     return false;
 }
 
-Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
+Engimon::Engimon(string name, const  Engimon& other1, const Engimon& other2) {
     InitComp();
     this->monName = name;
     this->monParents = new Engimon[2];
     this->monParents[0] = other1;
     this->monParents[1] = other2;
-    other1.monLevel -= 30;
-    other2.monLevel -= 30;
+
     this->monCtvExp = other1.monCtvExp + other2.monCtvExp;
     
     Skill* temporaryskill = new Skill[8];
@@ -196,6 +212,8 @@ Engimon& Engimon::operator=(const Engimon& other){
     this->baseLevel = other.baseLevel;
     this->monExp = other.monExp;
     this->monCtvExp = other.monCtvExp;
+    this->monElements[0] = other.monElements[0];
+    this->monElements[1] = other.monElements[1];
     if (other.monParents) {
         this->monParents = new Engimon[2];
         this->monParents[0] = other.monParents[0];
@@ -241,38 +259,41 @@ Engimon :: ~Engimon(){
 }
 
 ostream& operator<<(ostream& os, const Engimon& e){
-    os << "Engimon || Nama : " << e.getName() << " || Spesies : " << e.getNamaSpecies() << " || Level : " << e.getLevel();
+    os << "Engimon || Nama : " << e.getName() << " || Spesies : " << e.getNamaSpecies() << " || Level : " << e.getLevel() << " || Elemen 1 : " << e.monElements[0].to_string() << " || Elemen 2 : " << e.monElements[1].to_string() ;
     return os;
 }
 void Engimon::printInfo() {
-    cout << "Nama : " << this->monName << endl;
+    std::cout << "Nama : " << this->monName << std::endl;
     printInfoSafe();
-    cout << "Exp : " << this->monExp << endl;
-    cout << "Maximum Exp : " << this->monCtvExp << endl;
-    cout << "List Elemen : "<< "\n";
-    cout << "Elemen 1 : " << this->monElements[0].to_string() << endl;
-    if(this->monElements[1].getElementType() != ElementType :: None) cout << "Elemen 2 : " << this->monElements[1].to_string() << endl;
-    cout << "List skils :\n";
-    cout << "----------------" << endl;
-    for (size_t i = 0; i < 4; i++)
-    {
-        if(this->monSkills[i].getSkillName() != "None"){
-            monSkills[i].printInfoAll();
-            cout << "----------------" << endl;
-        }
-    }
+    std::cout << "Exp : " << this->monExp << std::endl;
+    std::cout << "Maximum Exp : " << this->monCtvExp << std::endl;
+    std::cout << "List Elemen : "<< "\n";
+    std::cout << "Elemen 1 : " << this->monElements[0].to_string() << std::endl;
+    if(this->monElements[1].getElementType() != ElementType :: None) std::cout << "Elemen 2 : " << this->monElements[1].to_string() << std::endl;
+    printInfoSkill();
     if (this->monParents && this->monParents[0].getName() != "") {
-        cout << "List nama dan spesies Parent : \n";
+        std::cout << "List nama dan spesies Parent : \n";
         for (size_t j = 0; j < 2 ; j++)
         {
-            cout << this->monParents[j].getName() << " | Spesies : " << this->monParents[j].getNamaSpecies() << endl; 
+            std::cout << this->monParents[j].getName() << " | Spesies : " << this->monParents[j].getNamaSpecies() << std::endl; 
         }
     }
 }
 
 void Engimon::printInfoSafe() {
-    cout << "Nama Spesies : " << this->namaSpecies << endl;
-    cout << "Level : " << this->monLevel << endl;
+    std::cout << "Nama Spesies : " << this->namaSpecies << std::endl;
+    std::cout << "Level : " << this->monLevel << std::endl;
+}
+void Engimon::printInfoSkill(){
+    std::cout << "List skils :\n";
+    std::cout << "-----------------" << std::endl;
+    for (size_t i = 0; i < 4; i++)
+    {
+        if(this->monSkills[i].getSkillName() != "None"){
+            monSkills[i].printInfoAll();
+            cout << "--------" << i+1 << "--------" << std::endl;
+        }
+    }
 }
 
 float maxFloat(float a, float b)

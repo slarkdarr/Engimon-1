@@ -20,13 +20,8 @@ Articuno :: Articuno(string name) : Engimon(name){
     InitComp();
 };
 
-Articuno::Articuno(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
-    InitComp();
-}
-
-// Engimon& Articuno ::operator=(const Engimon& a){
-//     this->Engimon :: operator=(a);
-//     return *this;
+// Articuno::Articuno(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
+//     InitComp();
 // }
 
 Articuno :: ~Articuno(){

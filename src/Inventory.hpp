@@ -26,7 +26,7 @@ private:
 public:
     Inventory();
     ~Inventory();
-    bool addEngimon(Engimon&);
+    bool addEngimon(const Engimon&);
     void removeEngimon(int);
     void addSkill(Skill&);
     void removeSkill(int);

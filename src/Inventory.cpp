@@ -53,7 +53,7 @@ bool Inventory<T1, T2> :: isFull(){
 }
 
 template <class T1,class T2>
-bool Inventory<T1,T2> :: addEngimon(Engimon& e){
+bool Inventory<T1,T2> :: addEngimon(const Engimon& e){
     if(this->isFull()) cout << "Inventory sudah penuh" << endl;
     else{
         this->bagEngimon.push_back(e);
@@ -185,7 +185,6 @@ template class Inventory<Skill, Engimon>;
 //     i->addSkill(*s);
 //     i->addSkill(*s2);
 //     i->addSkill(*s3);
-//     i->addEngimon(*e2);
 //     i->addEngimon(*e1);
 //     i->addEngimon(*e2);
 //     i->printItem();

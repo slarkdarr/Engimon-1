@@ -11,8 +11,6 @@ class Excadrill : public Engimon {
     public :
         Excadrill();
         Excadrill(string);
-        Excadrill(string nama, Engimon& other1, Engimon& other2);
-        // Engimon& operator=(const Engimon&);
         ~Excadrill();
 };
 

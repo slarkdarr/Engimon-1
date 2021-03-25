@@ -28,10 +28,11 @@ public:
     Engimon();
     Engimon(string);
     Engimon(const Engimon&);
-    Engimon(string, Engimon&, Engimon&);
+    Engimon(string, const Engimon&, const Engimon&);
     Engimon& operator=(const Engimon&);
     void printInfo();
     void printInfoSafe();
+    void printInfoSkill();
     virtual ~Engimon();
     string getName() const;
     void setName(string);

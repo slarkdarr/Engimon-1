@@ -1,9 +1,9 @@
 #include "Waveform.hpp"
 
-Waveform::Waveform() : Skill("Waveform", "Water", 170, 1) {
+Waveform::Waveform() : Skill("Waveform", "Water", 17, 1) {
     this->species = "None";
 }
 
-Waveform::Waveform(string species, int masteryLevel) : Skill("Waveform", "Water", 170, masteryLevel) {
+Waveform::Waveform(string species, int masteryLevel) : Skill("Waveform", "Water", 17, masteryLevel) {
     this->species = species;
 }

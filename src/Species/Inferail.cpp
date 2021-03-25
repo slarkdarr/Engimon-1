@@ -20,9 +20,9 @@ Inferail :: Inferail(string name) : Engimon(name){
     InitComp();
 };
 
-Inferail::Inferail(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
-    InitComp();
-}
+// Inferail::Inferail(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
+//     InitComp();
+// }
 
 Inferail :: ~Inferail(){
 

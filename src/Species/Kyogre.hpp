@@ -12,8 +12,6 @@ class Kyogre : public Engimon {
     public :
         Kyogre();
         Kyogre(string);
-        Kyogre(string, Engimon& other1, Engimon& other2);
-        // Engimon& operator=(const Engimon&);
         ~Kyogre();
 };
 

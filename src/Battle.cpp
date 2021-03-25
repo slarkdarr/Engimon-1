@@ -82,6 +82,7 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
                 delete engimonMusuh;
             }
             // RESPAWN MUSUH
+            srand(time(0));
             for (int i = 0; i < listmusuh.jmlhMusuh; i++)
             {
                 if (listmusuh.listEnemy[i]->getEngimon() == engimonMusuh)
@@ -107,7 +108,7 @@ Skill* Battle::dropRandomSkill()
 {
     Skill* skillBaru;
     srand(time(0));
-    int random = rand() % 10;
+    int random = rand() % 11;
     switch (random)
     {
     case 0:
@@ -140,6 +141,8 @@ Skill* Battle::dropRandomSkill()
     case 9:
         skillBaru = new Waveform();
         break;
+    case 10:
+        skillBaru = new Skill("AntiAging", "None", 1,1);
     default:
         skillBaru = new Cataclysm();
         break;
