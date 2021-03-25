@@ -215,6 +215,7 @@ Engimon& Engimon::operator=(const Engimon& other){
     this->monElements[0] = other.monElements[0];
     this->monElements[1] = other.monElements[1];
     if (other.monParents) {
+        if (!this->monParents) 
         this->monParents = new Engimon[2];
         this->monParents[0] = other.monParents[0];
         this->monParents[1] = other.monParents[1];
