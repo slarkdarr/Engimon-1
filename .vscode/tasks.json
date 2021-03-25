@@ -38,7 +38,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-std=c++14",
+                "-std=c++17",
                 ".\\src\\Species\\**.cpp",
                 ".\\src\\Map\\**.cpp",
                 ".\\src\\**.cpp",
