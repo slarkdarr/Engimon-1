@@ -8,8 +8,7 @@ unordered_map<Skill, int, SkillHashFunction> Inventory<T1,T2>::skillDict;
 
 template <class T1,class T2>
 Inventory<T1, T2> :: Inventory() {
-    this->nEngimon=0;
-    this->nskill=0;
+
 }
 
 template <class T1,class T2>
@@ -58,7 +57,6 @@ bool Inventory<T1,T2> :: addEngimon(const Engimon& e){
     else{
         this->bagEngimon.push_back(e);
         cout << "Engimon berhasil dimasukkan" << endl;
-        nEngimon;
         return true;
     }
     return false;
@@ -74,7 +72,6 @@ void Inventory<T1, T2> :: addSkill(Skill& s){
         skillDict[s] = 1;
         this->bagSkills.push_back(s);
         cout << "Skill berhasil dimasukkan" << endl;
-        nskill++;
     }
 }
 
@@ -85,7 +82,6 @@ void Inventory<T1, T2> :: removeSkill(int x){
     else{
         this->skillDict[bagSkills[x-1]]--;
         this->bagSkills.erase(bagSkills.begin() + (x - 1));
-        nskill--;
     };
 }
 
@@ -95,7 +91,7 @@ void Inventory<T1, T2> :: removeEngimon(int x){
     else if(this->bagEngimon.size() < x || x <= 0) cout << "Angka tidak valid" << endl;
     else{
         this->bagEngimon.erase(bagEngimon.begin() + (x - 1));
-        nEngimon--;
+
     };
 }
 
@@ -164,14 +160,6 @@ Bag<Skill>* Inventory<T1, T2> ::listSkill() {
     return nullptr;
 }
 
-template <class T1,class T2>
-int Inventory<T1, T2> :: engimonCount() const{
-    return this->nEngimon;
-}
-template <class T1,class T2>
-int Inventory<T1, T2> :: skillCount() const{
-    return this->nskill;
-}
 
 template class Inventory<Skill, Engimon>;
 

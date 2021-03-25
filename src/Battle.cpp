@@ -70,8 +70,8 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
                 else
                 {
                     std::cout << "Inventory Penuh! Skill tidak dapat dimasukkan" << std::endl;
-                    delete skillbaru;
                 }
+                delete skillbaru;
                 
                 std::cout << std::endl;
             }
@@ -79,8 +79,9 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
             {
                 std::cout << "Inventory Penuh!" << std::endl;
                 std::cout << "Skill & Engimon tidak dapat dimasukkan" << std::endl;
-                delete engimonMusuh;
             }
+            delete engimonMusuh;
+
             // RESPAWN MUSUH
             srand(time(0));
             for (int i = 0; i < listmusuh.jmlhMusuh; i++)

@@ -136,6 +136,7 @@ void Player::breeding()
         std::cin >> input;
         Engimon* anak = new Engimon(input, *enji1, *enji2);
         this->inventory->addEngimon(*anak);
+        delete anak;
     }
 }
 
@@ -194,13 +195,16 @@ bool Player::setEngimon()
     Engimon* engimonlama = temp->listItem[n1-1];
     cout << "Engimon Lama" << endl;
     cout << *engimonlama << endl;
-    Engimon* temp2 = new Engimon(*engimonlama);
+    Engimon* temp2 = new Engimon();
+    *temp2 = *engimonlama;
     cout << "Engimon Baru" << endl;
     cout << *temp2 << endl;
-    this->inventory->removeEngimon(n1);
+    this->inventory->removeEngimon(n1); // engimon lama
+    Engimon* enjimonskrng = this->getEngimon();
     this->inventory->addEngimon(*this->getEngimon());
     this->setActiveEngimon(nullptr);
     this->setActiveEngimon(temp2);
+    delete enjimonskrng;
     engimonlama = nullptr;
     delete temp;
     return true;
