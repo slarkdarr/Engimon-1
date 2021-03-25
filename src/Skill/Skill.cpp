@@ -32,11 +32,18 @@ int Skill :: getBasePower() const {
 }
 
 void Skill::printInfo(){
-    cout << *this << endl;
+    cout << "Skill " << this->skillName << ": "<< endl;
+    cout << "Elemen : " << this->skillType << endl;
+    cout << "Base Power : " << this->basePower << endl;
+}
+
+void Skill::printInfoAll(){
+    printInfo();
+    cout << "Mastery Level : " << this->masteryLevel << endl;
 }
 
 ostream& operator<<(ostream& o, const Skill& e){
-    o << "Skill || Nama : " << e.skillName << " || Type :  " << e.skillType << " || basePower : " << e.basePower << " || masteryLevel : " << e.masteryLevel;
+    o << "Skill || Nama : " << e.skillName << " || Type :  " << e.skillType << " || basePower : " << e.basePower;
     return o;
 }
 

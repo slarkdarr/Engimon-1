@@ -32,12 +32,14 @@ public:
     void removeSkill(int);
     void printItem();
     void printAllEngimonInfo();
+    void printAllSkillInfo();
     bool isSkillExist(Skill&) const;
     bool isEmpty();
     bool isEngimonBagEmpty();
     int EngimonBagSize();
     bool isBagSkillsEmpty();
     Bag<Engimon>* listEngimon();
+    Bag<Skill>* listSkill();
     int engimonCount() const;
     int skillCount() const;
     bool isFull();

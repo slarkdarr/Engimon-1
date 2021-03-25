@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
             // use skill
             else if (input == "use")
             {
-                
+                myPlayer->useSkill();
             }
             // ganti active engimon
             else if (input == "set")

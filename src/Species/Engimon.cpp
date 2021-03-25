@@ -54,6 +54,29 @@ bool Engimon::isContainSkill(Skill a){
     return false;
 }
 
+bool Engimon::learnSkill(Skill other){
+    if (this->isContainSkill(other)) 
+    {
+        std::cout << "Skill sudah dipelajari" <<  endl;
+        return false;
+    }
+    if (other.skillType == "None" || this->monElements[0].to_string() == other.skillType 
+        ||  this->monElements[1].to_string() == other.skillType) {
+        for (int i = 0; i < 4; i++)
+        {
+            if (this->monSkills[i].getSkillName() != "None") {
+                this->monSkills[i] = other;
+                std::cout << "Skill berhasil di learn" <<  endl;
+                return true;
+            }
+        }
+        std::cout << "Slot skill penuh" <<  endl;
+        return false;
+    }
+    std::cout << "Elemen skill tidak sesuai" << std::endl;
+    return false;
+}
+
 Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
     InitComp();
     this->monName = name;
@@ -62,6 +85,7 @@ Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
     this->monParents[1] = other2;
     other1.monLevel -= 30;
     other2.monLevel -= 30;
+    this->monCtvExp = other1.monCtvExp + other2.monCtvExp;
     
     Skill* temporaryskill = new Skill[8];
     for (int i = 0; i < 4; i++)
@@ -180,12 +204,12 @@ int Engimon :: getLevel() const{
     return this->monLevel;
 }
 
-ElementType Engimon :: getFirstElement()
+ElementType Engimon :: getFirstElement() const
 {
     return this->monElements[0].getElementType();
 }
 
-ElementType Engimon :: getSecondElement()
+ElementType Engimon :: getSecondElement() const
 {
     return this->monElements[1].getElementType();
 }
@@ -218,15 +242,16 @@ void Engimon::printInfo() {
     cout << "List Elemen : "<< "\n";
     cout << "Elemen 1 : " << this->monElements[0].to_string() << endl;
     if(this->monElements[1].getElementType() != ElementType :: None) cout << "Elemen 2 : " << this->monElements[1].to_string() << endl;
-    cout << "List skils :" << "\n";
+    cout << "List skils :\n";
+    cout << "----------------" << endl;
     for (size_t i = 0; i < 4; i++)
     {
-        if(this->monSkills->getSkillName() != "None"){
-            cout << this->monSkills[i].getSkillName() << ", ";
+        if(this->monSkills[i].getSkillName() != "None"){
+            monSkills[i].printInfoAll();
+            cout << "----------------" << endl;
         }
     }
-    cout << endl;
-    if (this->monParents) {
+    if (this->monParents && this->monParents[0].getName() != "") {
         cout << "List nama dan spesies Parent : \n";
         for (size_t j = 0; j < 2 ; j++)
         {
@@ -246,7 +271,7 @@ float maxFloat(float a, float b)
     return b;
 }
 
-float Engimon::maxElAdv(Engimon* a, Engimon* b)
+float Engimon::maxElAdv(const Engimon* a,const  Engimon* b)
 {
     ElementType ela1 = a->getFirstElement();
     ElementType ela2 = a->getSecondElement();

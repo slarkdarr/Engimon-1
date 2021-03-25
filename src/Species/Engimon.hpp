@@ -39,12 +39,13 @@ public:
     void setLevel(int level);
     bool addExp(int additionalExp);
     bool isContainSkill(Skill);
-    virtual ElementType getFirstElement();
-    virtual ElementType getSecondElement();
+    bool learnSkill(Skill);
+    virtual ElementType getFirstElement() const;
+    virtual ElementType getSecondElement() const;
     virtual float sumSkillPower();
     string getNamaSpecies() const;
     // string getNamaParent();
-    static float maxElAdv(Engimon* a, Engimon* b);
+    static float maxElAdv(const Engimon* a, const Engimon* b);
     int* quickSort(int*, int);
 
 };

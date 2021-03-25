@@ -19,6 +19,7 @@ class Skill {
         string getSkillName() const;
         int getBasePower() const;
         void printInfo();
+        void printInfoAll();
         friend bool operator==(const Skill& c1, const Skill& c2);
         friend bool operator!=(const Skill& c1, const Skill& c2);
         friend bool operator>(const Skill &c1, const Skill &c2);

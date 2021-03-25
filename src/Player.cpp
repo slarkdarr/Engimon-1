@@ -158,7 +158,16 @@ void Player::removeItem()
 
     }
 }
-
+void Player::useSkill()
+{
+    if (this->inventory->isBagSkillsEmpty()) {std::cout <<"tidak ada skill lain"<< std::endl; return;}
+    this->inventory->printAllSkillInfo();
+    Bag<Skill>* temp = this->inventory->listSkill();
+    int n1 = validasiInput("Pilih Skill: ", 0 , temp->neff, -1);
+    Skill skilltemp;
+    skilltemp = *temp->listItem[n1-1];
+    if (this->getEngimon()->learnSkill(skilltemp)) this->inventory->removeSkill(n1);
+} 
 
 bool Player::setEngimon()
 {

@@ -10,7 +10,6 @@ void Articuno::InitComp() {
     this->namaSpecies = "Articuno";
     monElements[0].setElement(Ice);
     this->monSkills[0] = IceVortex();
-    this->monSkills[0] = Magnetize();
 }
 
 Articuno :: Articuno() : Engimon(){

@@ -1,8 +1,7 @@
 #include "Battle.hpp"
 #include <iostream>
+#include <time.h>
 using namespace std;
-
-
 
 Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
     // cout << "BATTLE!" << endl;
@@ -62,11 +61,24 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
                 std::cin >>  nama;
                 engimonMusuh->setName(nama);
                 myplayer->inventory->addEngimon(*engimonMusuh);
+                Skill* skillbaru = dropRandomSkill();
+                std::cout << "Mendapatkan drop: " << std::endl;
+                std::cout << *skillbaru << std::endl;
+                if (!myplayer->inventory->isFull()) {
+                    myplayer->inventory->addSkill(*skillbaru);
+                }
+                else
+                {
+                    std::cout << "Inventory Penuh! Skill tidak dapat dimasukkan" << std::endl;
+                    delete skillbaru;
+                }
+                
                 std::cout << std::endl;
             }
             else 
             {
                 std::cout << "Inventory Penuh!" << std::endl;
+                std::cout << "Skill & Engimon tidak dapat dimasukkan" << std::endl;
                 delete engimonMusuh;
             }
             // RESPAWN MUSUH
@@ -89,4 +101,61 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
         }
     }
     return myplayer;
+}
+
+// #include "Skill/Cataclysm.hpp"
+// #include "Skill/Fissure.hpp"
+// #include "Skill/IceVortex.hpp"
+// #include "Skill/Magnetize.hpp"
+// #include "Skill/Nimbus.hpp"
+// #include "Skill/SplinterBlast.hpp"
+// #include "Skill/StaticStorm.hpp"
+// #include "Skill/Sunstrike.hpp"
+// #include "Skill/Torrent.hpp"
+// #include "Skill/Waveform.hpp"
+
+
+Skill* Battle::dropRandomSkill()
+{
+    Skill* skillBaru;
+    srand(time(0));
+    int random = rand() % 10;
+    switch (random)
+    {
+    case 0:
+        skillBaru = new Cataclysm();
+        break;
+    case 1:
+        skillBaru = new Fissure();
+        break;
+    case 2:
+        skillBaru = new IceVortex();
+        break;
+    case 3:
+        skillBaru = new Magnetize();
+        break;
+    case 4:
+        skillBaru = new Nimbus();
+        break;
+    case 5:
+        skillBaru = new SplinterBlast();
+        break;
+    case 6:
+        skillBaru = new StaticStorm();
+        break;
+    case 7:
+        skillBaru = new Sunstrike();
+        break;
+    case 8:
+        skillBaru = new Torrent();
+        break;
+    case 9:
+        skillBaru = new Waveform();
+        break;
+    default:
+        skillBaru = new Cataclysm();
+        break;
+    }
+    return skillBaru;
+
 }

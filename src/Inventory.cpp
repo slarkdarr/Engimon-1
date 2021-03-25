@@ -113,16 +113,8 @@ void Inventory<T1, T2> :: printItem() {
     if(this->isEmpty()) {
         cout << "Bag kosong" << endl;
     }
-    if (!this->isBagSkillsEmpty())
-    {
-        int count_skill = 0;
-        for (auto i = bagSkills.begin(); i != bagSkills.end(); ++i){
-            cout << ++count_skill << ". " << *i << " || count : " << skillDict[*i] << endl;
-        }
-        cout << endl;
-    }
+    printAllSkillInfo();
     printAllEngimonInfo();
-    
 }
 template <class T1,class T2>
 void Inventory<T1, T2> :: printAllEngimonInfo() {
@@ -135,11 +127,36 @@ void Inventory<T1, T2> :: printAllEngimonInfo() {
     }
 }
 template <class T1,class T2>
+void Inventory<T1, T2> :: printAllSkillInfo() {
+    if (!this->isBagSkillsEmpty())
+    {
+        int count_skill = 0;
+        for (auto i = bagSkills.begin(); i != bagSkills.end(); ++i){
+            cout << ++count_skill << ". " << *i << " || count : " << skillDict[*i] << endl;
+        }
+        cout << endl;
+    }
+}
+
+template <class T1,class T2>
 Bag<Engimon>* Inventory<T1, T2> ::listEngimon() {
     Bag<Engimon>* temp = new Bag<Engimon>();
     if (!this->isEngimonBagEmpty())
     {
         for (auto i = bagEngimon.begin(); i != bagEngimon.end(); ++i){
+            temp->Add(*i);
+        }
+        return temp;
+    }
+    return nullptr;
+}
+
+template <class T1,class T2>
+Bag<Skill>* Inventory<T1, T2> ::listSkill() {
+    Bag<Skill>* temp = new Bag<Skill>();
+    if (!this->isBagSkillsEmpty())
+    {
+        for (auto i = bagSkills.begin(); i != bagSkills.end(); ++i){
             temp->Add(*i);
         }
         return temp;

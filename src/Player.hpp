@@ -28,6 +28,7 @@ class Player : public Occupier
 		void breeding();
 		void removeItem();
 		void interact();
+		void useSkill();
 		bool setEngimon();
 		Engimon* getEngimon();
 		Engimon* getClosestEnemy();
