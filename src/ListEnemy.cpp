@@ -28,9 +28,9 @@ ListEnemy::ListEnemy(Map& m, Player* player, int size)
     srand(time(0));
     for (int i = 0; i < size; i++)
     {
-        // Ngerandom dari 0-4 untuk tipe;
-        // Ngerandom dari  (player level-2) - (player level + 2) 
-        this->listEnemy[i] = new Enemy(m, rand() % 5, abs(rand() % (player->getLevel() + 5) + (player->getLevel() - 5)));
+        // Ngerandom dari 0-7 untuk tipe;
+        // Ngerandom dari  (player level-5) - (player level + 5) 
+        this->listEnemy[i] = new Enemy(m, rand() % 8, abs(rand() % (player->getLevel() + 5) + (player->getLevel() - 5)));
     }
     
 }
@@ -65,7 +65,7 @@ void ListEnemy::respawnEnemy()
             // menghapus alokasi memori occupier
             delete this->listEnemy[i];
             // Membuat ulang enemy baru random
-            this->listEnemy[i] = new Enemy((*map), rand() % 5, 
+            this->listEnemy[i] = new Enemy((*map), rand() % 8, 
             abs(rand() % ((*currentplayer).getLevel() + 5) + 
             ((*currentplayer).getLevel() - 5)));
             std::cout << "berhasi merespawn enemy" << endl;

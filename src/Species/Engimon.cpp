@@ -149,6 +149,16 @@ Engimon::Engimon(string name, Engimon& other1, Engimon& other2) {
         else this->monElements[0].setElement(elnyokap1);
     }
     // Kasus double element
+    else if (elbokap2 == None)
+    {
+        this->monElements[0].setElement(elnyokap1);
+        this->monElements[1].setElement(elnyokap1);
+    }
+    else
+    {
+        this->monElements[0].setElement(elbokap1);
+        this->monElements[1].setElement(elbokap2);
+    }
 }
 
 

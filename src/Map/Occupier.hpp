@@ -28,7 +28,8 @@ class Occupier
 		Occupier(Map& m,int, int, Occupier_Type);
 		virtual ~Occupier();
 		Position getPosition();
-		virtual ElementType getElement() = 0;
+		virtual ElementType getElement1() = 0;
+		virtual ElementType getElement2() = 0;
 		virtual int getLevel() = 0;
 		virtual Engimon* getEngimon() = 0;
 

@@ -5,6 +5,8 @@
 
 Enemy::Enemy(Map& m, int angka, int level) : Occupier(m)
 {
+
+	int hashCellType = 0;
 	switch (angka)
 	{
 	case 0:
@@ -22,34 +24,72 @@ Enemy::Enemy(Map& m, int angka, int level) : Occupier(m)
 	case 4:
 		this->engimon = new Articuno();
 		break;			
+	case 5:
+		this->engimon = new Inferail(); 
+		break;
+	case 6:
+		this->engimon = new Kyogre();
+		break;
+	case 7:
+		this->engimon = new Seismotoad();
+		break;
+	case 8:
 	default:
 		this->engimon = new Dragon();
 		break;
+
 	}
 	switch (this->engimon->getFirstElement())
 	{
 	case Water:
 	case Ice:
 		this->cellType = Sea_Cell;
+		hashCellType = 1;
 		break;
 	default:
 		this->cellType = Grassland_Cell;
+		hashCellType = 10;
 		break;
 	}
+	switch (this->engimon->getSecondElement())
+	{
+	case None:
+		break;
+	case Water:
+	case Ice:
+		hashCellType += 1;
+		break;
+	default:
+		hashCellType += 10;
+		break;
+	}
+	if (hashCellType == 11) this->cellType = Rancu;
 	int posisirand = 0;
 	srand(time(0));
+	if (this->cellType == Rancu){
+		do {
+		posisirand = rand() % (Position::MAX_X * Position::MAX_Y);
+
+		} while (!this->setPositionOcc(posisirand % Position::MAX_X, posisirand / Position::MAX_X)) ;
+	}
+	else
 	do {
 		posisirand = rand() % (Position::MAX_X * Position::MAX_Y);
 
 	} while (this->cellType != this->m->cells[posisirand].cellType || !this->setPositionOcc(posisirand % Position::MAX_X, posisirand / Position::MAX_X)) ;
-	
 	this->engimon->setLevel(level); 
 }
 
-ElementType Enemy::getElement()
+ElementType Enemy::getElement1()
 {
 	return this->engimon->getFirstElement();
 }
+
+ElementType Enemy::getElement2()
+{
+	return this->engimon->getSecondElement();
+}
+
 int Enemy :: getLevel() 
 {
 	return this->engimon->getLevel();
@@ -59,6 +99,7 @@ bool Enemy::setPositionOcc(int x, int y)
 {
 	if (Position::isValidCoordinate(x,y))
     {
+		if (this->cellType == Rancu) return Occupier::setPositionOcc(x,y);
         if (!m->cells[x + y * Position::MAX_X].occupier && this->cellType == this->m->cells[x + y * Position::MAX_X].cellType)
         {
             m->cells[this->position->x + this->position->y * Position::MAX_X].setOccupier(nullptr);

@@ -6,7 +6,8 @@
 
 enum CellType {
 	Sea_Cell,
-	Grassland_Cell
+	Grassland_Cell,
+	Rancu
 };
 
 class Occupier;

@@ -10,9 +10,13 @@ ActiveEngimon::ActiveEngimon(Map& m, Engimon& edgymon) : Occupier(m)
 	// this->setPositionOcc(posisirand % Position::MAX_X, posisirand / Position::MAX_X)
 }
 
-ElementType ActiveEngimon::getElement()
+ElementType ActiveEngimon::getElement1()
 {
 	return this->engimon->getFirstElement();
+}
+ElementType ActiveEngimon::getElement2()
+{
+	return this->engimon->getSecondElement();
 }
 int ActiveEngimon :: getLevel() 
 {

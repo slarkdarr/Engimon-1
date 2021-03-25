@@ -89,7 +89,7 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
                     listmusuh.listEnemy[i]->setEngimon(nullptr);
                     delete listmusuh.listEnemy[i];
                     listmusuh.listEnemy[i] = new Enemy(*listmusuh.map, 
-                    rand() % 5, abs(rand() % (myplayer->getLevel() + 5) + (myplayer->getLevel() - 5)));
+                    rand() % 7, abs(rand() % (myplayer->getLevel() + 5) + (myplayer->getLevel() - 5)));
                     break;
                 }
             }
@@ -102,18 +102,6 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
     }
     return myplayer;
 }
-
-// #include "Skill/Cataclysm.hpp"
-// #include "Skill/Fissure.hpp"
-// #include "Skill/IceVortex.hpp"
-// #include "Skill/Magnetize.hpp"
-// #include "Skill/Nimbus.hpp"
-// #include "Skill/SplinterBlast.hpp"
-// #include "Skill/StaticStorm.hpp"
-// #include "Skill/Sunstrike.hpp"
-// #include "Skill/Torrent.hpp"
-// #include "Skill/Waveform.hpp"
-
 
 Skill* Battle::dropRandomSkill()
 {

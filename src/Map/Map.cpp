@@ -125,8 +125,12 @@ void Map::printMap(int currentlevel)
         // Jika ada Occupierz
         char c;
         int colorMultiplier = 0;
+        int hashCellChar = 0;
+        bool condition = false;
+
         if (this->cells[i].occupier)
         {
+            condition = (cells[i].occupier->getLevel() >= currentlevel);
             switch (this->cells[i].occupier->ocpType)
             {
             case Player_Type:
@@ -137,36 +141,74 @@ void Map::printMap(int currentlevel)
                 // Jika engimon == nullptr, tidak passtrough ke enemy
                 if (!this->cells[i].occupier->getEngimon()) break;
             case Enemy_Type:
-                // bool condition = (cells[i].occupier->getLevel() >= currentlevel);
-                switch (cells[i].occupier->getElement())
+                switch (cells[i].occupier->getElement1())
                 {
                 case Fire:
-                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'F' : 'f';
+                    c = (condition) ? 'F' : 'f';
+                    hashCellChar = 1;
                     colorMultiplier = 12;
                     break;
                 case Water:
-                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'W' : 'w';
+                    c = (condition) ? 'W' : 'w';
+                    hashCellChar = 10;
                     colorMultiplier = 1;
 
                     break;
                 case Electric:
-                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'E' : 'e';
+                    c = (condition) ? 'E' : 'e';
+                    hashCellChar = 100;
                     colorMultiplier = 6;
 
                     break;
                 case Ground:
-                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'G' : 'g';
+                    c = (condition) ? 'G' : 'g';
+                    hashCellChar = 1000;
                     colorMultiplier = 8;
 
                     break;
                 case Ice:
-                    c = (cells[i].occupier->getLevel() >= currentlevel) ? 'I' : 'i';
+                    c = (condition) ? 'I' : 'i';
+                    hashCellChar = 10000;
                     colorMultiplier = 7;
-
                     break;
-                case 10:
+
                 default:
                     break;
+                }
+                switch (cells[i].occupier->getElement2())
+                {
+                case None:
+                    break;
+                case Fire:
+                    hashCellChar += 1;
+                    break;
+                case Water:
+                    hashCellChar += 10;
+                    break;
+                case Electric:
+                    hashCellChar += 100;
+                    break;
+                case Ground:
+                    hashCellChar += 1000;
+                    break;
+                case Ice:
+                    hashCellChar += 10000;
+                    break;
+                
+                default:
+                    break;
+                }
+                if (hashCellChar == 101 ){
+                    c = (condition) ? 'L' : 'l';
+                    colorMultiplier = 13;
+                }
+                if (hashCellChar == 1010 ){
+                    c = (condition) ? 'N' : 'n';
+                    colorMultiplier = 8;
+                }
+                if (hashCellChar == 10010 ){
+                    c = (condition) ? 'S' : 's';
+                    colorMultiplier = 11;
                 }
                 break;
             

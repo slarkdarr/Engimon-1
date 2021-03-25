@@ -15,7 +15,8 @@ class ActiveEngimon  : public Occupier
 		Engimon* engimon;
 		
 		ActiveEngimon(Map& m, Engimon&);
-		ElementType getElement();
+		ElementType getElement1();
+		ElementType getElement2();
 		int getLevel();
 		void setEngimon(Engimon*);
 		Engimon* getEngimon();

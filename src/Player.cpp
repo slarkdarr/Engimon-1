@@ -67,9 +67,13 @@ int Player::getLevel()
     return activeEngimon->getLevel();
 }
 
-ElementType Player::getElement()
+ElementType Player::getElement1()
 {
     return activeEngimon->engimon->getFirstElement();
+}
+ElementType Player::getElement2()
+{
+    return activeEngimon->engimon->getSecondElement();
 }
 
 bool Player::setPositionOcc(int x, int y)
@@ -116,6 +120,11 @@ void Player::breeding()
         // Logic breeding
         Engimon* enji1 = temp->listItem[n1-1];
         Engimon* enji2 = temp->listItem[n2-1];
+        if (enji1->getLevel() < 30 || enji2->getLevel() < 30)
+        {
+            std::cout << "Level Engimon Tidak Mencukupi" << std::endl;
+            return; 
+        }
         string input;
         std::cout << "Beri nama pada anak engimon: ";
         std::cin >> input;
