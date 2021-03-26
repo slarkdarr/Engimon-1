@@ -168,7 +168,7 @@ Engimon::Engimon(string name, const  Engimon& other1, const Engimon& other2) {
     else if (elbokap2 == None)
     {
         this->monElements[0].setElement(elnyokap1);
-        this->monElements[1].setElement(elnyokap1);
+        this->monElements[1].setElement(elnyokap2);
     }
     else
     {
@@ -326,38 +326,3 @@ float Engimon::maxElAdv(const Engimon* a,const  Engimon* b)
     }
     return elAdvAMax;
 }
-
-// int* Engimon::quickSort(int* arr, int size) {
-//     int lenLess = 0;
-//     int lenMore = 0;
-//     int lenPivot = 0;
-//     int* less = new int[lenLess];
-//     int* pivotList = new int[lenPivot];
-//     int* more = new int[lenMore];
-    
-//     if (size <= 1) {
-//         return arr;
-//     }
-//     else {
-//         int pivot = arr[0];
-//         for (int i = 0; i < size; i++) {
-//             if (arr[i] < pivot) {
-//                 less[lenLess++] = arr[i];
-//             }
-//             else if (arr[i] > pivot) {
-//                 more[lenMore++] = arr[i];
-//             }
-//             else {
-//                 pivotList[lenPivot++] = arr[i];
-//             }
-//         }
-//         less = quickSort(less, lenLess);
-//         more = quickSort(more, lenMore);
-        
-//         int* result = new int(lenLess+lenPivot+lenMore);
-//         copy(less, less+lenLess, result);
-//         copy(pivot, less+lenLess, result+lenLess);
-//         copy(more, more+lenPivot, result+lenPivot);
-//         return result;
-//     }
-// }

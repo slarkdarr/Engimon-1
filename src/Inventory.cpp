@@ -95,15 +95,6 @@ void Inventory<T1, T2> :: removeEngimon(int x){
     };
 }
 
-// template <class T1,class T2>
-// void Inventory<T1,T2> :: purgeDict() {
-//     for(auto it = skillDict.begin(); it != skillDict.end(); ++it){
-//         if(it->second == 0){
-//             skillDict.erase(it);
-//         }
-//     }
-// }
-
 template <class T1,class T2>
 void Inventory<T1, T2> :: printItem() {
     if(this->isEmpty()) {

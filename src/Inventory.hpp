@@ -18,7 +18,6 @@ class Inventory{
 private:
     vector<T1> bagSkills;
     vector<T2> bagEngimon;
-    // typedef unordered_map<Skill, int, SkillHashFunction> umapSkill;
     static unordered_map<Skill, int, SkillHashFunction> skillDict;
 
 public:
@@ -39,7 +38,6 @@ public:
     Bag<Engimon>* listEngimon();
     Bag<Skill>* listSkill();
     bool isFull();
-    // void purgeDict();
 
 };
 

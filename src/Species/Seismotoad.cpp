@@ -19,10 +19,6 @@ Seismotoad :: Seismotoad(string name) : Engimon(name){
     InitComp();
 };
 
-// Seismotoad::Seismotoad(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
-//     InitComp();
-// }
-
 Seismotoad :: ~Seismotoad(){
 
 }

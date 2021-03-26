@@ -202,10 +202,8 @@ bool Player::setEngimon()
     this->inventory->removeEngimon(n1); // engimon lama
     Engimon* enjimonskrng = this->getEngimon();
     this->inventory->addEngimon(*this->getEngimon());
-    this->setActiveEngimon(nullptr);
     this->setActiveEngimon(temp2);
     delete enjimonskrng;
-    engimonlama = nullptr;
     delete temp;
     return true;
 }

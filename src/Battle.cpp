@@ -99,6 +99,13 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
             if (!myplayer->getEngimon()->addExp(100))
             {
                 myplayer->setActiveEngimon(nullptr);
+                myplayer->inventory->printAllEngimonInfo();
+                Bag<Engimon>* temp = myplayer->inventory->listEngimon();
+                int n1 = Player::validasiInput("Pilih Engimon: ", 0 , temp->neff, -1);
+                Engimon* temp2 = new Engimon(*temp->listItem[n1-1]);
+                myplayer->inventory->removeEngimon(n1);
+                myplayer->setActiveEngimon(temp2);
+                delete temp;
             }
         }
     }

@@ -20,15 +20,6 @@ Raichu :: Raichu(string name) : Engimon(name){
     InitComp();
 };
 
-// Raichu::Raichu(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
-//     InitComp();
-// }
-
-// Engimon& Raichu ::operator=(const Engimon& a){
-//     this->Engimon :: operator=(a);
-//     return *this;
-// }
-
 Raichu :: ~Raichu(){
 
 }

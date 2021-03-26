@@ -19,11 +19,6 @@ Squirtle :: Squirtle(string name) : Engimon(name){
     InitComp();
 };
 
-// Squirtle::Squirtle(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
-//     InitComp();
-// }
-
-
 Squirtle :: ~Squirtle(){
 
 }

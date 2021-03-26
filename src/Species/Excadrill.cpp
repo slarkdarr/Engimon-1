@@ -19,15 +19,6 @@ Excadrill :: Excadrill(string name) : Engimon(name){
     InitComp();
 };
 
-// Excadrill::Excadrill(string nama, Engimon& other1, Engimon& other2): Engimon(nama,other1,other2){
-//     InitComp();
-// }
-
-// Engimon& Excadrill ::operator=(const Engimon& a){
-//     this->Engimon :: operator=(a);
-//     return *this;
-// }
-
 Excadrill :: ~Excadrill(){
 
 }

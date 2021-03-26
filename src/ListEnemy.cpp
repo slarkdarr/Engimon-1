@@ -30,9 +30,9 @@ ListEnemy::ListEnemy(Map& m, Player* player, int size)
     {
         // Ngerandom dari 0-7 untuk tipe;
         // Ngerandom dari  (player level-5) - (player level + 5) 
-        this->listEnemy[i] = new Enemy(m, rand() % 8, abs(rand() % (player->getLevel() + 5) + (player->getLevel() - 5)));
+        this->listEnemy[i] = new Enemy(m, rand() % 8, abs(rand() 
+        % (player->getLevel() + 5) + (player->getLevel() - 5)));
     }
-    
 }
 	
 ListEnemy::~ListEnemy()

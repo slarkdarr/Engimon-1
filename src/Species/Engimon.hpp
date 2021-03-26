@@ -47,7 +47,6 @@ public:
     string getNamaSpecies() const;
     // string getNamaParent();
     static float maxElAdv(const Engimon* a, const Engimon* b);
-    int* quickSort(int*, int);
 
 };
 

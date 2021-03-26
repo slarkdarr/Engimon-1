@@ -19,8 +19,6 @@ Dragon :: Dragon(string name) : Engimon(name){
     InitComp();
 };
 
-
-
 Dragon :: ~Dragon(){
 
 }
