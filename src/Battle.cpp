@@ -26,26 +26,36 @@ Player* Battle::battle(Player* myplayer, ListEnemy& listmusuh){
         if (powerPlayer < powerEnemy)
         {
             std::cout << "Kalah power, Engimon Anda Mati" << std::endl;
-            delete myplayer->getEngimon();
-
-            myplayer->setActiveEngimon(nullptr);
             // Jika tidak ada engimon tersisa
             if (myplayer->inventory->isEngimonBagEmpty())
             {
                 std::cout << "Tidak Ada Engimon Tersisa" << std::endl;
+                delete myplayer->getEngimon();
+                myplayer->setActiveEngimon(nullptr);
                 delete myplayer;
                 return nullptr;
             }
             else
             {   
-                myplayer->inventory->printAllEngimonInfo();
-                Bag<Engimon>* temp = myplayer->inventory->listEngimon();
-                int n1 = Player::validasiInput("Pilih Engimon: ", 0 , temp->neff, -1);
-                Engimon* temp2 = new Engimon(*temp->listItem[n1-1]);
-                myplayer->inventory->removeEngimon(n1);
-                myplayer->setActiveEngimon(temp2);
-                delete temp;
+                try
+                {
+                    delete myplayer->getEngimon();
+                    myplayer->setActiveEngimon(nullptr);
+                    myplayer->inventory->printAllEngimonInfo();
+                    Bag<Engimon>* temp = myplayer->inventory->listEngimon();
+                    int n1 = Player::validasiInput("Pilih Engimon: ", 0 , temp->neff, -1);
+                    Engimon* temp2 = new Engimon(*temp->listItem[n1-1]);
+                    myplayer->inventory->removeEngimon(n1);
+                    myplayer->setActiveEngimon(temp2);
+                    delete temp;
+                }
+                catch(const std::bad_alloc& e)
+                {
+                    std::cerr << "Bad Alloc terdeteksi, battle di batalkan" <<e.what() << '\n';
+                    return myplayer;   
+                }
                 goto ulanglagi;
+
             }
         }
         // Jika Menang Power
