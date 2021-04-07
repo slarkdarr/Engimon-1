@@ -56,20 +56,29 @@ Player::Player(Map &m, int x, int y) : Occupier(m, x, y, Player_Type)
     Dragon* temp = new Dragon("Charizard");
     Seismotoad* temp3 = new Seismotoad("Yuhu");
     Kyogre* temp4 = new Kyogre("KyOGRE");
+    Raichu* raichu = new Raichu("raichu");
+    raichu->setLevel(31);
+    temp4->setLevel(31);
+    temp->setLevel(31);
+    temp23->setLevel(31);
+    temp3->setLevel(31);
     Inferail* infernus = new Inferail("Infernus");
+    infernus->setLevel(31);
     Inferail* infernus2 = new Inferail("Infernus2");
-    Dragon* temp100 = new Dragon("abangkita");
+    infernus2->setLevel(31);
+    infernus->addExp(1900);
+    infernus->monSkills->masteryLevel = 2;
     this->activeEngimon = new ActiveEngimon(m,*temp);
     if (x == 0 ) this->activeEngimon->setPositionOcc(1,y);
     else this->activeEngimon->setPositionOcc(x-1,y);
     this->inventory = new Inventory<Skill, Engimon>();
-    this->inventory->addEngimon(*temp100);
     this->inventory->addEngimon(*infernus);
+    this->inventory->addEngimon(*infernus2);
     this->inventory->addEngimon(*temp23);
     this->inventory->addEngimon(*temp3);
+    this->inventory->addEngimon(*raichu);
     this->inventory->addEngimon(*temp4);
-    this->inventory->addEngimon(*infernus2);
-    
+
 }
 
 int Player::getLevel()
