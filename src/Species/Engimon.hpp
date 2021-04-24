@@ -17,6 +17,7 @@ protected:
     int baseLevel;
     string monName;
     string namaSpecies;
+    Skill* monSkills;
     Element* monElements;
     Engimon* monParents;
 
@@ -24,7 +25,6 @@ protected:
     friend ostream& operator<<(ostream&, const Engimon&);
 
 public:
-    Skill* monSkills;
     Engimon();
     Engimon(string);
     Engimon(const Engimon&);

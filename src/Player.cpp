@@ -42,41 +42,26 @@ Player::Player(Map &m) : Occupier(m, 5, 5, Player_Type)
     Articuno asik("EsBatu");
     Excadrill batu("batuan");
     Dragon* temp = new Dragon("Charizard");
-    Squirtle* temp23 = new Squirtle("Kura-kura");
+    Squirtle* temp2 = new Squirtle("Kura-kura");
     this->activeEngimon = new ActiveEngimon(m,*temp);
     this->activeEngimon->setPositionOcc(5,6);
     this->inventory = new Inventory<Skill, Engimon>();
-    this->inventory->addEngimon(*temp23);
+    this->inventory->addEngimon(*temp2);
 
 }
 
 Player::Player(Map &m, int x, int y) : Occupier(m, x, y, Player_Type)
 {
-    Squirtle* temp23 = new Squirtle("Kura-kura");
+    Squirtle* temp2 = new Squirtle("Kura-kura");
     Dragon* temp = new Dragon("Charizard");
     Seismotoad* temp3 = new Seismotoad("Yuhu");
     Kyogre* temp4 = new Kyogre("KyOGRE");
-    Raichu* raichu = new Raichu("raichu");
-    raichu->setLevel(31);
-    temp4->setLevel(31);
-    temp->setLevel(31);
-    temp23->setLevel(31);
-    temp3->setLevel(31);
-    Inferail* infernus = new Inferail("Infernus");
-    infernus->setLevel(31);
-    Inferail* infernus2 = new Inferail("Infernus2");
-    infernus2->setLevel(31);
-    infernus->addExp(1900);
-    infernus->monSkills->masteryLevel = 2;
     this->activeEngimon = new ActiveEngimon(m,*temp);
     if (x == 0 ) this->activeEngimon->setPositionOcc(1,y);
     else this->activeEngimon->setPositionOcc(x-1,y);
     this->inventory = new Inventory<Skill, Engimon>();
-    this->inventory->addEngimon(*infernus);
-    this->inventory->addEngimon(*infernus2);
-    this->inventory->addEngimon(*temp23);
+    this->inventory->addEngimon(*temp2);
     this->inventory->addEngimon(*temp3);
-    this->inventory->addEngimon(*raichu);
     this->inventory->addEngimon(*temp4);
 
 }
@@ -161,39 +146,32 @@ void Player::removeItem()
 
     if (!this->inventory->isEmpty())
     {
-        std::cout << std::endl;
         std::cout << "0. Kembali " << std::endl;
         std::cout << "1. Buang Skill " << std::endl;
         std::cout << "2. Buang Engimon " << std::endl;
-        try
+        int num = validasiInput("Pilih Opsi: ",-1,2,-1);
+        switch (num)
         {
-            int num = validasiInput("Pilih Opsi: ",-1,2,-1);
-            switch (num)
+        case 1:
+            if (!this->inventory->isBagSkillsEmpty()) 
             {
-            case 1:
-                if (!this->inventory->isBagSkillsEmpty()) 
-                {
-                    int num2 = validasiInput("Pilih skill untuk dibuang: ", -1,9999,-1);
-                    if (num2 == 0) break;
-                    this->inventory->removeSkill(num2);
-                }
-                break;
-            case 2:
-                if (!this->inventory->isEngimonBagEmpty()) 
-                {
-                    int num2 = validasiInput("Pilih Engimon untuk dibuang: ", -1,9999,-1);
-                    if (num2 == 0) break;
-                    this->inventory->removeEngimon(num2);
-                }
-                break;
-            default:
-                break;
+                int num2 = validasiInput("Pilih skill untuk dibuang: ", -1,9999,-1);
+                if (num2 == 0) break;
+                this->inventory->removeSkill(num2);
             }
+            break;
+        case 2:
+            if (!this->inventory->isEngimonBagEmpty()) 
+            {
+                int num2 = validasiInput("Pilih Engimon untuk dibuang: ", -1,9999,-1);
+                if (num2 == 0) break;
+                this->inventory->removeEngimon(num2);
+            }
+            break;
+        default:
+            break;
         }
-        catch(const std::bad_alloc& e)
-        {
-            std::cerr << "Bad alloc terdeksi, gagal membuang item " << e.what() << std::endl;
-        }
+
     }
 }
 void Player::useSkill()
@@ -217,25 +195,17 @@ bool Player::setEngimon()
     Engimon* engimonlama = temp->listItem[n1-1];
     cout << "Engimon Lama" << endl;
     cout << *engimonlama << endl;
-    try
-    {
-        Engimon* temp23 = new Engimon(*engimonlama);
-        // *temp23 = *engimonlama;
-        cout << "Engimon Baru" << endl;
-        cout << *temp23 << endl;
-        this->inventory->removeEngimon(n1); // engimon lama
-        Engimon* enjimonskrng = this->getEngimon();
-        this->inventory->addEngimon(*this->getEngimon());
-        this->setActiveEngimon(temp23);
-        delete enjimonskrng;
-        delete temp;
-        return true;
-    }
-    catch(const std::bad_alloc& e)
-    {
-        std::cerr << "Bad alloc terdeksi, gagal menset engimon " << e.what() << std::endl;
-        return false;
-    }
+    Engimon* temp2 = new Engimon();
+    *temp2 = *engimonlama;
+    cout << "Engimon Baru" << endl;
+    cout << *temp2 << endl;
+    this->inventory->removeEngimon(n1); // engimon lama
+    Engimon* enjimonskrng = this->getEngimon();
+    this->inventory->addEngimon(*this->getEngimon());
+    this->setActiveEngimon(temp2);
+    delete enjimonskrng;
+    delete temp;
+    return true;
 }
 
 
@@ -285,18 +255,10 @@ Engimon* Player::getClosestEnemy()
 }
 
 std::string randomKata() {
-    std::string possibleWords[] = 
-    {
-        "AYO KITA PASTI MENANG",
-        "GORENG-GORENG DULU GA SIH ?",
-        "ASHIAPPPP !!", "CHUAKKZZZZ", 
-        "LET'S GET IT",
-        "LET'S CONQUER THE LAND OF DAWN", 
-        "OM TELOLET OM", 
-        "ANJAY MABAR HAYUU"
-    };
+    std::string possibleWords[] = {"AYO KITA PASTI MENANG","GORENG-GORENG DULU GA SIH ?", "ASHIAPPPP !!", "CHUAKKZZZZ", "LET'S GET IT",
+    "LET'S CONQUER THE LAND OF DAWN", "OM TELOLET OM", "ANJAY MABAR HAYUU"};
     srand(time(0));
-    return possibleWords[rand() % 7];
+    return possibleWords[rand() % 8];
 };
 
 void Player::interact()

@@ -24,10 +24,10 @@ class Map
 		void createSea();
 
 		// Membuat Grassland sesuai area
-		void setGrassland(int x_kiri, int x_kanan, int y_kiri, int y_kanan);
+		void setGrassland(int x_kiri, int x_kanan, int y_atas, int y_bawah);
 
 		// Membuat Grassland sesuai area
-		void setSea(int x_kiri, int x_kanan, int y_kiri, int y_kanan);
+		void setSea(int x_kiri, int x_kanan, int y_atas, int y_bawah);
 
 		void printMap(int currentlevel);
 

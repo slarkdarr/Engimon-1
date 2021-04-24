@@ -34,7 +34,6 @@ Engimon::Engimon(const Engimon& other){
     this->monExp = other.monExp;
     this->monCtvExp = other.monCtvExp;
     this->monSkills = new Skill[4];
-    this->monParents = nullptr;
     for (int i = 0; i < 4; i++) this->monSkills[i] = other.monSkills[i];
     this->monElements = new Element[2];
     this->monElements[0].setElement(other.monElements[0].getElementType());
@@ -215,7 +214,6 @@ Engimon& Engimon::operator=(const Engimon& other){
     this->monCtvExp = other.monCtvExp;
     this->monElements[0] = other.monElements[0];
     this->monElements[1] = other.monElements[1];
-    this->monParents = nullptr;
     for (int i = 0; i < 4; i++) this->monSkills[i] = other.monSkills[i];
     if (other.monParents) {
         if (!this->monParents) 

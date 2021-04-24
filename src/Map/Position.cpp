@@ -15,7 +15,7 @@ Position::Position(int _x, int _y)
 }
 bool Position::setPosition(int _x, int _y)
 {
-    if (isValidCoordinate(_x, _y)){
+    if (isValidCoordinate(x,y)){
         x = _x;
         y = _y;
         return true;
